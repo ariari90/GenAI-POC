@@ -16,7 +16,10 @@ namespace InfoService
         PersonalInfo ViewPersonalInfo(int uniqueId);
 
         [OperationContract]
-        BankInfo ViewBankInfo(int uniqueId)
+        BankInfo ViewBankInfo(int uniqueId);
+
+        [OperationContract]
+        List<SchemaInfo> GetCurrentSchemeDetails(int uniqueId);
     }
 
 
@@ -77,6 +80,8 @@ namespace InfoService
 
         [DataMember]
         public string Mobile { get => mobile; set => mobile = value; }
+
+        
     }
 
     [DataContract]
@@ -106,5 +111,26 @@ namespace InfoService
 
         [DataMember]
         public string IfscCode { get => ifscCode; set => ifscCode = value; }
+    }
+
+    [DataContract]
+    public class SchemaInfo
+    {
+        int schemeId;
+        string schemeName;
+        string fundManagerName;
+        int percantageContribution;
+
+        [DataMember]
+        public int SchemeId { get => schemeId; set => schemeId = value; }
+
+        [DataMember]
+        public string SchemeName { get => schemeName; set => schemeName = value; }
+
+        [DataMember]
+        public string FundManagerName { get => fundManagerName; set => fundManagerName = value; }
+
+        [DataMember]
+        public int PercantageContribution { get => percantageContribution; set => percantageContribution = value; }
     }
 }

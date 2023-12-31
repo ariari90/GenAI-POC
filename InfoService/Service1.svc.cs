@@ -14,7 +14,7 @@ namespace InfoService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
-        string connectionString = @"Data Source=DESKTOP-2PDJ9M3; Initial Catelog=bankDb; Persist Security=True; Integrated Security=True; MultipleResultSets=True";
+        string connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catelog=bankDb; Persist Security=True; Integrated Security=True; MultipleResultSets=True";
         public PersonalInfo ViewPersonalInfo(int uniqueId)
         {
             PersonalInfo personalInfo = null;
@@ -23,7 +23,7 @@ namespace InfoService
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("select uniqueId, name, fathersName, mothersName, dateOfBirth, gender, nationality, isKycDone, " +
-                            "address1, address2, city, pinCode, mobile from PersonalInfo");
+                            "address1, address2, city, pinCode, mobile from PersonalInfo where uniqueId=" + uniqueId);
                 SqlDataReader reader = cmd.ExecuteReader();
                 personalInfo = MapValue<PersonalInfo>(reader);
             }
@@ -37,11 +37,25 @@ namespace InfoService
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("select accountNumber, bankBranch, bankName, bankAddress, ifscCode from PersonalInfo");
+                SqlCommand cmd = new SqlCommand("select accountNumber, bankBranch, bankName, bankAddress, ifscCode from Bank where uniqueId=" + uniqueId);
                 SqlDataReader reader = cmd.ExecuteReader();
                 bankInfo = MapValue<BankInfo>(reader);
             }
             return bankInfo;
+        }
+
+        public List<SchemaInfo> GetCurrentSchemeDetails(int uniqueId)
+        {
+            List<SchemaInfo> schemas = null;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("select accountNumber, bankBranch, bankName, bankAddress, ifscCode from Scheme where uniqueId=" + uniqueId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                schemas = MapList<SchemaInfo>(reader);
+            }
+            return schemas;
         }
 
 
@@ -54,7 +68,6 @@ namespace InfoService
             reader.Read();
             if(reader != null)
             {
-                
                 foreach (var prop in type.GetProperties())
                 {
                     var propType = prop.PropertyType;
