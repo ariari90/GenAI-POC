@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7d5b4697-3fba-439e-90d3-5cd3aae78b92" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50780/FacilityValidation.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FacilityValidation.xsd" MetadataType="Schema" ID="6655cf1c-a95d-477d-a110-a62255035c34" SourceId="1" SourceUrl="http://localhost:50780/FacilityValidation.svc?xsd=xsd0" />
+    <MetadataFile FileName="FacilityValidation1.xsd" MetadataType="Schema" ID="d0cd17e9-bea3-4a02-88bc-fad57d005cc7" SourceId="1" SourceUrl="http://localhost:50780/FacilityValidation.svc?xsd=xsd1" />
+    <MetadataFile FileName="FacilityValidation.disco" MetadataType="Disco" ID="e7aa5a61-0113-46c0-a6b8-d9c652a1ca3c" SourceId="1" SourceUrl="http://localhost:50780/FacilityValidation.svc?disco" />
+    <MetadataFile FileName="FacilityValidation.wsdl" MetadataType="Wsdl" ID="c4432614-c40a-4ea1-8178-302e04c29a42" SourceId="1" SourceUrl="http://localhost:50780/FacilityValidation.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
