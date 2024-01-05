@@ -10,7 +10,7 @@ namespace InfoService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IService1
+    public interface IAccountInfoService
     {
         [OperationContract]
         PersonalInfo ViewPersonalInfo(int uniqueId);
@@ -116,16 +116,16 @@ namespace InfoService
     [DataContract]
     public class SchemaInfo
     {
-        int schemeId;
-        string schemeName;
+        int schemaId;
+        string schemaName;
         string fundManagerName;
         int percantageContribution;
 
         [DataMember]
-        public int SchemeId { get => schemeId; set => schemeId = value; }
+        public int SchemaId { get => schemaId; set => schemaId = value; }
 
         [DataMember]
-        public string SchemeName { get => schemeName; set => schemeName = value; }
+        public string SchemaName { get => schemaName; set => schemaName = value; }
 
         [DataMember]
         public string FundManagerName { get => fundManagerName; set => fundManagerName = value; }

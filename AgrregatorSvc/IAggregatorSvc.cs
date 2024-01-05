@@ -13,12 +13,8 @@ namespace AgrregatorSvc
     [ServiceContract]
     public interface IAggregatorSvc
     {
-
         [OperationContract]
-        string GetData(int value);
-
-        [OperationContract]
-        FacilityResponse GetData(FacilityRequest request);
+        AggregatorResponse GetData(AggregatorRequest request);
 
     }
 }

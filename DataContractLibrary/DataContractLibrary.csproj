@@ -48,6 +48,9 @@
   <ItemGroup>
     <Compile Include="Activities\CreateFacilityResponse.cs" />
     <Compile Include="Activities\TranslateFacilityResponse.cs" />
+    <Compile Include="AggregatorRequest.cs" />
+    <Compile Include="AggregatorResponse.cs" />
+    <Compile Include="InfoServiceResponse.cs" />
     <Compile Include="RequestType.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="InitializeResponse.cs" />
@@ -57,6 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InfoService\InfoService.csproj">
+      <Project>{60874d70-d2af-46a4-8305-efe7237654a9}</Project>
+      <Name>InfoService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
