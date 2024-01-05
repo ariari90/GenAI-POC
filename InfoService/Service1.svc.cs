@@ -12,9 +12,9 @@ namespace InfoService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
-    public class Service1 : IService1
+    public class AccountInfoService : IAccountInfoService
     {
-        string connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catelog=bankDb; Persist Security=True; Integrated Security=True; MultipleResultSets=True";
+        string connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catalog=gen_ai_poc; Integrated Security=True";
         public PersonalInfo ViewPersonalInfo(int uniqueId)
         {
             PersonalInfo personalInfo = null;
@@ -23,7 +23,7 @@ namespace InfoService
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("select uniqueId, name, fathersName, mothersName, dateOfBirth, gender, nationality, isKycDone, " +
-                            "address1, address2, city, pinCode, mobile from PersonalInfo where uniqueId=" + uniqueId);
+                            "address1, address2, city, pinCode, mobile from UserAccount where uniqueId=" + uniqueId, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 personalInfo = MapValue<PersonalInfo>(reader);
             }
@@ -37,7 +37,7 @@ namespace InfoService
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("select accountNumber, bankBranch, bankName, bankAddress, ifscCode from Bank where uniqueId=" + uniqueId);
+                SqlCommand cmd = new SqlCommand("select uniqueId, accountNumber, bankBranch, bankName, address, ifscCode from BankInfo where uniqueId=" + uniqueId, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 bankInfo = MapValue<BankInfo>(reader);
             }
@@ -51,7 +51,7 @@ namespace InfoService
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("select accountNumber, bankBranch, bankName, bankAddress, ifscCode from Scheme where uniqueId=" + uniqueId);
+                SqlCommand cmd = new SqlCommand("select uniqueId, schemaId, schemaName, fundManagerName, percantageContribution from SchemaInfo where uniqueId=" + uniqueId, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 schemas = MapList<SchemaInfo>(reader);
             }
@@ -65,17 +65,18 @@ namespace InfoService
             Type type = typeof(T);
             T obj = (T)Activator.CreateInstance(type);
 
-            reader.Read();
-            if(reader != null)
+            
+            if(reader.Read())
             {
                 foreach (var prop in type.GetProperties())
                 {
                     var propType = prop.PropertyType;
-                    prop.SetValue(obj, Convert.ChangeType(reader[prop.Name].ToString(), propType));
+                    prop.SetValue(obj, Convert.ChangeType(reader[prop.Name].ToString(), propType), null);
                 }
+                return obj;
             }
 
-            return obj;
+            return default(T);
         }
 
         public List<T> MapList<T>(IDataReader reader)
@@ -88,7 +89,7 @@ namespace InfoService
                 foreach (var prop in type.GetProperties())
                 {
                     var propType = prop.PropertyType;
-                    prop.SetValue(obj, Convert.ChangeType(reader[prop.Name].ToString(), propType));
+                    prop.SetValue(obj, Convert.ChangeType(reader[prop.Name].ToString(), propType), null);
                 }
                 list.Add(obj);
             }

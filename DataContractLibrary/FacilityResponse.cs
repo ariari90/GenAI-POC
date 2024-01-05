@@ -13,7 +13,7 @@ namespace DataContractLibrary
        
 
         private Client client;
-        private string loanStatus ;
+        private string loanStatus;
         private decimal verifiedAmontBenchMark;
         private decimal clientSalaryAmount;
         private decimal loanAmountApproved;

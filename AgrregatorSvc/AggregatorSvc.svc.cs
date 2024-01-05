@@ -18,24 +18,28 @@ namespace AgrregatorSvc
             return string.Format("You entered: {0}", value);
         }
 
-        public FacilityResponse GetData(FacilityRequest request)
+        public AggregatorResponse GetData(AggregatorRequest request)
         {
-            FacilityResponse response = new FacilityResponse();
+            AggregatorResponse response = new AggregatorResponse();
             RequestHandler handler = GetOrchestractorData(request);
-
-            return response;
+            
+            if (handler == null)
+            {
+                throw new Exception("Invalid Request Type");
+            }
+            return handler.ProcessData();
         }
 
-        public RequestHandler GetOrchestractorData(FacilityRequest request)
+        public RequestHandler GetOrchestractorData(AggregatorRequest request)
         {
             RequestHandler result = null;
-            if(request.RequestType == RequestType.ActivityHistory)
+            if(request.RequestType == RequestType.AccountInfo)
             {
-                result = new ActivityRequestHandler();
+                result = new InfoRequestHandler(request);
             }
-            else if (request.RequestType == RequestType.AccountSummary)
+            else if (request.RequestType == RequestType.FacilityLicense)
             {
-                result = new AccountSummaryRequestHandler();
+                result = new FacilityRequestHandler();
             }
             else if(request.RequestType == RequestType.AccountList)
             {

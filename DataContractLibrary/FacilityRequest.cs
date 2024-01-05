@@ -12,7 +12,7 @@ namespace DataContractLibrary
     {
         private int faciliytId;
         private string faciliytType;
-        private RequestType requestType;
+        
         private decimal facilityAmount;
         private string facilityStatus;
         private Client client;
@@ -29,13 +29,6 @@ namespace DataContractLibrary
         {
             get { return faciliytType; }
             set { faciliytType = value; }
-        }
-
-        [DataMember]
-        public RequestType RequestType
-        {
-            get { return requestType; }
-            set { requestType = value; }
         }
 
         [DataMember]

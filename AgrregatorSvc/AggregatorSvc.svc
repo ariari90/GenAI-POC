@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="AgrregatorSvc.Service1" CodeBehind="AggregatorSvc.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="AgrregatorSvc.AggregatorSvc" CodeBehind="AggregatorSvc.svc.cs" %>
