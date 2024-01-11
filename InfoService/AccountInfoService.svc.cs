@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace InfoService
     public class AccountInfoService : IAccountInfoService
     {
         string connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catalog=gen_ai_poc; Integrated Security=True";
+        public AccountInfoService()
+        {
+            connectionString = ConfigurationManager.ConnectionStrings["DbContext"].ConnectionString;
+        }
         public PersonalInfo ViewPersonalInfo(int uniqueId)
         {
             PersonalInfo personalInfo = null;
@@ -44,16 +49,16 @@ namespace InfoService
             return bankInfo;
         }
 
-        public List<SchemaInfo> GetCurrentSchemeDetails(int uniqueId)
+        public List<SchemeInfo> GetCurrentSchemeDetails(int uniqueId)
         {
-            List<SchemaInfo> schemas = null;
+            List<SchemeInfo> schemas = null;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("select uniqueId, schemaId, schemaName, fundManagerName, percantageContribution from SchemaInfo where uniqueId=" + uniqueId, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
-                schemas = MapList<SchemaInfo>(reader);
+                schemas = MapList<SchemeInfo>(reader);
             }
             return schemas;
         }

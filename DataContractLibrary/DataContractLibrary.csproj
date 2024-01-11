@@ -50,6 +50,7 @@
     <Compile Include="Activities\TranslateFacilityResponse.cs" />
     <Compile Include="AggregatorRequest.cs" />
     <Compile Include="AggregatorResponse.cs" />
+    <Compile Include="ExitRequestResponse.cs" />
     <Compile Include="InfoServiceResponse.cs" />
     <Compile Include="RequestType.cs" />
     <Compile Include="Client.cs" />

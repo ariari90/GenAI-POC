@@ -19,7 +19,7 @@ namespace InfoService
         BankInfo ViewBankInfo(int uniqueId);
 
         [OperationContract]
-        List<SchemaInfo> GetCurrentSchemeDetails(int uniqueId);
+        List<SchemeInfo> GetCurrentSchemeDetails(int uniqueId);
     }
 
 
@@ -114,23 +114,31 @@ namespace InfoService
     }
 
     [DataContract]
-    public class SchemaInfo
+    public class SchemeInfo
     {
         int schemaId;
-        string schemaName;
+        string schemeName;
         string fundManagerName;
         int percantageContribution;
+        DateTime createdDate;
+        DateTime exitDate;
 
         [DataMember]
         public int SchemaId { get => schemaId; set => schemaId = value; }
 
         [DataMember]
-        public string SchemaName { get => schemaName; set => schemaName = value; }
+        public string SchemeName { get => schemeName; set => schemeName = value; }
 
         [DataMember]
         public string FundManagerName { get => fundManagerName; set => fundManagerName = value; }
 
         [DataMember]
         public int PercantageContribution { get => percantageContribution; set => percantageContribution = value; }
+
+        [DataMember]
+        public DateTime CreatedDate { get => createdDate; set => createdDate = value; }
+
+        [DataMember]
+        public DateTime ExitDate { get => exitDate; set => exitDate = value; }
     }
 }
