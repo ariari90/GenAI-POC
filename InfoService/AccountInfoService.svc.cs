@@ -63,6 +63,13 @@ namespace InfoService
             return schemas;
         }
 
+        public SchemeInfo GetSchemePreference(int uniqueId)
+        {
+            IAccountInfoService infoService = new InfoService.AccountInfoService();
+            var schemes = infoService.GetCurrentSchemeDetails(uniqueId);
+            var preferredScheme = schemes.FirstOrDefault(x => x.IsPreferred == true);
+            return preferredScheme;
+        }
 
 
         public T MapValue<T>(IDataReader reader)

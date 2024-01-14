@@ -19,9 +19,9 @@ namespace RequestService
 
         public void WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent)
         {
-            InfoService.IAccountBanking bankingRequest = new InfoService.AccountBanking();
-            var holdingSummary = bankingRequest.GetHoldingSummary(uniqueId);
-            var holdingForScheme = holdingSummary.Where(x => x.SchemeName == product).FirstOrDefault();
+            InfoService.IAccountBankingService bankingRequest = new InfoService.AccountBankingService();
+            var holdingSummaryResponse = bankingRequest.GetHoldingSummary(uniqueId);
+            var holdingForScheme = holdingSummaryResponse.HoldingSummaryData.Where(x => x.SchemeName == product).FirstOrDefault();
 
             // Calculate new amounts
             int newTotalUnits = (int)Math.Floor(holdingForScheme.TotalUnits - (holdingForScheme.TotalUnits / 100 * withdrawPercent));
