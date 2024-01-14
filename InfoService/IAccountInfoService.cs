@@ -20,6 +20,9 @@ namespace InfoService
 
         [OperationContract]
         List<SchemeInfo> GetCurrentSchemeDetails(int uniqueId);
+
+        [OperationContract]
+        SchemeInfo GetSchemePreference(int uniqueId);
     }
 
 
@@ -122,9 +125,10 @@ namespace InfoService
         int percantageContribution;
         DateTime createdDate;
         DateTime exitDate;
+        bool isPreferred;
 
         [DataMember]
-        public int SchemaId { get => schemaId; set => schemaId = value; }
+        public int SchemeId { get => schemaId; set => schemaId = value; }
 
         [DataMember]
         public string SchemeName { get => schemeName; set => schemeName = value; }
@@ -140,5 +144,8 @@ namespace InfoService
 
         [DataMember]
         public DateTime ExitDate { get => exitDate; set => exitDate = value; }
+
+        [DataMember]
+        public bool IsPreferred { get => isPreferred; set => isPreferred = value; }
     }
 }

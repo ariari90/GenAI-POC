@@ -64,7 +64,7 @@
   <ItemGroup>
     <Content Include="DBMigrationScripts\Script.sql" />
     <Content Include="AccountInfoService.svc" />
-    <Content Include="AccountBanking.svc" />
+    <Content Include="AccountBankingService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -72,10 +72,10 @@
       <DependentUpon>AccountInfoService.svc</DependentUpon>
     </Compile>
     <Compile Include="IAccountInfoService.cs" />
-    <Compile Include="IAccountBanking.cs" />
+    <Compile Include="IAccountBankingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AccountBanking.svc.cs">
-      <DependentUpon>AccountBanking.svc</DependentUpon>
+    <Compile Include="AccountBankingService.svc.cs">
+      <DependentUpon>AccountBankingService.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

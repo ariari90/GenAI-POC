@@ -10,14 +10,16 @@ namespace InfoService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
-    public class AccountBanking : IAccountBanking
+    public class AccountBankingService :  IAccountBankingService
     {
-        string connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catalog=gen_ai_poc; Integrated Security=True";
-        public List<HoldingSummaryData> GetHoldingSummary(int uid)
+        string _connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catalog=gen_ai_poc; Integrated Security=True";
+        int _amountPerUnits = 10;
+        public HoldingSummaryResponse GetHoldingSummary(int uid)
         {
-            List<HoldingSummaryData> hslists = null;
+            HoldingSummaryResponse response = new HoldingSummaryResponse();
 
-            using (SqlConnection cn = new SqlConnection(connectionString))
+            List<HoldingSummaryData> hslists = null;
+            using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("select Uniqueid,SchemeName,TotalUnits,Nav,Amount, CreatedDate, ExitDate from HoldingSummary", cn);
@@ -25,9 +27,12 @@ namespace InfoService
                 hslists = GetList<HoldingSummaryData>(dataReader);
             }
 
+            response.HoldingSummaryData = hslists;
+            response.TotalAmount = hslists.Sum(x => x.Amount);
+
             //hslists = hslists.Where(x => x.Uniqueid == uid || (x.TransactionDate <= startdate && x.TransactionDate >= enddate)).ToList();
 
-            return hslists.ToList();
+            return response;
         }
 
         public List<UserContributionData> GetUserContribution(int uid, DateTime startdate, DateTime enddate)
@@ -39,7 +44,7 @@ namespace InfoService
                 throw new FaultException("Input values are not valid");
             }
 
-            using (SqlConnection cn = new SqlConnection(connectionString))
+            using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("select UniqueId,TransactionDate,Description,Amount,TransactionType from TransactionSummary", cn);
@@ -51,13 +56,14 @@ namespace InfoService
 
             return userContributionLists.ToList();
         }
+        
 
         public ValidationResponse UpdatePersonalDetails(PersonalDetails personDetails)
         {
             ValidationResponse response = new ValidationResponse();
             try
             {
-                SqlConnection con = new SqlConnection(connectionString);
+                SqlConnection con = new SqlConnection(_connectionString);
                 con.Open();
 
                 SqlCommand cmdselect = new SqlCommand("select * from UserAccount where UniqueId=" + personDetails.Uniqueid, con);
@@ -90,6 +96,7 @@ namespace InfoService
             }
             return response;
         }
+
 
         public List<T> GetList<T>(SqlDataReader reader)
         {

@@ -9,10 +9,10 @@ namespace InfoService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IAccountBanking
+    public interface IAccountBankingService
     {
         [OperationContract]
-        List<HoldingSummaryData> GetHoldingSummary(int uid);
+        HoldingSummaryResponse GetHoldingSummary(int uid);
 
         [OperationContract]
         List<UserContributionData> GetUserContribution(int uid, DateTime startdate, DateTime enddate);
@@ -46,6 +46,17 @@ namespace InfoService
 
         [DataMember]
         public DateTime ExitDate { get; set; }
+
+    }
+
+    [DataContract]
+    public class HoldingSummaryResponse
+    {
+        [DataMember]
+        public List<HoldingSummaryData> HoldingSummaryData { get; set; }
+
+        [DataMember]
+        public decimal TotalAmount { get; set; }
 
     }
 
