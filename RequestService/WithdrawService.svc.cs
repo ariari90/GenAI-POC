@@ -1,6 +1,7 @@
 ﻿using DataContractLibrary;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -10,18 +11,30 @@ using System.Text;
 
 namespace RequestService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
-    public class Service1 : IWithdrawService
+    public class WithdrawService : IWithdrawService
     {
-        string _connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catalog=gen_ai_poc; Integrated Security=True";
+        string _connectionString;
         int _amountPerUnits = 10;
 
-        public void WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent)
+        public WithdrawService()
         {
+            _connectionString = ConfigurationManager.ConnectionStrings["DbContext"].ConnectionString;
+        }
+
+        public ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent)
+        {
+            ValidationResponse response = new ValidationResponse();
+
             InfoService.IAccountBankingService bankingRequest = new InfoService.AccountBankingService();
             var holdingSummaryResponse = bankingRequest.GetHoldingSummary(uniqueId);
             var holdingForScheme = holdingSummaryResponse.HoldingSummaryData.Where(x => x.SchemeName == product).FirstOrDefault();
+
+            if (holdingForScheme == null)
+            {
+                response.Status = "Fail";
+                response.ValidationMessage = "No holding found for user.";
+                return response;
+            }
 
             // Calculate new amounts
             int newTotalUnits = (int)Math.Floor(holdingForScheme.TotalUnits - (holdingForScheme.TotalUnits / 100 * withdrawPercent));
@@ -30,7 +43,9 @@ namespace RequestService
 
             if (newTotalUnits < 0)
             {
-                throw new Exception("Units cannot be less than zero");
+                response.Status = "Fail";
+                response.ValidationMessage = "Units cannot be less than zero";
+                return response;
             }
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -60,11 +75,14 @@ namespace RequestService
                 command.ExecuteNonQuery();
                 connection.Close();
             }
+            response.Status = "Success";
+            return response;
         }
 
-        public string ExitRequest(int uniqueId, string schemeName)
+        public ValidationResponse ExitRequest(int uniqueId, string schemeName)
         {
-            string status = String.Empty;
+
+            ValidationResponse response = new ValidationResponse();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             using (SqlCommand command = connection.CreateCommand())
@@ -87,16 +105,18 @@ namespace RequestService
 
                     command.Parameters.AddWithValue("@Sum_ExitDate", DateTime.Now);
                     command.ExecuteNonQuery();
-                    status = "Success";
+                    response.Status = "Success";
                 }
                 else
                 {
-                    status = "Failure";
+                    response.Status = "Failure";
+                    response.ValidationMessage = "No records are updated for withdrawal";
                 }
 
                 connection.Close();
             }
-            return status;
+            response.Status = "Success";
+            return response;
         }
 
         public ExitRequestResponse GetExitStatus (int uniqueId, string schemeName)

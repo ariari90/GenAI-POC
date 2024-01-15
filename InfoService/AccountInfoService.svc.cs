@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataContractLibrary;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,11 +12,10 @@ using System.Text;
 
 namespace InfoService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class AccountInfoService : IAccountInfoService
     {
-        string connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catalog=gen_ai_poc; Integrated Security=True";
+        string connectionString;
+
         public AccountInfoService()
         {
             connectionString = ConfigurationManager.ConnectionStrings["DbContext"].ConnectionString;
@@ -56,7 +56,7 @@ namespace InfoService
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("select uniqueId, schemaId, schemaName, fundManagerName, percantageContribution from SchemaInfo where uniqueId=" + uniqueId, conn);
+                SqlCommand cmd = new SqlCommand("select uniqueId, schemeId, schemeName, fundManagerName, percantageContribution, createdDate, exitDate, isPreferred from SchemeInfo where uniqueId=" + uniqueId, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 schemas = MapList<SchemeInfo>(reader);
             }
@@ -83,7 +83,15 @@ namespace InfoService
                 foreach (var prop in type.GetProperties())
                 {
                     var propType = prop.PropertyType;
-                    prop.SetValue(obj, Convert.ChangeType(reader[prop.Name].ToString(), propType), null);
+                    var typeCheck = reader[prop.Name].GetType();
+                    if (typeCheck.Name != "DBNull")
+                    {
+                        prop.SetValue(obj, Convert.ChangeType(reader[prop.Name], propType), null);
+                    }
+                    else
+                    {
+                        prop.SetValue(obj, null, null);
+                    }
                 }
                 return obj;
             }
@@ -101,7 +109,15 @@ namespace InfoService
                 foreach (var prop in type.GetProperties())
                 {
                     var propType = prop.PropertyType;
-                    prop.SetValue(obj, Convert.ChangeType(reader[prop.Name].ToString(), propType), null);
+                    var typeCheck = reader[prop.Name].GetType();
+                    if (typeCheck.Name != "DBNull")
+                    {
+                        prop.SetValue(obj, Convert.ChangeType(reader[prop.Name], propType), null);
+                    }
+                    else
+                    {
+                        prop.SetValue(obj, null, null);
+                    }
                 }
                 list.Add(obj);
             }

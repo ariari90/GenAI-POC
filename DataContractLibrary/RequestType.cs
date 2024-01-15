@@ -8,7 +8,9 @@ namespace DataContractLibrary
     public enum RequestType
     {
         AccountInfo,
+        HoldingsInfo,
+        UpdateDetails,
+        Transaction,
         FacilityLicense,
-        AccountList
     }
 }

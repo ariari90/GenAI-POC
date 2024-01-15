@@ -13,21 +13,18 @@ namespace AgrregatorSvc
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class AggregatorSvc : IAggregatorSvc
     {
-        public string GetData(int value)
+       public AggregatorResponse GetData(AggregatorRequest request)
         {
-            return string.Format("You entered: {0}", value);
-        }
-
-        public AggregatorResponse GetData(AggregatorRequest request)
-        {
-            AggregatorResponse response = new AggregatorResponse();
+            AggregatorResponse response = null;
             RequestHandler handler = GetOrchestractorData(request);
             
             if (handler == null)
             {
                 throw new Exception("Invalid Request Type");
             }
-            return handler.ProcessData();
+
+            response = handler.ProcessData();
+            return response;
         }
 
         public RequestHandler GetOrchestractorData(AggregatorRequest request)
@@ -37,14 +34,23 @@ namespace AgrregatorSvc
             {
                 result = new InfoRequestHandler(request);
             }
+            else if (request.RequestType == RequestType.HoldingsInfo)
+            {
+                result = new HoldingsRequestHandler(request);
+            }
+            else if (request.RequestType == RequestType.UpdateDetails)
+            {
+                result = new UpdateRequestHandler(request);
+            }
+            else if (request.RequestType == RequestType.Transaction)
+            {
+                result = new TransactionRequestHandler(request);
+            }
             else if (request.RequestType == RequestType.FacilityLicense)
             {
                 result = new FacilityRequestHandler();
             }
-            else if(request.RequestType == RequestType.AccountList)
-            {
-                result = new AccountListRequestHandler();
-            }
+            
             return result;
         }
     }

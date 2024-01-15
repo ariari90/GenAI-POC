@@ -50,23 +50,31 @@
     <Compile Include="Activities\TranslateFacilityResponse.cs" />
     <Compile Include="AggregatorRequest.cs" />
     <Compile Include="AggregatorResponse.cs" />
+    <Compile Include="BankInfo.cs" />
+    <Compile Include="ChangeSchemeRequest.cs" />
+    <Compile Include="ContributionRequest.cs" />
+    <Compile Include="DateRange.cs" />
     <Compile Include="ExitRequestResponse.cs" />
+    <Compile Include="HoldingsResponse.cs" />
+    <Compile Include="HoldingSummaryData.cs" />
+    <Compile Include="HoldingSummaryResponse.cs" />
     <Compile Include="InfoServiceResponse.cs" />
+    <Compile Include="PersonalDetails.cs" />
+    <Compile Include="PersonalInfo.cs" />
     <Compile Include="RequestType.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="InitializeResponse.cs" />
     <Compile Include="FacilityRequest.cs" />
     <Compile Include="FacilityResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SchemeInfo.cs" />
+    <Compile Include="UpdateRequest.cs" />
+    <Compile Include="UserContributionData.cs" />
+    <Compile Include="ValidationResponse.cs" />
+    <Compile Include="WithdrawRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\InfoService\InfoService.csproj">
-      <Project>{60874d70-d2af-46a4-8305-efe7237654a9}</Project>
-      <Name>InfoService</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

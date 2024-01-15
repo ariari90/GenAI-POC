@@ -14,10 +14,10 @@ namespace RequestService
     public interface IWithdrawService
     {
         [OperationContract]
-        void WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent);
+        ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent);
 
         [OperationContract]
-        string ExitRequest(int uniqueId, string schemeName);
+        ValidationResponse ExitRequest(int uniqueId, string schemeName);
 
         [OperationContract]
         ExitRequestResponse GetExitStatus(int uniqueId, string schemeName);

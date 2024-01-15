@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataContractLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -19,91 +20,6 @@ namespace InfoService
 
         [OperationContract]
         ValidationResponse UpdatePersonalDetails(PersonalDetails personDetails);
-    }
-
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class HoldingSummaryData
-    {
-        [DataMember]
-        public int Uniqueid { get; set; }
-
-        [DataMember]
-        public string SchemeName { get; set; }
-
-        [DataMember]
-        public decimal TotalUnits { get; set; }
-
-        [DataMember]
-        public decimal Nav { get; set; }
-
-        [DataMember]
-        public decimal Amount { get; set; }
-
-        [DataMember]
-        public DateTime CreatedDate { get; set; }
-
-        [DataMember]
-        public DateTime ExitDate { get; set; }
-
-    }
-
-    [DataContract]
-    public class HoldingSummaryResponse
-    {
-        [DataMember]
-        public List<HoldingSummaryData> HoldingSummaryData { get; set; }
-
-        [DataMember]
-        public decimal TotalAmount { get; set; }
-
-    }
-
-    [DataContract]
-    public class UserContributionData
-    {
-        [DataMember]
-        public int Uniqueid { get; set; }
-
-        [DataMember]
-        public DateTime TransactionDate { get; set; }
-
-        [DataMember]
-        public string Description { get; set; }
-
-        [DataMember]
-        public decimal Amount { get; set; }
-
-        [DataMember]
-        public string TransactionType { get; set; }
-    }
-
-    [DataContract]
-    public class PersonalDetails
-    {
-        [DataMember]
-        public int Uniqueid { get; set; }
-
-        [DataMember]
-        public string Address1 { get; set; }
-
-        [DataMember]
-        public string Address2 { get; set; }
-
-        [DataMember]
-        public string City { get; set; }
-
-        [DataMember]
-        public string Mobile { get; set; }
-
-        [DataMember]
-        public int PinCode { get; set; }
-    }
-
-    public class ValidationResponse
-    {
-        public string Status { get; set; }
     }
 }
 
