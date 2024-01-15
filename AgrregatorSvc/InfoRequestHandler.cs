@@ -19,9 +19,11 @@ namespace AgrregatorSvc
         {
             AggregatorResponse response = new AggregatorResponse();
             AccountInfoService accountInfoService = new AccountInfoService();
-            response.InfoServiceResponse.PersonalInfo = accountInfoService.ViewPersonalInfo(_request.UniqueId);
-            response.InfoServiceResponse.BankInfo = accountInfoService.ViewBankInfo(_request.UniqueId);
-            response.InfoServiceResponse.Schemas = accountInfoService.GetCurrentSchemeDetails(_request.UniqueId);
+            response.AccountInfoResponse = new InfoServiceResponse();
+            response.AccountInfoResponse.PersonalInfo = accountInfoService.ViewPersonalInfo(_request.UniqueId);
+            response.AccountInfoResponse.BankInfo = accountInfoService.ViewBankInfo(_request.UniqueId);
+            response.AccountInfoResponse.Schemas = accountInfoService.GetCurrentSchemeDetails(_request.UniqueId);
+            response.AccountInfoResponse.PreferredScheme = accountInfoService.GetSchemePreference(_request.UniqueId);
             return response;
         }
     }

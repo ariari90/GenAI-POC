@@ -1,4 +1,5 @@
-﻿using InfoService;
+﻿using DataContractLibrary;
+using InfoService;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -16,16 +17,26 @@ namespace RequestService
         string _connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catalog=gen_ai_poc; Integrated Security=True";
         int _amountPerUnits = 10;
 
-        public void ContributeOnline(int uniqueId, string product, int units)
+        public ValidationResponse ContributeOnline(int uniqueId, string product, int units)
         {
+            ValidationResponse response = new ValidationResponse();
             if (units <= 0)
             {
-                throw new Exception("You cannot contribute 0 units");
+                response.Status = "Fail";
+                response.ValidationMessage = "You cannot contribute 0 units";
+                return response;
             }
 
             InfoService.IAccountBankingService bankingRequest = new InfoService.AccountBankingService();
             var holdingSummaryResponse = bankingRequest.GetHoldingSummary(uniqueId);
             var holdingForScheme = holdingSummaryResponse.HoldingSummaryData.Where(x => x.SchemeName == product).FirstOrDefault();
+
+            if (holdingForScheme == null)
+            {
+                response.Status = "Fail";
+                response.ValidationMessage = "Scheme not found for user";
+                return response;
+            }
 
             // Calculate new amounts
             int newTotalUnits = (int)Math.Floor(holdingForScheme.TotalUnits + units);
@@ -58,16 +69,21 @@ namespace RequestService
                 command.ExecuteNonQuery();
                 connection.Close();
             }
+            response.Status = "Success";
+            return response;
         }
 
-        public string ChangeSchemePreference(int uniqueId, int newSchemePreferenceId)
+        public ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId)
         {
+            ValidationResponse response = new ValidationResponse();
             InfoService.IAccountInfoService infoService = new AccountInfoService();
             var schemes = infoService.GetCurrentSchemeDetails(uniqueId);
 
             if (!schemes.Any(x => x.SchemeId == newSchemePreferenceId))
             {
-                return ("Fail: SchemeId not valid for user.");
+                response.Status = "Fail";
+                response.ValidationMessage = "SchemeId not valid for user";
+                return response;
             }
 
             try
@@ -89,18 +105,24 @@ namespace RequestService
             }
             catch (Exception e)
             {
-                return "Fail: DBException: " + e.StackTrace;
+                response.Status = "Fail";
+                response.ValidationMessage = "Fail: DBException: " + e.StackTrace;
+                return response;
             }
-            return "Success";
+            response.Status = "Success";
+            return response;
         }
 
-        public string ChangeFundManagerName(int uniqueId, string fundManagerName)
+        public ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName)
         {
+            ValidationResponse response = new ValidationResponse();
             IAccountInfoService infoService = new AccountInfoService();
             var account = infoService.ViewPersonalInfo(uniqueId);
             if (account == null)
             {
-                return "Fail: User not found";
+                response.Status = "Fail";
+                response.ValidationMessage = "Fail: User not found";
+                return response;
             }
             try
             {
@@ -108,7 +130,7 @@ namespace RequestService
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     connection.Open();
-                    command.CommandText = @"UPDATE AccountInfo set fundManagerName=@FundManagerName
+                    command.CommandText = @"UPDATE SchemeInfo set fundManagerName=@FundManagerName
                                     WHERE uniqueId = " + uniqueId;
 
                     command.Parameters.AddWithValue("@fundManagerName", fundManagerName);
@@ -118,9 +140,12 @@ namespace RequestService
             }
             catch (Exception e)
             {
-                return "Fail: DBException: " + e.StackTrace;
+                response.Status = "Fail";
+                response.ValidationMessage = "Fail: DBException: " + e.StackTrace;
+                return response;
             }
-            return "Success";
+            response.Status = "Success";
+            return response;
         }
     }
 

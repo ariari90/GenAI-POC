@@ -65,8 +65,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountListRequestHandler.cs" />
+    <Compile Include="HoldingsRequestHandler.cs" />
     <Compile Include="FacilityRequestHandler.cs" />
+    <Compile Include="TransactionRequestHandler.cs" />
     <Compile Include="InfoRequestHandler.cs" />
     <Compile Include="AggregatorSvc.svc.cs">
       <DependentUpon>AggregatorSvc.svc</DependentUpon>
@@ -74,6 +75,7 @@
     <Compile Include="RequestHandler.cs" />
     <Compile Include="IAggregatorSvc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateRequestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -94,6 +96,10 @@
     <ProjectReference Include="..\InfoService\InfoService.csproj">
       <Project>{60874d70-d2af-46a4-8305-efe7237654a9}</Project>
       <Name>InfoService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestService\RequestService.csproj">
+      <Project>{55175c42-0acc-4d7f-8dd4-23b71dde159e}</Project>
+      <Name>RequestService</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

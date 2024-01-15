@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DataContractLibrary;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,8 +14,13 @@ namespace InfoService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class AccountBankingService :  IAccountBankingService
     {
-        string _connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catalog=gen_ai_poc; Integrated Security=True";
+        string _connectionString;
         int _amountPerUnits = 10;
+
+        public AccountBankingService()
+        {
+            _connectionString = ConfigurationManager.ConnectionStrings["DbContext"].ConnectionString;
+        }
         public HoldingSummaryResponse GetHoldingSummary(int uid)
         {
             HoldingSummaryResponse response = new HoldingSummaryResponse();
@@ -47,12 +54,12 @@ namespace InfoService
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("select UniqueId,TransactionDate,Description,Amount,TransactionType from TransactionSummary", cn);
+                SqlCommand cmd = new SqlCommand("select UniqueId,TransactionDate,Description,Amount,TransactionType from TransactionSummary where uniqueId=" + uid, cn);
                 var dataReader = cmd.ExecuteReader();
                 userContributionLists = GetList<UserContributionData>(dataReader);
             }
 
-            userContributionLists = userContributionLists.Where(x => x.Uniqueid == uid || (x.TransactionDate >= startdate && x.TransactionDate <= enddate)).ToList();
+            userContributionLists = userContributionLists.Where(x => (x.TransactionDate >= startdate && x.TransactionDate <= enddate)).ToList();
 
             return userContributionLists.ToList();
         }
@@ -71,6 +78,7 @@ namespace InfoService
 
                 if (reader.HasRows)
                 {
+                    reader.Close();
                     SqlCommand cmd = new SqlCommand("update UserAccount set Address1=@Address1,Address2=@Address2,City=@City, PinCode=@PinCode, Mobile=@Mobile where UniqueId=@UniqueId", con);
                     cmd.Parameters.AddWithValue("@Address1", personDetails.Address1);
                     cmd.Parameters.AddWithValue("@Address2", personDetails.Address2);
@@ -83,9 +91,10 @@ namespace InfoService
                 }
                 else
                 {
+                    reader.Close();
                     response.Status = "Reject";
                 }
-                reader.Close();
+                
                 con.Close();
 
             }
@@ -108,7 +117,16 @@ namespace InfoService
                 foreach (var prop in type.GetProperties())
                 {
                     var propType = prop.PropertyType;
-                    prop.SetValue(obj, Convert.ChangeType(reader[prop.Name].ToString(), propType), null);
+                    var typeCheck = reader[prop.Name].GetType();
+                    if (typeCheck.Name != "DBNull")
+                    {
+                        prop.SetValue(obj, Convert.ChangeType(reader[prop.Name], propType), null);
+                    }
+                    else
+                    {
+                        prop.SetValue(obj, null, null);
+                    }
+
                 }
                 list.Add(obj);
             }
