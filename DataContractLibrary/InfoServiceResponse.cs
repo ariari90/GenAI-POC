@@ -12,7 +12,7 @@ namespace DataContractLibrary
     {
         private PersonalInfo personalInfo;
         private BankInfo bankInfo;
-        private List<SchemeInfo> schemas;
+        private List<SchemeInfo> schemes;
         private SchemeInfo preferredScheme;
 
         [DataMember]
@@ -22,7 +22,7 @@ namespace DataContractLibrary
         public BankInfo BankInfo { get => bankInfo; set => bankInfo = value; }
 
         [DataMember]
-        public List<SchemeInfo> Schemas { get => schemas; set => schemas = value; }
+        public List<SchemeInfo> Schemes { get => schemes; set => schemes = value; }
 
         [DataMember]
         public SchemeInfo PreferredScheme { get => preferredScheme; set => preferredScheme = value; }

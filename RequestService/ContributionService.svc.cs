@@ -10,8 +10,6 @@ using System.Text;
 
 namespace RequestService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service2" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service2.svc or Service2.svc.cs at the Solution Explorer and start debugging.
     public class ContributionService : IContributionService
     {
         string _connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catalog=gen_ai_poc; Integrated Security=True";
@@ -93,7 +91,7 @@ namespace RequestService
                 {
                     connection.Open();
                     command.CommandText = @"UPDATE SchemeInfo set IsPreferred=0
-                                    WHERE IsPreferred=0=1 and uniqueId = " + uniqueId;
+                                    WHERE IsPreferred=1 and uniqueId = " + uniqueId;
                     command.ExecuteNonQuery();
 
                     command.CommandText = @"UPDATE SchemeInfo set IsPreferred=1
