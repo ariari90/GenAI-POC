@@ -11,7 +11,6 @@ namespace DataContractLibrary
     {
         private int uniqueId;
         private RequestType requestType;
-        private float amount;
         private DateRange transactionDateRange;
         private UpdateRequest updateRequest;
         private ContributionRequest contributionRequest;
@@ -22,10 +21,7 @@ namespace DataContractLibrary
         public int UniqueId { get => uniqueId; set => uniqueId = value; }
 
         [DataMember]
-        public float Amount { get => amount; set => amount = value; }
-
-        [DataMember]
-        public DateRange TransactionDateRange { get => transactionDateRange; set => transactionDateRange = value; }
+        public DateRange ViewTransactionDateRange { get => transactionDateRange; set => transactionDateRange = value; }
 
         [DataMember]
         public ContributionRequest ContributionRequest { get => contributionRequest; set => contributionRequest = value; }

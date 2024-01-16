@@ -32,7 +32,7 @@ namespace RequestService
             if (holdingForScheme == null)
             {
                 response.Status = "Fail";
-                response.ValidationMessage = "No holding found for user.";
+                response.ValidationMessage = "No holding found for user."; 
                 return response;
             }
 

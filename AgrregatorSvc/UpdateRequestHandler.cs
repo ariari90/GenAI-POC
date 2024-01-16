@@ -56,7 +56,12 @@ namespace AgrregatorSvc
             if (_request.UpdateRequest.ChangeSchemeRequest != null)
             {
                 IContributionService service = new ContributionService();
-                service.ChangeSchemePreference(_request.UniqueId, _request.UpdateRequest.ChangeSchemeRequest.NewSchemeId);
+                var validationResponse = service.ChangeSchemePreference(_request.UniqueId, _request.UpdateRequest.ChangeSchemeRequest.NewSchemeId);
+                if (validationResponse.Status != "Success")
+                {
+                    response.ValidationResponse = validationResponse;
+                    return response;
+                }
             }
 
             response.ValidationResponse = new ValidationResponse();

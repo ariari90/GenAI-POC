@@ -24,13 +24,13 @@ namespace AgrregatorSvc
             var bankingService = new AccountBankingService();
             response.HoldingsResponse.HoldingSummary = bankingService.GetHoldingSummary(_request.UniqueId);
             
-            if (_request.TransactionDateRange != null && _request.TransactionDateRange.StartDate!= null && _request.TransactionDateRange.EndDate != null)
+            if (_request.ViewTransactionDateRange != null && _request.ViewTransactionDateRange.StartDate!= null && _request.ViewTransactionDateRange.EndDate != null)
             {
                 response.HoldingsResponse.Transactions = bankingService.GetUserContribution(_request.UniqueId, 
-                    _request.TransactionDateRange.StartDate.Value, _request.TransactionDateRange.EndDate.Value);
+                    _request.ViewTransactionDateRange.StartDate.Value, _request.ViewTransactionDateRange.EndDate.Value);
             }
 
-            if (String.IsNullOrEmpty(_request.ViewExitRequestForSchemaName))
+            if (!String.IsNullOrEmpty(_request.ViewExitRequestForSchemaName))
             {
                 IWithdrawService service = new WithdrawService();
                 response.HoldingsResponse.ExitRequestResponse = service.GetExitStatus(_request.UniqueId, _request.ViewExitRequestForSchemaName);
