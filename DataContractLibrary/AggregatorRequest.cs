@@ -11,31 +11,31 @@ namespace DataContractLibrary
     {
         private int uniqueId;
         private RequestType requestType;
-        private DateRange transactionDateRange;
         private UpdateRequest updateRequest;
         private ContributionRequest contributionRequest;
         private WithdrawRequest withdrawRequest;
-        private string viewExitRequestForSchemaName;
+        private HoldingsInfoRequest holdingsInfoRequest;
+        private FacilityRequest facilityRequest;
 
         [DataMember]
         public int UniqueId { get => uniqueId; set => uniqueId = value; }
-
-        [DataMember]
-        public DateRange ViewTransactionDateRange { get => transactionDateRange; set => transactionDateRange = value; }
 
         [DataMember]
         public ContributionRequest ContributionRequest { get => contributionRequest; set => contributionRequest = value; }
 
         [DataMember]
         public WithdrawRequest WithdrawRequest { get => withdrawRequest; set => withdrawRequest = value; }
-
-        [DataMember]
-        public string ViewExitRequestForSchemaName { get => viewExitRequestForSchemaName; set => viewExitRequestForSchemaName = value; }
-
+        
         [DataMember]
         public RequestType RequestType { get => requestType; set => requestType = value; }
 
         [DataMember]
         public UpdateRequest UpdateRequest { get => updateRequest; set => updateRequest = value; }
+
+        [DataMember]
+        public FacilityRequest FacilityRequest { get => facilityRequest; set => facilityRequest = value; }
+
+        [DataMember]
+        public HoldingsInfoRequest HoldingsInfoRequest { get => holdingsInfoRequest; set => holdingsInfoRequest = value; }
     }
 }

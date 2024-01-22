@@ -12,6 +12,7 @@ namespace DataContractLibrary
         private InfoServiceResponse infoServiceResponse;
         private HoldingsResponse holdingsResponse;
         private ValidationResponse validationResponse;
+        private FacilityResponse facilityResponse;
 
         [DataMember]
         public InfoServiceResponse AccountInfoResponse { get => infoServiceResponse; set => infoServiceResponse = value; }
@@ -22,5 +23,7 @@ namespace DataContractLibrary
         [DataMember]
         public ValidationResponse ValidationResponse { get => validationResponse; set => validationResponse = value; }
 
+        [DataMember]
+        public FacilityResponse FacilityResponse { get => facilityResponse; set => facilityResponse = value; }
     }
 }
