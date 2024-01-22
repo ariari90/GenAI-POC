@@ -127,6 +127,10 @@
     </XamlAppDef>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConsumptionServices\ConsumptionServices.csproj">
+      <Project>{91d77be7-374a-497e-8090-5a0242567f9d}</Project>
+      <Name>ConsumptionServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataContractLibrary\DataContractLibrary.csproj">
       <Project>{DD02B14C-0413-40FA-8FC7-D5387875E138}</Project>
       <Name>DataContractLibrary</Name>
@@ -144,7 +148,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Q /Y "$(TargetDir)*.dll" "D:\DeployedXaml"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Q /Y "$(TargetDir)*.dll" "C:\DeployedXaml"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

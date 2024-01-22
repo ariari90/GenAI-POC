@@ -28,14 +28,6 @@ namespace MulitenancyWcf
             MetaDataFetch metadataDecision = new MetaDataFetch();
             int iTenantId = 0;
 
-            //InstanceContext instanceContext = OperationContext.Current.InstanceContext;
-            //AddressableInstanceContextInfo info = instanceContext.Extensions.Find<AddressableInstanceContextInfo>();
-            
-            //string temp = ((info != null) ? info.InstanceId : null);
-            //Hashtable hashTenants = DataContractLibrary.TenantData.InMemory.TenantSessionMap;
-            // int threadId = System.Threading.Thread.CurrentThread.ManagedThreadId;
-            //int iTenantId = Convert.ToInt16( hashTenants[threadId]);
-
             if (HttpContext.Current.Session["TenantSession"] != null)
                 iTenantId = Convert.ToInt32(HttpContext.Current.Session["TenantSession"].ToString()); 
 
@@ -48,7 +40,7 @@ namespace MulitenancyWcf
                 varied.AssemblyNameInvoke = metadataDecision.AssemblyInvoke;
                 varied.NamespaceClassNameInvoke = metadataDecision.NamespaceClassNameInvoke;
                 varied.InputRequest = facilityRequest;
-                varied.ExecuteVariedProcessLoad();                
+                varied.ExecuteVariedProcessLoad();
                 facilityResponse  = (FacilityResponse)varied.OutputResult["workflowOutput"];
             }
             else
@@ -57,6 +49,7 @@ namespace MulitenancyWcf
                 CoreWorkflows.CreateFacility createFacility = new CoreWorkflows.CreateFacility();
                 createFacility.InitializeComponent();
                 Dictionary<string, object> inputs = new Dictionary<string, object>() { { "facilityRequest", facilityRequest } }; 
+                
                 IDictionary<string, object> results = WorkflowInvoker.Invoke(createFacility,inputs);
                 facilityResponse = (FacilityResponse)results["faciliytResponse"];
             }

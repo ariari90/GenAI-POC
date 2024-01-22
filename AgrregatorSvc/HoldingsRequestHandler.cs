@@ -24,16 +24,19 @@ namespace AgrregatorSvc
             var bankingService = new AccountBankingService();
             response.HoldingsResponse.HoldingSummary = bankingService.GetHoldingSummary(_request.UniqueId);
             
-            if (_request.ViewTransactionDateRange != null && _request.ViewTransactionDateRange.StartDate!= null && _request.ViewTransactionDateRange.EndDate != null)
+            if (_request.HoldingsInfoRequest != null)
             {
-                response.HoldingsResponse.Transactions = bankingService.GetUserContribution(_request.UniqueId, 
-                    _request.ViewTransactionDateRange.StartDate.Value, _request.ViewTransactionDateRange.EndDate.Value);
-            }
+                if (_request.HoldingsInfoRequest.ViewTransactionDateRange != null && _request.HoldingsInfoRequest.ViewTransactionDateRange.StartDate != null && _request.HoldingsInfoRequest.ViewTransactionDateRange.EndDate != null)
+                {
+                    response.HoldingsResponse.Transactions = bankingService.GetUserContribution(_request.UniqueId,
+                        _request.HoldingsInfoRequest.ViewTransactionDateRange.StartDate.Value, _request.HoldingsInfoRequest.ViewTransactionDateRange.EndDate.Value);
+                }
 
-            if (!String.IsNullOrEmpty(_request.ViewExitRequestForSchemaName))
-            {
-                IWithdrawService service = new WithdrawService();
-                response.HoldingsResponse.ExitRequestResponse = service.GetExitStatus(_request.UniqueId, _request.ViewExitRequestForSchemaName);
+                if (!String.IsNullOrEmpty(_request.HoldingsInfoRequest.ViewExitRequestForSchemeName))
+                {
+                    IWithdrawService service = new WithdrawService();
+                    response.HoldingsResponse.ExitRequestResponse = service.GetExitStatus(_request.UniqueId, _request.HoldingsInfoRequest.ViewExitRequestForSchemeName);
+                }
             }
 
             return response;

@@ -55,6 +55,7 @@
     <Compile Include="ContributionRequest.cs" />
     <Compile Include="DateRange.cs" />
     <Compile Include="ExitRequestResponse.cs" />
+    <Compile Include="HoldingsInfoRequest.cs" />
     <Compile Include="HoldingsResponse.cs" />
     <Compile Include="HoldingSummaryData.cs" />
     <Compile Include="HoldingSummaryResponse.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="PersonalInfo.cs" />
     <Compile Include="RequestType.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="InitializeResponse.cs" />
+    <Compile Include="Activities\InitializeResponse.cs" />
     <Compile Include="FacilityRequest.cs" />
     <Compile Include="FacilityResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

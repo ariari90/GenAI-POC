@@ -62,9 +62,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AggregatorSvc.svc" />
+    <None Include="Connected Services\FacilityServiceClient\FacilityService.disco" />
+    <None Include="Connected Services\FacilityServiceClient\configuration91.svcinfo" />
+    <None Include="Connected Services\FacilityServiceClient\configuration.svcinfo" />
+    <None Include="Connected Services\FacilityServiceClient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\FacilityServiceClient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="HoldingsRequestHandler.cs" />
     <Compile Include="FacilityRequestHandler.cs" />
     <Compile Include="TransactionRequestHandler.cs" />
@@ -81,6 +93,18 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\FacilityServiceClient\FacilityService.wsdl" />
+    <None Include="Connected Services\FacilityServiceClient\FacilityService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FacilityServiceClient\FacilityService1.wsdl" />
+    <None Include="Connected Services\FacilityServiceClient\FacilityService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FacilityServiceClient\FacilityService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Properties\DataSources\DataContractLibrary.FacilityResponse.datasource" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -97,10 +121,20 @@
       <Project>{60874d70-d2af-46a4-8305-efe7237654a9}</Project>
       <Name>InfoService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MulitenancyWcf\MulitenancyWcf.csproj">
+      <Project>{153D7AD0-9F0B-4968-A61E-FFEAD980216E}</Project>
+      <Name>MulitenancyWcf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RequestService\RequestService.csproj">
       <Project>{55175c42-0acc-4d7f-8dd4-23b71dde159e}</Project>
       <Name>RequestService</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\FacilityServiceClient\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

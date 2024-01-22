@@ -29,7 +29,7 @@ namespace ConsumptionServices
             if (HttpContext.Current.Session["TenantSession"] != null)
                 tenantId = HttpContext.Current.Session["TenantSession"].ToString();
 
-               ExecuteRulesSet execute = new ExecuteRulesSet();
+            ExecuteRulesSet execute = new ExecuteRulesSet();
                execute.RuleSetName = "ApplyClientRules";
                execute.MajorVersion = Convert.ToInt32(tenantId);
                execute.ValidationErrors = new ValidationErrorCollection();

@@ -46,7 +46,7 @@ namespace AgrregatorSvc
             }
             else if (request.RequestType == RequestType.FacilityLicense)
             {
-                result = new FacilityRequestHandler();
+                result = new FacilityRequestHandler(request);
             }
             
             return result;

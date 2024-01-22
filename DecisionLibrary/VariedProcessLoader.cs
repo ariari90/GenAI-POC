@@ -30,7 +30,7 @@ namespace DecisionLibrary
 
                 // create stream with textbox contents
                 StringBuilder data = new StringBuilder();
-
+                string path = ConfigurationManager.AppSettings["XamlPath"].ToString() + AssemblyNameInvoke + ".dll";
                 Assembly assembly = Assembly.LoadFile(ConfigurationManager.AppSettings["XamlPath"].ToString() + AssemblyNameInvoke + ".dll");
 
                 var dynamicActivity = assembly.CreateInstance(NamespaceClassNameInvoke) as Activity;
