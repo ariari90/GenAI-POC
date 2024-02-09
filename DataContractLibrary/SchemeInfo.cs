@@ -9,33 +9,27 @@ namespace DataContractLibrary
     [DataContract]
     public class SchemeInfo
     {
-        int schemaId;
-        string schemeName;
-        string fundManagerName;
-        int percantageContribution;
-        DateTime createdDate;
-        DateTime exitDate;
-        bool isPreferred;
+        
 
         [DataMember]
-        public int SchemeId { get => schemaId; set => schemaId = value; }
+        public int SchemeId { get; set; }
 
         [DataMember]
-        public string SchemeName { get => schemeName; set => schemeName = value; }
+        public string SchemeName { get; set; }
 
         [DataMember]
-        public string FundManagerName { get => fundManagerName; set => fundManagerName = value; }
+        public string FundManagerName { get; set; }
 
         [DataMember]
-        public int PercantageContribution { get => percantageContribution; set => percantageContribution = value; }
+        public int PercantageContribution { get; set; }
 
         [DataMember]
-        public DateTime CreatedDate { get => createdDate; set => createdDate = value; }
+        public DateTime CreatedDate { get; set; }
 
         [DataMember]
-        public DateTime ExitDate { get => exitDate; set => exitDate = value; }
+        public DateTime ExitDate { get; set; }
 
         [DataMember]
-        public bool IsPreferred { get => isPreferred; set => isPreferred = value; }
+        public bool IsPreferred { get; set; }
     }
 }

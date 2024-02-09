@@ -1,0 +1,4 @@
+﻿<SequenceActivity x:Class="MySequentialWorkflow.PersonalInfo" x:Name="PersonalInfo" xmlns:ns0="clr-namespace:DSP;Assembly=DSP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<CodeActivity x:Name="codeActivity1" ExecuteCode="codeActivity1_ExecuteCode" />
+	<ns0:MobileServiceProvider Request="{x:Null}" Response="{x:Null}" x:Name="mobileServiceProvider1" />
+</SequenceActivity>

@@ -9,58 +9,45 @@ namespace DataContractLibrary
     [DataContract]
     public class PersonalInfo
     {
-        int uniqueId;
-        string name;
-        string fathersName;
-        string mothersName;
-        DateTime dateOfBirth;
-        string gender;
-        string nationality;
-        bool isKycDone;
-        string address1;
-        string address2;
-        string city;
-        int pinCode;
-        string mobile;
-
+        
 
         [DataMember]
-        public int UniqueId { get => uniqueId; set => uniqueId = value; }
+        public int UniqueId { get; set; }
 
         [DataMember]
-        public string Name { get => name; set => name = value; }
+        public string Name { get; set; }
 
         [DataMember]
-        public string FathersName { get => fathersName; set => fathersName = value; }
+        public string FathersName { get; set; }
 
         [DataMember]
-        public string MothersName { get => mothersName; set => mothersName = value; }
+        public string MothersName { get; set; }
 
         [DataMember]
-        public DateTime DateOfBirth { get => dateOfBirth; set => dateOfBirth = value; }
+        public DateTime DateOfBirth { get; set; }
 
         [DataMember]
-        public string Gender { get => gender; set => gender = value; }
+        public string Gender { get; set; }
 
         [DataMember]
-        public string Nationality { get => nationality; set => nationality = value; }
+        public string Nationality { get; set; }
 
         [DataMember]
-        public bool IsKycDone { get => isKycDone; set => isKycDone = value; }
+        public bool IsKycDone { get; set; }
 
         [DataMember]
-        public string Address1 { get => address1; set => address1 = value; }
+        public string Address1 { get; set; }
 
         [DataMember]
-        public string Address2 { get => address2; set => address2 = value; }
+        public string Address2 { get; set; }
 
         [DataMember]
-        public string City { get => city; set => city = value; }
+        public string City { get; set; }
 
         [DataMember]
-        public int PinCode { get => pinCode; set => pinCode = value; }
+        public int PinCode { get; set; }
 
         [DataMember]
-        public string Mobile { get => mobile; set => mobile = value; }
+        public string Mobile { get; set; }
     }
 }

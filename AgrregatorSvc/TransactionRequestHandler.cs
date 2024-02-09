@@ -8,7 +8,7 @@ using System.Web;
 
 namespace AgrregatorSvc
 {
-    public class TransactionRequestHandler: RequestHandler
+    public class TransactionRequestHandler : RequestHandler
     {
         AggregatorRequest _request;
         public TransactionRequestHandler(AggregatorRequest request)

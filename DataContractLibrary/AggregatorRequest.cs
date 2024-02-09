@@ -9,33 +9,26 @@ namespace DataContractLibrary
     [DataContract]
     public class AggregatorRequest
     {
-        private int uniqueId;
-        private RequestType requestType;
-        private UpdateRequest updateRequest;
-        private ContributionRequest contributionRequest;
-        private WithdrawRequest withdrawRequest;
-        private HoldingsInfoRequest holdingsInfoRequest;
-        private FacilityRequest facilityRequest;
-
-        [DataMember]
-        public int UniqueId { get => uniqueId; set => uniqueId = value; }
-
-        [DataMember]
-        public ContributionRequest ContributionRequest { get => contributionRequest; set => contributionRequest = value; }
-
-        [DataMember]
-        public WithdrawRequest WithdrawRequest { get => withdrawRequest; set => withdrawRequest = value; }
         
         [DataMember]
-        public RequestType RequestType { get => requestType; set => requestType = value; }
+        public int UniqueId { get; set; }
 
         [DataMember]
-        public UpdateRequest UpdateRequest { get => updateRequest; set => updateRequest = value; }
+        public ContributionRequest ContributionRequest { get; set; }
 
         [DataMember]
-        public FacilityRequest FacilityRequest { get => facilityRequest; set => facilityRequest = value; }
+        public WithdrawRequest WithdrawRequest { get; set; }
+        
+        [DataMember]
+        public RequestType RequestType { get; set; }
 
         [DataMember]
-        public HoldingsInfoRequest HoldingsInfoRequest { get => holdingsInfoRequest; set => holdingsInfoRequest = value; }
+        public UpdateRequest UpdateRequest { get; set; }
+
+        [DataMember]
+        public FacilityRequest FacilityRequest { get; set; }
+
+        [DataMember]
+        public HoldingsInfoRequest HoldingsInfoRequest { get; set; }
     }
 }

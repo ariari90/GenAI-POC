@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Activities;
 using System.ComponentModel;
+using System.Activities;
 
 namespace DataContractLibrary.Activities
 {
-    public class TranslateFacilityResponse : CodeActivity
+    public sealed class TranslateFacilityResponse : CodeActivity
     {
         [RequiredArgument]
         public InArgument<Dictionary<string, object>> output { get; set; }

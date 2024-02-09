@@ -9,9 +9,9 @@ namespace DataContractLibrary
     [DataContract]
     public class ChangeSchemeRequest
     {  
-        int newSchemeId;
+        
 
         [DataMember]
-        public int NewSchemeId { get => newSchemeId; set => newSchemeId = value; }
+        public int NewSchemeId { get; set; }
     }
 }

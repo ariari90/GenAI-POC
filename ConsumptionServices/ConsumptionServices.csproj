@@ -102,10 +102,6 @@
       <Project>{DF4239DD-E4BD-4F4A-897A-27CCE64A8DEF}</Project>
       <Name>RulesLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceInterceptor\ServiceInterceptor.csproj">
-      <Project>{FD2E16EC-C049-4BBB-B537-5D9B1D36B1FB}</Project>
-      <Name>ServiceInterceptor</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

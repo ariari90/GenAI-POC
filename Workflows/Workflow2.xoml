@@ -1,0 +1,63 @@
+﻿<SequentialWorkflowActivity x:Class="MySequentialWorkflow.Workflow2" x:Name="Workflow2" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<IfElseActivity x:Name="ifElseActivity1">
+		<IfElseBranchActivity x:Name="ifElseActivity11">
+			<IfElseBranchActivity.Condition>
+				<CodeCondition Condition="ifElseActivity11_ExecuteCode" />
+			</IfElseBranchActivity.Condition>
+			<CodeActivity x:Name="codeActivity11" ExecuteCode="codeActivity11_ExecuteCode" />
+		</IfElseBranchActivity>
+		<IfElseBranchActivity x:Name="ifElseActivity12">
+			<IfElseBranchActivity.Condition>
+				<CodeCondition Condition="ifElseActivity12_ExecuteCode" />
+			</IfElseBranchActivity.Condition>
+			<CodeActivity x:Name="codeActivity12" ExecuteCode="codeActivity12_ExecuteCode" />
+		</IfElseBranchActivity>
+	</IfElseActivity>
+	<CodeActivity x:Name="codeActivity1" ExecuteCode="codeActivity1_ExecuteCode" />
+  <IfElseActivity x:Name="ifElseActivity2">
+    <IfElseBranchActivity x:Name="ifElseActivity21">
+      <IfElseBranchActivity.Condition>
+        <CodeCondition Condition="ifElseActivity21_ExecuteCode" />
+      </IfElseBranchActivity.Condition>
+      <CodeActivity x:Name="codeActivity21" ExecuteCode="codeActivity21_ExecuteCode" />
+    </IfElseBranchActivity>
+    <IfElseBranchActivity x:Name="ifElseActivity22">
+      <IfElseBranchActivity.Condition>
+        <CodeCondition Condition="ifElseActivity22_ExecuteCode" />
+      </IfElseBranchActivity.Condition>
+      <CodeActivity x:Name="codeActivity22" ExecuteCode="codeActivity22_ExecuteCode" />
+    </IfElseBranchActivity>
+  </IfElseActivity>
+  <CodeActivity x:Name="codeActivity2" ExecuteCode="codeActivity2_ExecuteCode" />
+  <IfElseActivity x:Name="ifElseActivity3">
+    <IfElseBranchActivity x:Name="ifElseActivity31">
+      <IfElseBranchActivity.Condition>
+        <CodeCondition Condition="ifElseActivity31_ExecuteCode" />
+      </IfElseBranchActivity.Condition>
+      <CodeActivity x:Name="codeActivity31" ExecuteCode="codeActivity31_ExecuteCode" />
+    </IfElseBranchActivity>
+    <IfElseBranchActivity x:Name="ifElseActivity32">
+      <IfElseBranchActivity.Condition>
+        <CodeCondition Condition="ifElseActivity32_ExecuteCode" />
+      </IfElseBranchActivity.Condition>
+      <CodeActivity x:Name="codeActivity32" ExecuteCode="codeActivity32_ExecuteCode" />
+    </IfElseBranchActivity>
+  </IfElseActivity>
+  <CodeActivity x:Name="codeActivity3" ExecuteCode="codeActivity3_ExecuteCode" />
+  <IfElseActivity x:Name="ifElseActivity4">
+    <IfElseBranchActivity x:Name="ifElseActivity41">
+      <IfElseBranchActivity.Condition>
+        <CodeCondition Condition="ifElseActivity41_ExecuteCode" />
+      </IfElseBranchActivity.Condition>
+      <CodeActivity x:Name="codeActivity41" ExecuteCode="codeActivity41_ExecuteCode" />
+    </IfElseBranchActivity>
+    <IfElseBranchActivity x:Name="ifElseActivity42">
+      <IfElseBranchActivity.Condition>
+        <CodeCondition Condition="ifElseActivity42_ExecuteCode" />
+      </IfElseBranchActivity.Condition>
+      <CodeActivity x:Name="codeActivity42" ExecuteCode="codeActivity42_ExecuteCode" />
+    </IfElseBranchActivity>
+  </IfElseActivity>
+  <CodeActivity x:Name="codeActivity4" ExecuteCode="codeActivity4_ExecuteCode" />
+	<DelayActivity x:Name="delayActivity1" TimeoutDuration="00:00:01"/>
+</SequentialWorkflowActivity>

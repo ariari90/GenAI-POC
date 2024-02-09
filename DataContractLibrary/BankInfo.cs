@@ -9,29 +9,23 @@ namespace DataContractLibrary
     [DataContract]
     public class BankInfo
     {
-        int uniqueId;
-        int accountNumber;
-        string bankBranch;
-        string bankName;
-        string address;
-        string ifscCode;
+        
+        [DataMember]
+        public int UniqueId { get; set; }
 
         [DataMember]
-        public int UniqueId { get => uniqueId; set => uniqueId = value; }
+        public int AccountNumber { get; set; }
 
         [DataMember]
-        public int AccountNumber { get => accountNumber; set => accountNumber = value; }
+        public string BankBranch { get; set; }
 
         [DataMember]
-        public string BankBranch { get => bankBranch; set => bankBranch = value; }
+        public string BankName { get; set; }
 
         [DataMember]
-        public string BankName { get => bankName; set => bankName = value; }
+        public string Address { get; set; }
 
         [DataMember]
-        public string Address { get => address; set => address = value; }
-
-        [DataMember]
-        public string IfscCode { get => ifscCode; set => ifscCode = value; }
+        public string IfscCode { get; set; }
     }
 }
