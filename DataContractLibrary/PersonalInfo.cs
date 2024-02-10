@@ -15,7 +15,7 @@ namespace DataContractLibrary
         public int UniqueId { get; set; }
 
         [DataMember]
-        public string Name { get; set; }
+        public string FullName { get; set; }
 
         [DataMember]
         public string FathersName { get; set; }

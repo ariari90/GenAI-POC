@@ -1,4 +1,5 @@
 ﻿using DataContractLibrary;
+using DSP;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,8 @@ namespace AgrregatorSvc
         public RequestHandler GetOrchestractorData(AggregatorRequest request)
         {
             RequestHandler result = null;
+            AggregatorConstants.Instantiate();
+
             if(request.RequestType == RequestType.AccountInfo)
             {
                 result = new InfoRequestHandler(request);

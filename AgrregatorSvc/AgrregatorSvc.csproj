@@ -119,6 +119,10 @@
       <Project>{dd02b14c-0413-40fa-8fc7-d5387875e138}</Project>
       <Name>DataContractLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DSP\DSP.csproj">
+      <Project>{174F0D2D-0678-454E-957E-9098ACA559CE}</Project>
+      <Name>DSP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InfoService\InfoService.csproj">
       <Project>{60874d70-d2af-46a4-8305-efe7237654a9}</Project>
       <Name>InfoService</Name>

@@ -132,9 +132,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PersonalInfo.xoml">
-      <SubType>Component</SubType>
-    </Content>
+    <Content Include="PersonalInfo.xoml" />
     <None Include="Service References\AccountInfoServiceReference\AccountInfoService.disco" />
     <None Include="Service References\AccountInfoServiceReference\configuration91.svcinfo" />
     <None Include="Service References\AccountInfoServiceReference\configuration.svcinfo" />
@@ -166,10 +164,6 @@
     <ProjectReference Include="..\DSP\DSP.csproj">
       <Project>{174f0d2d-0678-454e-957e-9098aca559ce}</Project>
       <Name>DSP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WorkflowConsoleApplication4\WorkflowConsoleApplication4.csproj">
-      <Project>{1689AD73-4BBE-4B39-9268-8076EDB796F3}</Project>
-      <Name>WorkflowConsoleApplication4</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

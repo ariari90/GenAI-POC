@@ -3,12 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Workflow.ComponentModel;
+using DataContractLibrary;
+using System.Collections;
 
 namespace DSP
 {
     public class ServiceProviderBase : System.Workflow.ComponentModel.Activity
     {
-        public static object GetValueOfWorkflowVariable(Activity activity, string valueName)
+
+        public void SetDSFRequiredResponse(string responseName)
+        {
+            ArrayList requiredResponses = GetDSFVariable(this, AggregatorConstants.RequiredResponses) as ArrayList;
+            if (requiredResponses == null)
+            {
+                requiredResponses = new ArrayList();
+            }
+
+            requiredResponses.Add(responseName);
+
+            SetDSFVariable(this, AggregatorConstants.RequiredResponses, requiredResponses);
+        }
+
+        public bool IsDSFResponseRequired(string responseName)
+        {
+            ArrayList requiredResponses = GetDSFVariable(this, AggregatorConstants.RequiredResponses) as ArrayList;
+            if (requiredResponses == null)
+            {
+                return false;
+            }
+            return requiredResponses.Contains(responseName);
+        }
+
+        public object GetDSFVariableByName (string activityName, string valueName)
+        {
+            var activity = GetActivityByName(activityName);
+            if(activity == null)
+            {
+                return null;
+            }
+
+            return GetDSFVariable(activity, valueName);
+        }
+
+        public object GetDSFVariable(Activity activity, string valueName)
         {
             object value = null;
             if (activity != null)
@@ -23,12 +60,13 @@ namespace DSP
                 catch
                 { }
                 if (value == null)
-                    value = GetValueOfWorkflowVariable(activity.Parent, valueName);
+                    value = GetDSFVariable(activity.Parent, valueName);
             }
             return value;
         }
 
-        public static void SetValueOfWorkflowVariable(Activity activity, string valueName, object value)
+        
+        public static void SetDSFVariable(Activity activity, string valueName, object value)
         {
             if (activity != null)
             {
@@ -41,7 +79,7 @@ namespace DSP
                 }
                 catch
                 { }
-                SetValueOfWorkflowVariable(activity.Parent, valueName, value);
+                SetDSFVariable(activity.Parent, valueName, value);
             }
         }
     }

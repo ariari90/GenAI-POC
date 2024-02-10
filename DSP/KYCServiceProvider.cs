@@ -9,7 +9,7 @@ using System.Workflow.ComponentModel;
 
 namespace DSP
 {
-    public class MobileServiceProvider: ServiceProviderBase
+    public class KycServiceProvider: ServiceProviderBase
     {
 
         [Browsable(true)]
@@ -19,7 +19,7 @@ namespace DSP
             get; set;
         }
 
-        public string Mobile { get; set; }
+        public string IsKycDone { get; set; }
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
@@ -32,8 +32,8 @@ namespace DSP
                 Console.WriteLine("Request is null");
                 AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
                 var personalInfo = service.ViewPersonalInfo(Request.UniqueId);
-                string mobile = personalInfo.Mobile;
-                SetDSFVariable(this, AggregatorConstants.Mobile, mobile);
+
+                SetDSFVariable(this, AggregatorConstants.Mobile, personalInfo.IsKycDone);
                 SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
             }
 

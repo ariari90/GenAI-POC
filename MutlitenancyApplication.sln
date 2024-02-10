@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSP", "DSP\DSP.csproj", "{1
 		{60874D70-D2AF-46A4-8305-EFE7237654A9} = {60874D70-D2AF-46A4-8305-EFE7237654A9}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowConsoleApplication4", "WorkflowConsoleApplication4\WorkflowConsoleApplication4.csproj", "{1689AD73-4BBE-4B39-9268-8076EDB796F3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,16 +101,6 @@ Global
 		{174F0D2D-0678-454E-957E-9098ACA559CE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{174F0D2D-0678-454E-957E-9098ACA559CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{174F0D2D-0678-454E-957E-9098ACA559CE}.Release|x86.Build.0 = Release|Any CPU
-		{1689AD73-4BBE-4B39-9268-8076EDB796F3}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{1689AD73-4BBE-4B39-9268-8076EDB796F3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{1689AD73-4BBE-4B39-9268-8076EDB796F3}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{1689AD73-4BBE-4B39-9268-8076EDB796F3}.Debug|x86.ActiveCfg = Debug|x86
-		{1689AD73-4BBE-4B39-9268-8076EDB796F3}.Debug|x86.Build.0 = Debug|x86
-		{1689AD73-4BBE-4B39-9268-8076EDB796F3}.Release|Any CPU.ActiveCfg = Release|x86
-		{1689AD73-4BBE-4B39-9268-8076EDB796F3}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{1689AD73-4BBE-4B39-9268-8076EDB796F3}.Release|Mixed Platforms.Build.0 = Release|x86
-		{1689AD73-4BBE-4B39-9268-8076EDB796F3}.Release|x86.ActiveCfg = Release|x86
-		{1689AD73-4BBE-4B39-9268-8076EDB796F3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

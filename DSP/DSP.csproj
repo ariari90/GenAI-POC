@@ -46,6 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicUserInfoServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AggregatorAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AggregatorConstants.cs" />
+    <Compile Include="IDataServiceProvider.cs" />
+    <Compile Include="AddressServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KycServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MobileServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>

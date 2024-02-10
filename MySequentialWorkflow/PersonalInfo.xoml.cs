@@ -11,6 +11,8 @@ using System.Workflow.Runtime;
 using System.Workflow.Activities;
 using System.Workflow.Activities.Rules;
 using DataContractLibrary;
+using System.Collections.Generic;
+using DSP;
 
 namespace MySequentialWorkflow
 {
@@ -30,10 +32,11 @@ namespace MySequentialWorkflow
             get; set;
         }
 
+        public ArrayList RequiredResponses;
+
         protected override void InitializeProperties()
         {
             base.InitializeProperties();
-            
         }
 
         public static object GetValueOfWorkflowVariable(Activity activity, string valueName)
@@ -75,7 +78,7 @@ namespace MySequentialWorkflow
 
         private void codeActivity1_ExecuteCode(object sender, EventArgs e)
         {
-            Console.WriteLine(Req.UniqueId);
+            Console.WriteLine(Request.UniqueId);
             SetValueOfWorkflowVariable(this, "Request", Request);
             Console.WriteLine("Init test");
         }

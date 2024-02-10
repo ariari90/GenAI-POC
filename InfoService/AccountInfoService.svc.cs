@@ -27,7 +27,7 @@ namespace InfoService
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("select uniqueId, name, fathersName, mothersName, dateOfBirth, gender, nationality, isKycDone, " +
+                SqlCommand cmd = new SqlCommand("select uniqueId, fullName, fathersName, mothersName, dateOfBirth, gender, nationality, isKycDone, " +
                             "address1, address2, city, pinCode, mobile from UserAccount where uniqueId=" + uniqueId, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 personalInfo = MapValue<PersonalInfo>(reader);
