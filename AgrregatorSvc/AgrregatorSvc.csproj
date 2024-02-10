@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgrregatorSvc</RootNamespace>
     <AssemblyName>AgrregatorSvc</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <UseIISExpress>true</UseIISExpress>
@@ -22,6 +23,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,12 +44,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
@@ -57,28 +59,29 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.Workflow.Runtime" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AggregatorSvc.svc" />
-    <None Include="Connected Services\FacilityServiceClient\FacilityService.disco" />
-    <None Include="Connected Services\FacilityServiceClient\configuration91.svcinfo" />
-    <None Include="Connected Services\FacilityServiceClient\configuration.svcinfo" />
-    <None Include="Connected Services\FacilityServiceClient\Reference.svcmap">
+    <None Include="Service References\AccountInfoService\AccountInfoService.disco" />
+    <None Include="Service References\AccountInfoService\configuration91.svcinfo" />
+    <None Include="Service References\AccountInfoService\configuration.svcinfo" />
+    <None Include="Service References\AccountInfoService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\FacilityServiceClient\Reference.cs">
+    <Compile Include="HoldingsRequestHandler.cs" />
+    <Compile Include="FacilityRequestHandler.cs" />
+    <Compile Include="Service References\AccountInfoService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="HoldingsRequestHandler.cs" />
-    <Compile Include="FacilityRequestHandler.cs" />
     <Compile Include="TransactionRequestHandler.cs" />
     <Compile Include="InfoRequestHandler.cs" />
     <Compile Include="AggregatorSvc.svc.cs">
@@ -93,18 +96,17 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\FacilityServiceClient\FacilityService.wsdl" />
-    <None Include="Connected Services\FacilityServiceClient\FacilityService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\FacilityServiceClient\FacilityService1.wsdl" />
-    <None Include="Connected Services\FacilityServiceClient\FacilityService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\FacilityServiceClient\FacilityService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Properties\DataSources\DataContractLibrary.FacilityResponse.datasource" />
+    <None Include="Service References\AccountInfoService\AccountInfoService.wsdl" />
+    <None Include="Service References\AccountInfoService\AccountInfoService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountInfoService\AccountInfoService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountInfoService\AccountInfoService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -117,13 +119,17 @@
       <Project>{dd02b14c-0413-40fa-8fc7-d5387875e138}</Project>
       <Name>DataContractLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DSP\DSP.csproj">
+      <Project>{174F0D2D-0678-454E-957E-9098ACA559CE}</Project>
+      <Name>DSP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InfoService\InfoService.csproj">
       <Project>{60874d70-d2af-46a4-8305-efe7237654a9}</Project>
       <Name>InfoService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MulitenancyWcf\MulitenancyWcf.csproj">
-      <Project>{153D7AD0-9F0B-4968-A61E-FFEAD980216E}</Project>
-      <Name>MulitenancyWcf</Name>
+    <ProjectReference Include="..\MySequentialWorkflow\Workflows.csproj">
+      <Project>{1687df58-f00a-4029-9a1b-8db3eb4e8621}</Project>
+      <Name>Workflows</Name>
     </ProjectReference>
     <ProjectReference Include="..\RequestService\RequestService.csproj">
       <Project>{55175c42-0acc-4d7f-8dd4-23b71dde159e}</Project>
@@ -131,10 +137,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\FacilityServiceClient\" />
+    <WCFMetadataStorage Include="Service References\AccountInfoService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

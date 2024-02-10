@@ -4,27 +4,24 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using DataContractLibrary;
+using System.Workflow.ComponentModel;
 
 namespace DataContractLibrary
 {
     [DataContract]
     public class InfoServiceResponse
     {
-        private PersonalInfo personalInfo;
-        private BankInfo bankInfo;
-        private List<SchemeInfo> schemes;
-        private SchemeInfo preferredScheme;
+        
+        [DataMember]
+        public PersonalInfo PersonalInfo { get ; set; }
 
         [DataMember]
-        public PersonalInfo PersonalInfo { get => personalInfo; set => personalInfo = value; }
+        public BankInfo BankInfo { get; set; }
 
         [DataMember]
-        public BankInfo BankInfo { get => bankInfo; set => bankInfo = value; }
+        public List<SchemeInfo> Schemes { get; set; }
 
         [DataMember]
-        public List<SchemeInfo> Schemes { get => schemes; set => schemes = value; }
-
-        [DataMember]
-        public SchemeInfo PreferredScheme { get => preferredScheme; set => preferredScheme = value; }
+        public SchemeInfo PreferredScheme { get; set; }
     }
 }

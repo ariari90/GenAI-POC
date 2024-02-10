@@ -9,13 +9,11 @@ namespace DataContractLibrary
     [DataContract]
     public class DateRange
     {
-        private DateTime? startDate;
-        private DateTime? endDate;
+        
+        [DataMember]
+        public DateTime? StartDate { get; set; }
 
         [DataMember]
-        public DateTime? StartDate { get => startDate; set => startDate = value; }
-
-        [DataMember]
-        public DateTime? EndDate { get => endDate; set => endDate = value; }
+        public DateTime? EndDate { get; set; }
     }
 }

@@ -9,17 +9,14 @@ namespace DataContractLibrary
     [DataContract]
     public class WithdrawRequest
     {
-        string product;
-        decimal withdrawPercent;
-        bool isExitRequest;
+ 
+        [DataMember]
+        public string Product { get; set; }
 
         [DataMember]
-        public string Product { get => product; set => product = value; }
+        public decimal WithdrawPercent { get; set; }
 
         [DataMember]
-        public decimal WithdrawPercent { get => withdrawPercent; set => withdrawPercent = value; }
-
-        [DataMember]
-        public bool IsExitRequest { get => isExitRequest; set => isExitRequest = value; }
+        public bool IsExitRequest { get; set; }
     }
 }

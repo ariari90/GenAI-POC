@@ -9,21 +9,17 @@ namespace DataContractLibrary
     [DataContract]
     public class AggregatorResponse
     {
-        private InfoServiceResponse infoServiceResponse;
-        private HoldingsResponse holdingsResponse;
-        private ValidationResponse validationResponse;
-        private FacilityResponse facilityResponse;
+        
+        [DataMember]
+        public InfoServiceResponse AccountInfoResponse { get; set; }
 
         [DataMember]
-        public InfoServiceResponse AccountInfoResponse { get => infoServiceResponse; set => infoServiceResponse = value; }
+        public HoldingsResponse HoldingsResponse { get; set; }
 
         [DataMember]
-        public HoldingsResponse HoldingsResponse { get => holdingsResponse; set => holdingsResponse = value; }
+        public ValidationResponse ValidationResponse { get; set; }
 
         [DataMember]
-        public ValidationResponse ValidationResponse { get => validationResponse; set => validationResponse = value; }
-
-        [DataMember]
-        public FacilityResponse FacilityResponse { get => facilityResponse; set => facilityResponse = value; }
+        public FacilityResponse FacilityResponse { get; set; }
     }
 }

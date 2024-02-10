@@ -14,12 +14,12 @@ namespace DataContractLibrary
         private ExitRequestResponse exitRequestResponse;
 
         [DataMember]
-        public HoldingSummaryResponse HoldingSummary { get => holdingSummary; set => holdingSummary = value; }
+        public HoldingSummaryResponse HoldingSummary { get; set; }
 
         [DataMember]
-        public List<UserContributionData> Transactions { get => transactions; set => transactions = value; }
+        public List<UserContributionData> Transactions { get; set; }
 
         [DataMember]
-        public ExitRequestResponse ExitRequestResponse { get => exitRequestResponse; set => exitRequestResponse = value; }
+        public ExitRequestResponse ExitRequestResponse { get; set; }
     }
 }

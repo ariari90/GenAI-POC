@@ -161,10 +161,6 @@
       <Project>{6E27A7B8-F6E7-4A7B-A989-8291FF56619E}</Project>
       <Name>DecisionLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceInterceptor\ServiceInterceptor.csproj">
-      <Project>{FD2E16EC-C049-4BBB-B537-5D9B1D36B1FB}</Project>
-      <Name>ServiceInterceptor</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

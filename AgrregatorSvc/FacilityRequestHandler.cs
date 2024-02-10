@@ -1,5 +1,5 @@
 ﻿using DataContractLibrary;
-using MulitenancyWcf;
+//using MulitenancyWcf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +30,8 @@ namespace AgrregatorSvc
                 return response;
             }
 
-            FacilityServiceClient.FacilityServiceClient client = new FacilityServiceClient.FacilityServiceClient();
-            response.FacilityResponse = client.CreateFacility(_request.FacilityRequest);
+            //FacilityServiceClient.FacilityServiceClient client = new FacilityServiceClient.FacilityServiceClient();
+            //response.FacilityResponse = client.CreateFacility(_request.FacilityRequest);
             return response;
         }
 

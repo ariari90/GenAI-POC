@@ -9,17 +9,14 @@ namespace DataContractLibrary
     [DataContract]
     public class UpdateRequest
     {
-        private ChangeSchemeRequest changeSchemeRequest;
-        private PersonalDetails personalDetails;
-        private string fundManagerName;
+        
+        [DataMember]
+        public PersonalDetails PersonalDetails { get; set; }
 
         [DataMember]
-        public PersonalDetails PersonalDetails { get => personalDetails; set => personalDetails = value; }
+        public ChangeSchemeRequest ChangeSchemeRequest { get; set; }
 
         [DataMember]
-        public ChangeSchemeRequest ChangeSchemeRequest { get => changeSchemeRequest; set => changeSchemeRequest = value; }
-
-        [DataMember]
-        public string FundManagerName { get => fundManagerName; set => fundManagerName = value; }
+        public string FundManagerName { get; set; }
     }
 }

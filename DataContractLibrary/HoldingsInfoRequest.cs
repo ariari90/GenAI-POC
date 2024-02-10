@@ -9,14 +9,12 @@ namespace DataContractLibrary
     [DataContract]
     public class HoldingsInfoRequest
     {
-        private string viewExitRequestForSchemeName;
-        private DateRange transactionDateRange;
-
+        
 
         [DataMember]
-        public string ViewExitRequestForSchemeName { get => viewExitRequestForSchemeName; set => viewExitRequestForSchemeName = value; }
+        public string ViewExitRequestForSchemeName { get; set; }
 
         [DataMember]
-        public DateRange ViewTransactionDateRange { get => transactionDateRange; set => transactionDateRange = value; }
+        public DateRange ViewTransactionDateRange { get; set; }
     }
 }
