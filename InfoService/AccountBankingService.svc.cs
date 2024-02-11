@@ -27,7 +27,7 @@ namespace InfoService
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("select Uniqueid,SchemeName,TotalUnits,Nav,Amount, CreatedDate, ExitDate from HoldingSummary", cn);
+                SqlCommand cmd = new SqlCommand("select Uniqueid,HoldingSchemeName,TotalUnits,Nav,Amount, CreatedDate, ExitDate from HoldingSummary", cn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 hslists = GetList<HoldingSummaryData>(dataReader);
             }

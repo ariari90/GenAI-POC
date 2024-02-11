@@ -49,12 +49,10 @@ namespace DSP
         {
             Console.WriteLine("Executing  Aggregator DSF Adapter");
 
-
-            string mobile = GetDSFVariableByName("mobileServiceProvider1", "Mobile").ToString();
-
             Response = new AggregatorResponse();
 
             Response = Aggregate<AggregatorResponse>(Response);
+            SetDSFVariable(this.Parent, "Response", Response);
 
             Console.WriteLine("Response built");
 
@@ -87,7 +85,9 @@ namespace DSP
                 bool isDateTime = propType == typeof(DateTime);
                 bool isList = propType.Name.Contains("List");
                 if (propType.IsClass && !isString && !isDateTime && !isList)
-                {                    
+                {
+                    string activityName = String.Empty;
+                    
                     var instantiatePropObj = Activator.CreateInstance(propType);
                     var instantiateProp = Convert.ChangeType(instantiatePropObj, propType);
 

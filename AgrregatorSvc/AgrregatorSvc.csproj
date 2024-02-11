@@ -65,10 +65,38 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AggregatorSvc.svc" />
+    <Content Include="Properties\DataSources\DataContractLibrary.HoldingSummaryResponse.datasource" />
+    <Content Include="Properties\DataSources\DataContractLibrary.UserContributionData.datasource" />
+    <Content Include="Properties\DataSources\DataContractLibrary.ValidationResponse.datasource" />
+    <Content Include="Properties\DataSources\DataContractLibrary.ExitRequestResponse.datasource" />
+    <None Include="Service References\AccountBankingService\AccountBankingService.wsdl" />
+    <None Include="Service References\AccountBankingService\AccountBankingService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountBankingService\AccountBankingService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountBankingService\AccountBankingService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\AccountInfoService\AccountInfoService.disco" />
     <None Include="Service References\AccountInfoService\configuration91.svcinfo" />
     <None Include="Service References\AccountInfoService\configuration.svcinfo" />
     <None Include="Service References\AccountInfoService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AccountBankingService\AccountBankingService.disco" />
+    <None Include="Service References\AccountBankingService\configuration91.svcinfo" />
+    <None Include="Service References\AccountBankingService\configuration.svcinfo" />
+    <None Include="Service References\AccountBankingService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WithdrawService\WithdrawService.disco" />
+    <None Include="Service References\WithdrawService\configuration91.svcinfo" />
+    <None Include="Service References\WithdrawService\configuration.svcinfo" />
+    <None Include="Service References\WithdrawService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -77,7 +105,17 @@
   <ItemGroup>
     <Compile Include="HoldingsRequestHandler.cs" />
     <Compile Include="FacilityRequestHandler.cs" />
+    <Compile Include="Service References\AccountBankingService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\AccountInfoService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WithdrawService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -105,6 +143,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AccountInfoService\AccountInfoService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WithdrawService\WithdrawService.wsdl" />
+    <None Include="Service References\WithdrawService\WithdrawService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WithdrawService\WithdrawService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WithdrawService\WithdrawService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.Debug.config">
@@ -140,7 +188,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AccountBankingService\" />
     <WCFMetadataStorage Include="Service References\AccountInfoService\" />
+    <WCFMetadataStorage Include="Service References\WithdrawService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -21,7 +21,7 @@ namespace MySequentialWorkflow
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.InfoServiceResponse Response
+        public DataContractLibrary.AggregatorResponse Response
         {
             get; set;
         }
@@ -37,50 +37,6 @@ namespace MySequentialWorkflow
         protected override void InitializeProperties()
         {
             base.InitializeProperties();
-        }
-
-        public static object GetValueOfWorkflowVariable(Activity activity, string valueName)
-        {
-            object value = null;
-            if (activity != null)
-            {
-                try
-                {
-                    ActivityBind workflowActivityBind = new ActivityBind();
-                    workflowActivityBind.Name = activity.Name;
-                    workflowActivityBind.Path = valueName;
-                    value = workflowActivityBind.GetRuntimeValue(activity);
-                }
-                catch
-                { }
-                if (value == null)
-                    value = GetValueOfWorkflowVariable(activity.Parent, valueName);
-            }
-            return value;
-        }
-
-        public static void SetValueOfWorkflowVariable(Activity activity, string valueName, object value)
-        {
-            if (activity != null)
-            {
-                try
-                {
-                    ActivityBind workflowActivityBind = new ActivityBind();
-                    workflowActivityBind.Name = activity.Name;
-                    workflowActivityBind.Path = valueName;
-                    workflowActivityBind.SetRuntimeValue(activity, value);
-                }
-                catch
-                { }
-                SetValueOfWorkflowVariable(activity.Parent, valueName, value);
-            }
-        }
-
-        private void codeActivity1_ExecuteCode(object sender, EventArgs e)
-        {
-            Console.WriteLine(Request.UniqueId);
-            SetValueOfWorkflowVariable(this, "Request", Request);
-            Console.WriteLine("Init test");
         }
     }
 }

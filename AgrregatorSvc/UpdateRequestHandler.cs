@@ -31,7 +31,7 @@ namespace AgrregatorSvc
 
             if (_request.UpdateRequest.PersonalDetails != null)
             {
-                IAccountBankingService bankingService = new AccountBankingService();
+                AccountBankingService.IAccountBankingService bankingService = new AccountBankingService.AccountBankingServiceClient();
                 var personalDetails = _request.UpdateRequest.PersonalDetails;
                 personalDetails.Uniqueid = _request.UniqueId;
                 var validationResponse = bankingService.UpdatePersonalDetails(_request.UpdateRequest.PersonalDetails);

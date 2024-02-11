@@ -13,7 +13,7 @@ namespace DataContractLibrary
         public int Uniqueid { get; set; }
 
         [DataMember]
-        public string SchemeName { get; set; }
+        public string HoldingSchemeName { get; set; }
 
         [DataMember]
         public decimal TotalUnits { get; set; }

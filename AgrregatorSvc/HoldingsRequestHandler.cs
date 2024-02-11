@@ -4,42 +4,59 @@ using RequestService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
+using System.Workflow.Runtime;
 
 namespace AgrregatorSvc
 {
     public class HoldingsRequestHandler: RequestHandler
     {
         AggregatorRequest _request;
+        AggregatorResponse _response;
+        AutoResetEvent _waitHandle;
+
 
         public HoldingsRequestHandler (AggregatorRequest request)
         {
+            _response = new AggregatorResponse();
             _request = request;
+            _waitHandle = new AutoResetEvent(false);
         }
 
         public override AggregatorResponse ProcessData()
         {
-            AggregatorResponse response = new AggregatorResponse();
-            response.HoldingsResponse = new HoldingsResponse();
-            var bankingService = new AccountBankingService();
-            response.HoldingsResponse.HoldingSummary = bankingService.GetHoldingSummary(_request.UniqueId);
-            
-            if (_request.HoldingsInfoRequest != null)
-            {
-                if (_request.HoldingsInfoRequest.ViewTransactionDateRange != null && _request.HoldingsInfoRequest.ViewTransactionDateRange.StartDate != null && _request.HoldingsInfoRequest.ViewTransactionDateRange.EndDate != null)
-                {
-                    response.HoldingsResponse.Transactions = bankingService.GetUserContribution(_request.UniqueId,
-                        _request.HoldingsInfoRequest.ViewTransactionDateRange.StartDate.Value, _request.HoldingsInfoRequest.ViewTransactionDateRange.EndDate.Value);
-                }
+            _response.HoldingsResponse = new HoldingsResponse();
 
-                if (!String.IsNullOrEmpty(_request.HoldingsInfoRequest.ViewExitRequestForSchemeName))
+            using (WorkflowRuntime workflowRuntime = new WorkflowRuntime())
+            {
+                workflowRuntime.WorkflowCompleted += OnComplete;
+                workflowRuntime.WorkflowTerminated += delegate (object sender, WorkflowTerminatedEventArgs e)
                 {
-                    IWithdrawService service = new WithdrawService();
-                    response.HoldingsResponse.ExitRequestResponse = service.GetExitStatus(_request.UniqueId, _request.HoldingsInfoRequest.ViewExitRequestForSchemeName);
-                }
+                    Console.WriteLine(e.Exception.Message);
+                    _waitHandle.Set();
+                };
+
+                Dictionary<string, object> inputs = new Dictionary<string, object>();
+                inputs["Request"] = _request;
+                WorkflowInstance instance = workflowRuntime.CreateWorkflow(typeof(MySequentialWorkflow.Holdings), inputs);
+                instance.Start();
+
+                _waitHandle.WaitOne();
+
+                Console.WriteLine("Workflow complete");
             }
 
-            return response;
+            return _response;
+        }
+
+        private void OnComplete(object sender, WorkflowCompletedEventArgs e)
+        {
+            Console.WriteLine("OnComplete Fired....");
+
+            _response = e.OutputParameters["Response"] as AggregatorResponse;
+            Console.WriteLine("Response Received");
+            _waitHandle.Set();
         }
     }
 }

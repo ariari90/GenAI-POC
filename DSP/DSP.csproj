@@ -46,6 +46,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UpdatePersonalInfoServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ExitDateRaisedServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ExitDateStatusServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Service References\WithdrawService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionsServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HoldingsTotalAmountServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HoldingSummaryDataServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="InitializeOrchestration.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PreferredSchemeServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SchemeServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IfscCodeServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BankAddressServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BankNameServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BankBranchServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BasicUserInfoServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -57,6 +101,9 @@
     <Compile Include="AddressServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AccountNumberServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="KycServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -64,6 +111,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\AccountBankingService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\AccountInfoService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -72,11 +124,18 @@
     <Compile Include="ServiceProviderBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UniqueIdServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataContractLibrary\DataContractLibrary.csproj">
       <Project>{dd02b14c-0413-40fa-8fc7-d5387875e138}</Project>
       <Name>DataContractLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoService\InfoService.csproj">
+      <Project>{60874D70-D2AF-46A4-8305-EFE7237654A9}</Project>
+      <Name>InfoService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -85,8 +144,22 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\DataSources\DataContractLibrary.BankInfo.datasource" />
+    <None Include="Properties\DataSources\DataContractLibrary.ExitRequestResponse.datasource" />
+    <None Include="Properties\DataSources\DataContractLibrary.HoldingSummaryResponse.datasource" />
     <None Include="Properties\DataSources\DataContractLibrary.PersonalInfo.datasource" />
     <None Include="Properties\DataSources\DataContractLibrary.SchemeInfo.datasource" />
+    <None Include="Properties\DataSources\DataContractLibrary.UserContributionData.datasource" />
+    <None Include="Properties\DataSources\DataContractLibrary.ValidationResponse.datasource" />
+    <None Include="Service References\AccountBankingService\AccountBankingService.wsdl" />
+    <None Include="Service References\AccountBankingService\AccountBankingService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountBankingService\AccountBankingService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountBankingService\AccountBankingService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\AccountInfoService\AccountInfoService.wsdl" />
     <None Include="Service References\AccountInfoService\AccountInfoService.xsd">
       <SubType>Designer</SubType>
@@ -97,9 +170,21 @@
     <None Include="Service References\AccountInfoService\AccountInfoService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\WithdrawService\WithdrawService.wsdl" />
+    <None Include="Service References\WithdrawService\WithdrawService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WithdrawService\WithdrawService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WithdrawService\WithdrawService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AccountBankingService\" />
     <WCFMetadataStorage Include="Service References\AccountInfoService\" />
+    <WCFMetadataStorage Include="Service References\WithdrawService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AccountInfoService\AccountInfoService.disco" />
@@ -112,6 +197,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AccountInfoService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountBankingService\AccountBankingService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountBankingService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountBankingService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountBankingService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WithdrawService\WithdrawService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WithdrawService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WithdrawService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WithdrawService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
