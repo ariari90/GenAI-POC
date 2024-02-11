@@ -27,7 +27,7 @@ namespace RequestService
 
             InfoService.IAccountBankingService bankingRequest = new InfoService.AccountBankingService();
             var holdingSummaryResponse = bankingRequest.GetHoldingSummary(uniqueId);
-            var holdingForScheme = holdingSummaryResponse.HoldingSummaryData.Where(x => x.SchemeName == product).FirstOrDefault();
+            var holdingForScheme = holdingSummaryResponse.HoldingSummaryData.Where(x => x.HoldingSchemeName == product).FirstOrDefault();
 
             if (holdingForScheme == null)
             {

@@ -10,7 +10,12 @@ namespace DSP
 {
     public class ServiceProviderBase : System.Workflow.ComponentModel.Activity
     {
-
+        public void SetValidationResponse(ValidationResponse validationResponse)
+        {
+            AggregatorResponse response = GetDSFVariable(this.Parent, AggregatorConstants.Response) as AggregatorResponse;
+            response = new AggregatorResponse();
+            response.ValidationResponse = validationResponse;
+        }
         public void SetDSFRequiredResponse(string responseName)
         {
             ArrayList requiredResponses = GetDSFVariable(this, AggregatorConstants.RequiredResponses) as ArrayList;

@@ -9,10 +9,7 @@ namespace DataContractLibrary
     [DataContract]
     public class HoldingsResponse
     {
-        private HoldingSummaryResponse holdingSummary;
-        private List<UserContributionData> transactions;
-        private ExitRequestResponse exitRequestResponse;
-
+        
         [DataMember]
         public HoldingSummaryResponse HoldingSummary { get; set; }
 

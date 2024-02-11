@@ -12,11 +12,14 @@ namespace AgrregatorSvc
     public class InfoRequestHandler: RequestHandler
     {
         AggregatorRequest _request;
-        AggregatorResponse response = new AggregatorResponse();
+        AggregatorResponse _response;
+        AutoResetEvent _waitHandle;
 
         public InfoRequestHandler(AggregatorRequest request)
         {
             _request = request;
+            _response = new AggregatorResponse();
+            _waitHandle = new AutoResetEvent(false);
         }
 
         public override AggregatorResponse ProcessData()
@@ -30,12 +33,11 @@ namespace AgrregatorSvc
             response.AccountInfoResponse.PreferredScheme = accountInfoService.GetSchemePreference(_request.UniqueId);*/
             using (WorkflowRuntime workflowRuntime = new WorkflowRuntime())
             {
-                AutoResetEvent waitHandle = new AutoResetEvent(false);
                 workflowRuntime.WorkflowCompleted += OnComplete;
                 workflowRuntime.WorkflowTerminated += delegate (object sender, WorkflowTerminatedEventArgs e)
                 {
                     Console.WriteLine(e.Exception.Message);
-                    waitHandle.Set();
+                    _waitHandle.Set();
                 };
 
                 Dictionary<string, object> inputs = new Dictionary<string, object>();
@@ -43,20 +45,21 @@ namespace AgrregatorSvc
                 WorkflowInstance instance = workflowRuntime.CreateWorkflow(typeof(MySequentialWorkflow.PersonalInfo), inputs);
                 instance.Start();
 
-                waitHandle.WaitOne();
+                _waitHandle.WaitOne();
 
                 Console.ReadKey();
             }
 
-            return response;
+            return _response;
         }
 
         private void OnComplete(object sender, WorkflowCompletedEventArgs e)
         {
             Console.WriteLine("OnComplete Fired....");
 
-            response = e.OutputParameters["Response"] as AggregatorResponse;
+            _response = e.OutputParameters["Response"] as AggregatorResponse;
             Console.WriteLine("Response Received");
+            _waitHandle.Set();
         }
     }
 }

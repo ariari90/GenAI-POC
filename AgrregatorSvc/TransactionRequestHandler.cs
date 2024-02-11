@@ -41,7 +41,7 @@ namespace AgrregatorSvc
 
             if (_request.WithdrawRequest != null)
             {
-                IWithdrawService service = new WithdrawService();
+                WithdrawService.WithdrawServiceClient service = new WithdrawService.WithdrawServiceClient();
                 if (!_request.WithdrawRequest.IsExitRequest)
                 {
                     var validationResponse = service.WithdrawT1Amount(_request.UniqueId, _request.WithdrawRequest.Product, _request.WithdrawRequest.WithdrawPercent);

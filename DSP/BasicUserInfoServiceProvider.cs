@@ -27,13 +27,12 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  AddressServiceProvider");
+            Console.WriteLine("Executing AddressServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
 
             if (Request != null)
             {
-                Console.WriteLine("Request is null");
                 AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
                 var personalInfo = service.ViewPersonalInfo(Request.UniqueId);
                 
