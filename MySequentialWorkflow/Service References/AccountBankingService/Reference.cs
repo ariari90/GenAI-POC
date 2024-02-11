@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MySequentialWorkflow.AccountBankingService {
+namespace Workflows.AccountBankingService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -26,12 +26,12 @@ namespace MySequentialWorkflow.AccountBankingService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAccountBankingServiceChannel : MySequentialWorkflow.AccountBankingService.IAccountBankingService, System.ServiceModel.IClientChannel {
+    public interface IAccountBankingServiceChannel : Workflows.AccountBankingService.IAccountBankingService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AccountBankingServiceClient : System.ServiceModel.ClientBase<MySequentialWorkflow.AccountBankingService.IAccountBankingService>, MySequentialWorkflow.AccountBankingService.IAccountBankingService {
+    public partial class AccountBankingServiceClient : System.ServiceModel.ClientBase<Workflows.AccountBankingService.IAccountBankingService>, Workflows.AccountBankingService.IAccountBankingService {
         
         public AccountBankingServiceClient() {
         }
