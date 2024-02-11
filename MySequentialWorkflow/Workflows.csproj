@@ -6,8 +6,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1687DF58-F00A-4029-9A1B-8DB3EB4E8621}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MySequentialWorkflow</RootNamespace>
-    <AssemblyName>MySequentialWorkflow</AssemblyName>
+    <RootNamespace>Workflows</RootNamespace>
+    <AssemblyName>Workflows</AssemblyName>
     <ProjectTypeGuids>{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -147,8 +147,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Holdings.xoml" />
-    <Content Include="PersonalInfo.xoml" />
+    <Content Include="Holdings.xoml">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="PersonalInfo.xoml">
+      <SubType>Component</SubType>
+    </Content>
     <None Include="Service References\AccountBankingService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -159,15 +163,6 @@
     <None Include="Service References\AccountInfoServiceReference\AccountInfoService.disco" />
     <None Include="Service References\AccountInfoServiceReference\configuration91.svcinfo" />
     <None Include="Service References\AccountInfoServiceReference\configuration.svcinfo" />
-    <None Include="Service References\AccountInfoServiceReference\MySequentialWorkflow.AccountInfoServiceReference.BankInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AccountInfoServiceReference\MySequentialWorkflow.AccountInfoServiceReference.PersonalInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AccountInfoServiceReference\MySequentialWorkflow.AccountInfoServiceReference.SchemeInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\AccountInfoServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
