@@ -73,16 +73,18 @@ namespace AgrregatorSvc
         [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
         public AggregatorResponse GetData(AggregatorRequest request)
         {
-            if (SoapHeader == null)
+            /*if (SoapHeader == null)
             {
                 return null;
             }
 
-            AggregatorResponse response = null;
             if(!IsUserCredentialsValid(SoapHeader))
             {
                 return null;
-            }
+            }*/
+
+            AggregatorResponse response = null;
+
 
             RequestHandler handler = GetOrchestractorData(request);
 
