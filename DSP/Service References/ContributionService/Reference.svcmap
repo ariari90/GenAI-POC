@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f58f2480-b524-4219-a9db-f7d0907aaa4b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50967/ContributionService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ContributionService.xsd" MetadataType="Schema" ID="a3e979f8-9fb7-4a8a-83e4-7eb0bd5d4e73" SourceId="1" SourceUrl="http://localhost:50967/ContributionService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ContributionService1.xsd" MetadataType="Schema" ID="9072709d-8296-4734-919b-2671cfc0ff2e" SourceId="1" SourceUrl="http://localhost:50967/ContributionService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ContributionService.disco" MetadataType="Disco" ID="5657c3c4-ffb1-4a21-808d-eb8552c29f9c" SourceId="1" SourceUrl="http://localhost:50967/ContributionService.svc?disco" />
+    <MetadataFile FileName="ContributionService.wsdl" MetadataType="Wsdl" ID="1f07beda-14f2-4e94-94ec-ef14c681005a" SourceId="1" SourceUrl="http://localhost:50967/ContributionService.svc?wsdl" />
+    <MetadataFile FileName="ContributionService2.xsd" MetadataType="Schema" ID="30b6a010-942b-4ac2-ad44-2dd698ff534f" SourceId="1" SourceUrl="http://localhost:50967/ContributionService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

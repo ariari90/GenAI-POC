@@ -1,0 +1,43 @@
+﻿<SequenceActivity x:Class="Workflows.Holdings" x:Name="Holdings" xmlns:ns0="clr-namespace:DSP;Assembly=DSP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<ParallelActivity x:Name="HoldingsService">
+		<SequenceActivity x:Name="sequenceActivity1">
+			<ns0:HoldingSummaryDataServiceProvider x:Name="holdingSummaryDataServiceProvider1" Request="{x:Null}" />
+		</SequenceActivity>
+		<SequenceActivity x:Name="sequenceActivity2">
+			<ns0:HoldingsTotalAmountServiceProvider x:Name="holdingsTotalAmountServiceProvider1" Request="{x:Null}" TotalAmount="0" />
+		</SequenceActivity>
+		<SequenceActivity x:Name="sequenceActivity3">
+			<ns0:UniqueIdServiceProvider UniqueId="0" x:Name="uniqueIdServiceProvider1" Request="{x:Null}" />
+		</SequenceActivity>
+	</ParallelActivity>
+	<ParallelActivity x:Name="parallelActivity1">
+		<SequenceActivity x:Name="TransactionService">
+			<IfElseActivity x:Name="Transactions">
+				<IfElseBranchActivity x:Name="Trnsactions_IfActivity">
+					<IfElseBranchActivity.Condition>
+						<CodeCondition Condition="Transactions_IfActivity" />
+					</IfElseBranchActivity.Condition>
+					<ns0:TransactionsServiceProvider Transactions="{x:Null}" x:Name="transactionsServiceProvider1" Request="{x:Null}" />
+				</IfElseBranchActivity>
+			</IfElseActivity>
+		</SequenceActivity>
+		<SequenceActivity x:Name="ExitRequestService">
+			<IfElseActivity x:Name="ExitRequestIfBlock">
+				<IfElseBranchActivity x:Name="ExitRequest_If">
+					<IfElseBranchActivity.Condition>
+						<CodeCondition Condition="ExitRequest_IfActivity" />
+					</IfElseBranchActivity.Condition>
+					<ParallelActivity x:Name="ExitRequest">
+						<SequenceActivity x:Name="sequenceActivity5">
+							<ns0:ExitDateRaisedServiceProvider x:Name="exitDateRaisedServiceProvider1" Request="{x:Null}" DateRaised="0001-01-01T00:00:00.0000000" />
+						</SequenceActivity>
+						<SequenceActivity x:Name="sequenceActivity6">
+							<ns0:ExitDateStatusServiceProvider x:Name="exitDateStatusServiceProvider1" Request="{x:Null}" Status="{x:Null}" />
+						</SequenceActivity>
+					</ParallelActivity>
+				</IfElseBranchActivity>
+			</IfElseActivity>
+		</SequenceActivity>
+	</ParallelActivity>
+	<ns0:AggregatorAdapter Request="{x:Null}" Response="{x:Null}" x:Name="aggregatorAdapter1" />
+</SequenceActivity>

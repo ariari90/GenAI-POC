@@ -16,5 +16,9 @@ namespace AgrregatorSvc
         [OperationContract]
         AggregatorResponse GetData(AggregatorRequest request);
 
+        [OperationContract]
+        string AuthenticationMethod();
+
+        
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b1aa6fec-1f1f-462f-88b3-47b0b74f70f7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dde3e41c-ed49-4899-beb0-47fec5bf8a71" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -18,14 +18,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:50585/AccountBankingService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:50586/AccountBankingService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AccountBankingService.xsd" MetadataType="Schema" ID="c1ccb8f6-1344-436e-9688-b6da48e4f567" SourceId="1" SourceUrl="http://localhost:50585/AccountBankingService.svc?xsd=xsd1" />
-    <MetadataFile FileName="AccountBankingService.disco" MetadataType="Disco" ID="f7be71d6-9b1b-48fa-8916-67776872e7ef" SourceId="1" SourceUrl="http://localhost:50585/AccountBankingService.svc?disco" />
-    <MetadataFile FileName="AccountBankingService.wsdl" MetadataType="Wsdl" ID="0b8ce9f2-4f47-47fb-888b-5cbfaa9a73b4" SourceId="1" SourceUrl="http://localhost:50585/AccountBankingService.svc?wsdl" />
-    <MetadataFile FileName="AccountBankingService1.xsd" MetadataType="Schema" ID="eccec32e-c69e-4f70-833b-c2ffec66e6ea" SourceId="1" SourceUrl="http://localhost:50585/AccountBankingService.svc?xsd=xsd0" />
-    <MetadataFile FileName="AccountBankingService2.xsd" MetadataType="Schema" ID="832662f4-5e08-4c44-8a40-700efd012143" SourceId="1" SourceUrl="http://localhost:50585/AccountBankingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AccountBankingService.wsdl" MetadataType="Wsdl" ID="fbfc981e-ee21-4daa-b95d-d87df3689067" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?wsdl" />
+    <MetadataFile FileName="AccountBankingService.xsd" MetadataType="Schema" ID="23a1a576-cb28-4428-8221-b184017064ad" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AccountBankingService1.xsd" MetadataType="Schema" ID="ae94046b-6402-4a9a-8a49-5edf07b04432" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AccountBankingService.disco" MetadataType="Disco" ID="e006d83c-8530-4960-84a6-806274288974" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?disco" />
+    <MetadataFile FileName="AccountBankingService2.xsd" MetadataType="Schema" ID="25df8182-e9e1-4576-a9e0-f9219ffcf28d" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

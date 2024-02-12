@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,13 +48,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UpdatePersonalInfoServiceProvider.cs">
+    <Compile Include="Service References\AccountInfoService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ContributionService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\AccountBankingService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceProviders\SchemesServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ExitDateRaisedServiceProvider.cs">
+    <Compile Include="ServiceProviders\UpdateFundManagerServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ExitDateStatusServiceProvider.cs">
+    <Compile Include="ServiceProviders\DefaultValidationServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceProviders\UpdateRequestValidationServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceProviders\ContributeServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceProviders\ExitRequestServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceProviders\TransactionRequestValidationServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceProviders\WithdrawServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceProviders\UpdateSchemeServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceProviders\UpdatePersonalInfoServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceProviders\ExitDateRaisedServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceProviders\ExitDateStatusServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Service References\WithdrawService\Reference.cs">
@@ -60,71 +104,57 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="TransactionsServiceProvider.cs">
+    <Compile Include="ServiceProviders\TransactionsServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HoldingsTotalAmountServiceProvider.cs">
+    <Compile Include="ServiceProviders\HoldingsTotalAmountServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HoldingSummaryDataServiceProvider.cs">
+    <Compile Include="ServiceProviders\HoldingSummaryDataServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="InitializeOrchestration.cs">
+    <Compile Include="ServiceProviders\PreferredSchemeServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PreferredSchemeServiceProvider.cs">
+    <Compile Include="ServiceProviders\SchemeServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SchemeServiceProvider.cs">
+    <Compile Include="ServiceProviders\IfscCodeServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IfscCodeServiceProvider.cs">
+    <Compile Include="ServiceProviders\BankAddressServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BankAddressServiceProvider.cs">
+    <Compile Include="ServiceProviders\BankNameServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BankNameServiceProvider.cs">
+    <Compile Include="ServiceProviders\BankBranchServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BankBranchServiceProvider.cs">
+    <Compile Include="ServiceProviders\BasicUserInfoServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BasicUserInfoServiceProvider.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="AggregatorAdapter.cs">
+    <Compile Include="ServiceProviders\AggregatorAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="AggregatorConstants.cs" />
-    <Compile Include="IDataServiceProvider.cs" />
-    <Compile Include="AddressServiceProvider.cs">
+    <Compile Include="ServiceProviders\AddressServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AccountNumberServiceProvider.cs">
+    <Compile Include="ServiceProviders\AccountNumberServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="KycServiceProvider.cs">
+    <Compile Include="ServiceProviders\KycServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MobileServiceProvider.cs">
+    <Compile Include="ServiceProviders\MobileServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\AccountBankingService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\AccountInfoService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="ServiceProviderBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UniqueIdServiceProvider.cs">
+    <Compile Include="ServiceProviders\UniqueIdServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -150,16 +180,6 @@
     <None Include="Properties\DataSources\DataContractLibrary.SchemeInfo.datasource" />
     <None Include="Properties\DataSources\DataContractLibrary.UserContributionData.datasource" />
     <None Include="Properties\DataSources\DataContractLibrary.ValidationResponse.datasource" />
-    <None Include="Service References\AccountBankingService\AccountBankingService.wsdl" />
-    <None Include="Service References\AccountBankingService\AccountBankingService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AccountBankingService\AccountBankingService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AccountBankingService\AccountBankingService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\AccountInfoService\AccountInfoService.wsdl" />
     <None Include="Service References\AccountInfoService\AccountInfoService.xsd">
       <SubType>Designer</SubType>
@@ -168,6 +188,26 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AccountInfoService\AccountInfoService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContributionService\ContributionService.wsdl" />
+    <None Include="Service References\ContributionService\ContributionService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContributionService\ContributionService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContributionService\ContributionService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountBankingService\AccountBankingService.wsdl" />
+    <None Include="Service References\AccountBankingService\AccountBankingService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountBankingService\AccountBankingService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountBankingService\AccountBankingService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\WithdrawService\WithdrawService.wsdl" />
@@ -182,21 +222,37 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\AccountBankingService\" />
     <WCFMetadataStorage Include="Service References\AccountInfoService\" />
+    <WCFMetadataStorage Include="Service References\ContributionService\" />
+    <WCFMetadataStorage Include="Service References\AccountBankingService\" />
     <WCFMetadataStorage Include="Service References\WithdrawService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AccountInfoService\AccountInfoService.disco" />
+    <None Include="Service References\WithdrawService\WithdrawService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AccountInfoService\configuration91.svcinfo" />
+    <None Include="Service References\WithdrawService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AccountInfoService\configuration.svcinfo" />
+    <None Include="Service References\WithdrawService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AccountInfoService\Reference.svcmap">
+    <None Include="Service References\WithdrawService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContributionService\ContributionService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContributionService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContributionService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContributionService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -217,16 +273,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WithdrawService\WithdrawService.disco" />
+    <None Include="Service References\AccountInfoService\AccountInfoService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WithdrawService\configuration91.svcinfo" />
+    <None Include="Service References\AccountInfoService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WithdrawService\configuration.svcinfo" />
+    <None Include="Service References\AccountInfoService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WithdrawService\Reference.svcmap">
+    <None Include="Service References\AccountInfoService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

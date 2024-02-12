@@ -41,6 +41,7 @@ namespace DSP
         public static string ExitDateRaised = "DateRaised";
         public static string ExitDateStatus = "Status";
         public static string UniqueId = "UniqueId";
+        public static string Schemes = "Schemes";
 
         public static Dictionary<string, string> keyServiceProvers = new Dictionary<string, string>();
 
@@ -79,6 +80,7 @@ namespace DSP
             keyServiceProvers.Add(ExitDateRaised, "exitDateRaisedServiceProvider1");
             keyServiceProvers.Add(ExitDateStatus, "exitDateStatusServiceProvider1");
             keyServiceProvers.Add(UniqueId, "uniqueIdServiceProvider1");
+            keyServiceProvers.Add(Schemes, "schemesServiceProvider1");
         }
     }
 }

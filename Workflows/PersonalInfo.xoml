@@ -1,0 +1,48 @@
+﻿<SequenceActivity x:Class="Workflows.PersonalInfo" x:Name="PersonalInfo" xmlns:ns0="clr-namespace:DSP;Assembly=DSP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<ns0:UniqueIdServiceProvider UniqueId="0" x:Name="uniqueIdServiceProvider1" Request="{x:Null}" />
+	<ParallelActivity x:Name="PersonalInfoService">
+		<SequenceActivity x:Name="sequenceActivity1">
+			<ns0:MobileServiceProvider Mobile="{x:Null}" x:Name="mobileServiceProvider1" Request="{x:Null}" />
+		</SequenceActivity>
+		<SequenceActivity x:Name="sequenceActivity2">
+			<ns0:AddressServiceProvider City="{x:Null}" PinCode="0" Request="{x:Null}" Address2="{x:Null}" x:Name="addressServiceProvider1" Address1="{x:Null}" />
+		</SequenceActivity>
+		<SequenceActivity x:Name="sequenceActivity3">
+			<ns0:BasicUserInfoServiceProvider FullName="{x:Null}" Request="{x:Null}" Nationality="{x:Null}" MothersName="{x:Null}" FathersName="{x:Null}" DateOfBirth="0001-01-01T00:00:00.0000000" x:Name="basicUserInfoServiceProvider1" />
+		</SequenceActivity>
+		<SequenceActivity x:Name="sequenceActivity4">
+			<ns0:KycServiceProvider x:Name="kycServiceProvider1" Request="{x:Null}" IsKycDone="{x:Null}" />
+		</SequenceActivity>
+	</ParallelActivity>
+	<ParallelActivity x:Name="BankSchemeService">
+		<SequenceActivity x:Name="BankInfo">
+			<ParallelActivity x:Name="BankInfoService">
+				<SequenceActivity x:Name="sequenceActivity5">
+					<ns0:AccountNumberServiceProvider x:Name="accountNumberServiceProvider1" Request="{x:Null}" AccountNumber="0" />
+				</SequenceActivity>
+				<SequenceActivity x:Name="sequenceActivity6">
+					<ns0:BankBranchServiceProvider BankBranch="{x:Null}" x:Name="bankBranchServiceProvider1" Request="{x:Null}" />
+				</SequenceActivity>
+				<SequenceActivity x:Name="sequenceActivity7">
+					<ns0:BankNameServiceProvider Request="{x:Null}" BankName="{x:Null}" x:Name="bankNameServiceProvider1" />
+				</SequenceActivity>
+				<SequenceActivity x:Name="sequenceActivity8">
+					<ns0:BankAddressServiceProvider Address="0" x:Name="bankAddressServiceProvider1" Request="{x:Null}" />
+				</SequenceActivity>
+				<SequenceActivity x:Name="sequenceActivity9">
+					<ns0:IfscCodeServiceProvider x:Name="ifscCodeServiceProvider1" Request="{x:Null}" IfscCode="0" />
+				</SequenceActivity>
+			</ParallelActivity>
+		</SequenceActivity>
+		<SequenceActivity x:Name="SchemeService">
+			<ns0:SchemeServiceProvider Schemes="{x:Null}" x:Name="schemeNameServiceProvider1" Request="{x:Null}" />
+		</SequenceActivity>
+		<SequenceActivity x:Name="PreferredSchemeService">
+			<ns0:PreferredSchemeServiceProvider x:Name="preferredSchemeServiceProvider1" Request="{x:Null}" PreferredScheme="{x:Null}" />
+		</SequenceActivity>
+		<SequenceActivity x:Name="SchemesService">
+			<ns0:SchemesServiceProvider Schemes="{x:Null}" x:Name="schemesServiceProvider1" Request="{x:Null}" />
+		</SequenceActivity>
+	</ParallelActivity>
+	<ns0:AggregatorAdapter Request="{ActivityBind mobileServiceProvider1,Path=Request}" Response="{x:Null}" x:Name="aggregatorAdapter1" />
+</SequenceActivity>

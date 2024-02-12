@@ -15,7 +15,15 @@ namespace DSP
             AggregatorResponse response = GetDSFVariable(this.Parent, AggregatorConstants.Response) as AggregatorResponse;
             response = new AggregatorResponse();
             response.ValidationResponse = validationResponse;
+            SetDSFVariable(this.Parent, AggregatorConstants.Response, response);
         }
+
+        public ValidationResponse GetValidationResponse()
+        {
+            AggregatorResponse response = GetDSFVariable(this.Parent, AggregatorConstants.Response) as AggregatorResponse;
+            return response?.ValidationResponse;
+        }
+
         public void SetDSFRequiredResponse(string responseName)
         {
             ArrayList requiredResponses = GetDSFVariable(this, AggregatorConstants.RequiredResponses) as ArrayList;
