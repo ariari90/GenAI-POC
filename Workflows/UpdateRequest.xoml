@@ -1,0 +1,37 @@
+﻿<SequenceActivity x:Class="Workflows.UpdateRequest" x:Name="UpdateRequest" xmlns:ns0="clr-namespace:DSP;Assembly=DSP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<ns0:UpdateRequestValidationServiceProvider x:Name="updateRequestValidationServiceProvider1" Request="{x:Null}" />
+	<ParallelActivity x:Name="UpdateProcesses">
+		<SequenceActivity x:Name="UpdatePersonalInfoService">
+			<IfElseActivity x:Name="UpdatePersonalServiceBranch">
+				<IfElseBranchActivity x:Name="UpdatePersonal_ifElseBranchActivity">
+					<IfElseBranchActivity.Condition>
+						<CodeCondition Condition="UpdatePersonalInfo_IfActivity" />
+					</IfElseBranchActivity.Condition>
+					<ns0:UpdatePersonalInfoServiceProvider x:Name="updatePersonalInfoServiceProvider1" Request="{x:Null}" />
+				</IfElseBranchActivity>
+			</IfElseActivity>
+		</SequenceActivity>
+		<SequenceActivity x:Name="UpdateFundManagerService">
+			<IfElseActivity x:Name="UpdateFundManagerServiceBranch">
+				<IfElseBranchActivity x:Name="FundManager_ifElseBranchActivity">
+					<IfElseBranchActivity.Condition>
+						<CodeCondition Condition="UpdateFundManager_IfActivity" />
+					</IfElseBranchActivity.Condition>
+					<ns0:UpdateFundManagerServiceProvider x:Name="updateFundManagerServiceProvider1" Request="{x:Null}" />
+				</IfElseBranchActivity>
+			</IfElseActivity>
+		</SequenceActivity>
+		<SequenceActivity x:Name="UpdateSchemeService">
+			<IfElseActivity x:Name="UpdateScheme_ifElseActivity">
+				<IfElseBranchActivity x:Name="ifElseBranchActivity1">
+					<IfElseBranchActivity.Condition>
+						<CodeCondition Condition="UpdateSchemeService_IfActivity" />
+					</IfElseBranchActivity.Condition>
+					<ns0:UpdateSchemeServiceProvider x:Name="updateSchemeServiceProvider1" Request="{x:Null}" />
+				</IfElseBranchActivity>
+			</IfElseActivity>
+		</SequenceActivity>
+	</ParallelActivity>
+	<ns0:DefaultValidationServiceProvider x:Name="defaultValidationServiceProvider1" Request="{x:Null}" />
+	<ns0:AggregatorAdapter Request="{x:Null}" Response="{x:Null}" x:Name="aggregatorAdapter1" />
+</SequenceActivity>

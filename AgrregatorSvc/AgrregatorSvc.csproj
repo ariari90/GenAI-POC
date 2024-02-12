@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,6 +42,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +71,9 @@
     <Content Include="Properties\DataSources\DataContractLibrary.UserContributionData.datasource" />
     <Content Include="Properties\DataSources\DataContractLibrary.ValidationResponse.datasource" />
     <Content Include="Properties\DataSources\DataContractLibrary.ExitRequestResponse.datasource" />
+    <Content Include="Properties\DataSources\DataContractLibrary.BankInfo.datasource" />
+    <Content Include="Properties\DataSources\DataContractLibrary.PersonalInfo.datasource" />
+    <Content Include="Properties\DataSources\DataContractLibrary.SchemeInfo.datasource" />
     <None Include="Service References\AccountBankingService\AccountBankingService.wsdl" />
     <None Include="Service References\AccountBankingService\AccountBankingService.xsd">
       <SubType>Designer</SubType>
@@ -79,62 +84,6 @@
     <None Include="Service References\AccountBankingService\AccountBankingService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AccountInfoService\AccountInfoService.disco" />
-    <None Include="Service References\AccountInfoService\configuration91.svcinfo" />
-    <None Include="Service References\AccountInfoService\configuration.svcinfo" />
-    <None Include="Service References\AccountInfoService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\AccountBankingService\AccountBankingService.disco" />
-    <None Include="Service References\AccountBankingService\configuration91.svcinfo" />
-    <None Include="Service References\AccountBankingService\configuration.svcinfo" />
-    <None Include="Service References\AccountBankingService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\WithdrawService\WithdrawService.disco" />
-    <None Include="Service References\WithdrawService\configuration91.svcinfo" />
-    <None Include="Service References\WithdrawService\configuration.svcinfo" />
-    <None Include="Service References\WithdrawService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <Content Include="Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="HoldingsRequestHandler.cs" />
-    <Compile Include="FacilityRequestHandler.cs" />
-    <Compile Include="Service References\AccountBankingService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\AccountInfoService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\WithdrawService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="TransactionRequestHandler.cs" />
-    <Compile Include="InfoRequestHandler.cs" />
-    <Compile Include="AggregatorSvc.svc.cs">
-      <DependentUpon>AggregatorSvc.svc</DependentUpon>
-    </Compile>
-    <Compile Include="RequestHandler.cs" />
-    <Compile Include="IAggregatorSvc.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UpdateRequestHandler.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\DataSources\DataContractLibrary.FacilityResponse.datasource" />
     <None Include="Service References\AccountInfoService\AccountInfoService.wsdl" />
     <None Include="Service References\AccountInfoService\AccountInfoService.xsd">
       <SubType>Designer</SubType>
@@ -145,6 +94,84 @@
     <None Include="Service References\AccountInfoService\AccountInfoService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ContributionService\ContributionService.wsdl" />
+    <None Include="Service References\ContributionService\ContributionService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContributionService\ContributionService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContributionService\ContributionService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WithdrawService\WithdrawService.disco" />
+    <None Include="Service References\WithdrawService\configuration91.svcinfo" />
+    <None Include="Service References\WithdrawService\configuration.svcinfo" />
+    <None Include="Service References\WithdrawService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ContributionService\ContributionService.disco" />
+    <None Include="Service References\ContributionService\configuration91.svcinfo" />
+    <None Include="Service References\ContributionService\configuration.svcinfo" />
+    <None Include="Service References\ContributionService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AccountBankingService\AccountBankingService.disco" />
+    <None Include="Service References\AccountBankingService\configuration91.svcinfo" />
+    <None Include="Service References\AccountBankingService\configuration.svcinfo" />
+    <None Include="Service References\AccountBankingService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AccountInfoService\AccountInfoService.disco" />
+    <None Include="Service References\AccountInfoService\configuration91.svcinfo" />
+    <None Include="Service References\AccountInfoService\configuration.svcinfo" />
+    <None Include="Service References\AccountInfoService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="RequestHanders\HoldingsRequestHandler.cs" />
+    <Compile Include="RequestHanders\AccountAndHoldingsRequestHandler.cs" />
+    <Compile Include="Service References\AccountBankingService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\AccountInfoService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ContributionService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WithdrawService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="RequestHanders\TransactionRequestHandler.cs" />
+    <Compile Include="RequestHanders\InfoRequestHandler.cs" />
+    <Compile Include="AggregatorSvc.svc.cs">
+      <DependentUpon>AggregatorSvc.svc</DependentUpon>
+    </Compile>
+    <Compile Include="RequestHandler.cs" />
+    <Compile Include="IAggregatorSvc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestHanders\UpdateRequestHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\DataSources\DataContractLibrary.FacilityResponse.datasource" />
     <None Include="Service References\WithdrawService\WithdrawService.wsdl" />
     <None Include="Service References\WithdrawService\WithdrawService.xsd">
       <SubType>Designer</SubType>
@@ -175,7 +202,7 @@
       <Project>{60874d70-d2af-46a4-8305-efe7237654a9}</Project>
       <Name>InfoService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MySequentialWorkflow\Workflows.csproj">
+    <ProjectReference Include="..\Workflows\Workflows.csproj">
       <Project>{1687df58-f00a-4029-9a1b-8db3eb4e8621}</Project>
       <Name>Workflows</Name>
     </ProjectReference>
@@ -190,6 +217,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AccountBankingService\" />
     <WCFMetadataStorage Include="Service References\AccountInfoService\" />
+    <WCFMetadataStorage Include="Service References\ContributionService\" />
     <WCFMetadataStorage Include="Service References\WithdrawService\" />
   </ItemGroup>
   <PropertyGroup>

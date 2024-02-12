@@ -1,6 +1,9 @@
-﻿using System.Reflection;
+#region Using directives
+
+using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+
+#endregion
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -10,17 +13,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Workflows")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
+[assembly: AssemblyCopyright("Copyright �  2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("55bfcfe0-eded-48b9-aeff-14b3124a07db")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -29,8 +24,10 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using '*'.
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+
+//NOTE: When updating the namespaces in the project please add new or update existing the XmlnsDefinitionAttribute
+//You can add additional attributes in order to map any additional namespaces you have in the project
+//[assembly: System.Workflow.ComponentModel.Serialization.XmlnsDefinition("http://schemas.com/Workflows", "Workflows")]

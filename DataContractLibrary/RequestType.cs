@@ -11,6 +11,6 @@ namespace DataContractLibrary
         HoldingsInfo,
         UpdateDetails,
         Transaction,
-        FacilityLicense,
+        AccountAndHoldings,
     }
 }

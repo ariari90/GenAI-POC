@@ -8,3 +8,67 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+namespace AgrregatorSvc.AccountInfoService {
+    
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountInfoService.IAccountInfoService")]
+    public interface IAccountInfoService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/ViewPersonalInfo", ReplyAction="http://tempuri.org/IAccountInfoService/ViewPersonalInfoResponse")]
+        DataContractLibrary.PersonalInfo ViewPersonalInfo(int uniqueId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/ViewBankInfo", ReplyAction="http://tempuri.org/IAccountInfoService/ViewBankInfoResponse")]
+        DataContractLibrary.BankInfo ViewBankInfo(int uniqueId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/GetCurrentSchemeDetails", ReplyAction="http://tempuri.org/IAccountInfoService/GetCurrentSchemeDetailsResponse")]
+        DataContractLibrary.SchemeInfo[] GetCurrentSchemeDetails(int uniqueId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/GetSchemePreference", ReplyAction="http://tempuri.org/IAccountInfoService/GetSchemePreferenceResponse")]
+        DataContractLibrary.SchemeInfo GetSchemePreference(int uniqueId);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IAccountInfoServiceChannel : AgrregatorSvc.AccountInfoService.IAccountInfoService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AccountInfoServiceClient : System.ServiceModel.ClientBase<AgrregatorSvc.AccountInfoService.IAccountInfoService>, AgrregatorSvc.AccountInfoService.IAccountInfoService {
+        
+        public AccountInfoServiceClient() {
+        }
+        
+        public AccountInfoServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public AccountInfoServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public AccountInfoServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public AccountInfoServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public DataContractLibrary.PersonalInfo ViewPersonalInfo(int uniqueId) {
+            return base.Channel.ViewPersonalInfo(uniqueId);
+        }
+        
+        public DataContractLibrary.BankInfo ViewBankInfo(int uniqueId) {
+            return base.Channel.ViewBankInfo(uniqueId);
+        }
+        
+        public DataContractLibrary.SchemeInfo[] GetCurrentSchemeDetails(int uniqueId) {
+            return base.Channel.GetCurrentSchemeDetails(uniqueId);
+        }
+        
+        public DataContractLibrary.SchemeInfo GetSchemePreference(int uniqueId) {
+            return base.Channel.GetSchemePreference(uniqueId);
+        }
+    }
+}

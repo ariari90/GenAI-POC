@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DataContractLibrary" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataContractLibrary" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="AggregatorRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContributionRequest" nillable="true" type="tns:ContributionRequest" />
+      <xs:element minOccurs="0" name="FacilityRequest" nillable="true" type="tns:FacilityRequest" />
+      <xs:element minOccurs="0" name="HoldingsInfoRequest" nillable="true" type="tns:HoldingsInfoRequest" />
+      <xs:element minOccurs="0" name="RequestType" type="tns:RequestType" />
+      <xs:element minOccurs="0" name="UniqueId" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateRequest" nillable="true" type="tns:UpdateRequest" />
+      <xs:element minOccurs="0" name="WithdrawRequest" nillable="true" type="tns:WithdrawRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AggregatorRequest" nillable="true" type="tns:AggregatorRequest" />
+  <xs:complexType name="ContributionRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Product" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Units" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContributionRequest" nillable="true" type="tns:ContributionRequest" />
+  <xs:complexType name="FacilityRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CurrentClient" nillable="true" type="tns:Client" />
+      <xs:element minOccurs="0" name="FacilityAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="FaciliytId" type="xs:int" />
+      <xs:element minOccurs="0" name="FaciliytType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FacilityRequest" nillable="true" type="tns:FacilityRequest" />
+  <xs:complexType name="Client">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientId" type="xs:int" />
+      <xs:element minOccurs="0" name="ClientName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Client" nillable="true" type="tns:Client" />
+  <xs:complexType name="HoldingsInfoRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ViewExitRequestForSchemeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ViewTransactionDateRange" nillable="true" type="tns:DateRange" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HoldingsInfoRequest" nillable="true" type="tns:HoldingsInfoRequest" />
+  <xs:complexType name="DateRange">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DateRange" nillable="true" type="tns:DateRange" />
+  <xs:simpleType name="RequestType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AccountInfo" />
+      <xs:enumeration value="HoldingsInfo" />
+      <xs:enumeration value="UpdateDetails" />
+      <xs:enumeration value="Transaction" />
+      <xs:enumeration value="AccountAndHoldings" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RequestType" nillable="true" type="tns:RequestType" />
+  <xs:complexType name="UpdateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeSchemeRequest" nillable="true" type="tns:ChangeSchemeRequest" />
+      <xs:element minOccurs="0" name="FundManagerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonalDetails" nillable="true" type="tns:PersonalDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateRequest" nillable="true" type="tns:UpdateRequest" />
+  <xs:complexType name="ChangeSchemeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NewSchemeId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChangeSchemeRequest" nillable="true" type="tns:ChangeSchemeRequest" />
+  <xs:complexType name="PersonalDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PinCode" type="xs:int" />
+      <xs:element minOccurs="0" name="Uniqueid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonalDetails" nillable="true" type="tns:PersonalDetails" />
+  <xs:complexType name="WithdrawRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsExitRequest" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Product" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WithdrawPercent" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WithdrawRequest" nillable="true" type="tns:WithdrawRequest" />
+  <xs:complexType name="AggregatorResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountInfoResponse" nillable="true" type="tns:InfoServiceResponse" />
+      <xs:element minOccurs="0" name="FacilityResponse" nillable="true" type="tns:FacilityResponse" />
+      <xs:element minOccurs="0" name="HoldingsResponse" nillable="true" type="tns:HoldingsResponse" />
+      <xs:element minOccurs="0" name="ValidationResponse" nillable="true" type="tns:ValidationResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AggregatorResponse" nillable="true" type="tns:AggregatorResponse" />
+  <xs:complexType name="InfoServiceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BankInfo" nillable="true" type="tns:BankInfo" />
+      <xs:element minOccurs="0" name="PersonalInfo" nillable="true" type="tns:PersonalInfo" />
+      <xs:element minOccurs="0" name="PreferredScheme" nillable="true" type="tns:SchemeInfo" />
+      <xs:element minOccurs="0" name="Schemes" nillable="true" type="tns:ArrayOfSchemeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InfoServiceResponse" nillable="true" type="tns:InfoServiceResponse" />
+  <xs:complexType name="BankInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankBranch" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IfscCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UniqueId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankInfo" nillable="true" type="tns:BankInfo" />
+  <xs:complexType name="PersonalInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateOfBirth" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FathersName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsKycDone" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MothersName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nationality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PinCode" type="xs:int" />
+      <xs:element minOccurs="0" name="UniqueId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonalInfo" nillable="true" type="tns:PersonalInfo" />
+  <xs:complexType name="SchemeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExitDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FundManagerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsPreferred" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PercantageContribution" type="xs:int" />
+      <xs:element minOccurs="0" name="SchemeId" type="xs:int" />
+      <xs:element minOccurs="0" name="SchemeName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SchemeInfo" nillable="true" type="tns:SchemeInfo" />
+  <xs:complexType name="ArrayOfSchemeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SchemeInfo" nillable="true" type="tns:SchemeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSchemeInfo" nillable="true" type="tns:ArrayOfSchemeInfo" />
+  <xs:complexType name="FacilityResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientSalaryAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CurrentClient" nillable="true" type="tns:Client" />
+      <xs:element minOccurs="0" name="IncomeTaxStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoanAmountApproved" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LoanStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VerifiedAmontBenchMark" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FacilityResponse" nillable="true" type="tns:FacilityResponse" />
+  <xs:complexType name="HoldingsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExitRequestResponse" nillable="true" type="tns:ExitRequestResponse" />
+      <xs:element minOccurs="0" name="HoldingSummary" nillable="true" type="tns:HoldingSummaryResponse" />
+      <xs:element minOccurs="0" name="Transactions" nillable="true" type="tns:ArrayOfUserContributionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HoldingsResponse" nillable="true" type="tns:HoldingsResponse" />
+  <xs:complexType name="ExitRequestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateRaised" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UniqueId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExitRequestResponse" nillable="true" type="tns:ExitRequestResponse" />
+  <xs:complexType name="HoldingSummaryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HoldingSummaryData" nillable="true" type="tns:ArrayOfHoldingSummaryData" />
+      <xs:element minOccurs="0" name="TotalAmount" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HoldingSummaryResponse" nillable="true" type="tns:HoldingSummaryResponse" />
+  <xs:complexType name="ArrayOfHoldingSummaryData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HoldingSummaryData" nillable="true" type="tns:HoldingSummaryData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHoldingSummaryData" nillable="true" type="tns:ArrayOfHoldingSummaryData" />
+  <xs:complexType name="HoldingSummaryData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExitDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="HoldingSchemeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nav" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TotalUnits" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Uniqueid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HoldingSummaryData" nillable="true" type="tns:HoldingSummaryData" />
+  <xs:complexType name="ArrayOfUserContributionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserContributionData" nillable="true" type="tns:UserContributionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserContributionData" nillable="true" type="tns:ArrayOfUserContributionData" />
+  <xs:complexType name="UserContributionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TransactionType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Uniqueid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserContributionData" nillable="true" type="tns:UserContributionData" />
+  <xs:complexType name="ValidationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidationMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValidationResponse" nillable="true" type="tns:ValidationResponse" />
+</xs:schema>

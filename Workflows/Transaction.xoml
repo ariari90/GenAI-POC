@@ -1,0 +1,33 @@
+﻿<SequenceActivity x:Class="Workflows.Transaction" x:Name="Transaction" xmlns:ns0="clr-namespace:DSP;Assembly=DSP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<ns0:TransactionRequestValidationServiceProvider x:Name="transactionRequestValidationServiceProvider1" Request="{x:Null}" />
+	<ParallelActivity x:Name="CoreActivities">
+		<SequenceActivity x:Name="Contribution">
+			<IfElseActivity x:Name="ContributeServiceBranch">
+				<IfElseBranchActivity x:Name="ContributeService_ifElseBranchActivity">
+					<IfElseBranchActivity.Condition>
+						<CodeCondition Condition="ContributeService_IfActivity" />
+					</IfElseBranchActivity.Condition>
+					<ns0:ContributeServiceProvider x:Name="contributeServiceProvider1" Request="{x:Null}" />
+				</IfElseBranchActivity>
+			</IfElseActivity>
+		</SequenceActivity>
+		<SequenceActivity x:Name="Withdraw">
+			<IfElseActivity x:Name="Withdraw_Exit_ActivityBranch">
+				<IfElseBranchActivity x:Name="WithdrawService_IfActivity2">
+					<IfElseBranchActivity.Condition>
+						<CodeCondition Condition="WithdrawServiceExecute_IfActivity" />
+					</IfElseBranchActivity.Condition>
+					<ns0:WithdrawServiceProvider x:Name="withdrawServiceProvider1" Request="{x:Null}" />
+				</IfElseBranchActivity>
+				<IfElseBranchActivity x:Name="ExitRequest_IfActivity">
+					<IfElseBranchActivity.Condition>
+						<CodeCondition Condition="ExitServiceExecute_IfActivity" />
+					</IfElseBranchActivity.Condition>
+					<ns0:ExitRequestServiceProvider x:Name="exitRequestServiceProvider1" Request="{x:Null}" />
+				</IfElseBranchActivity>
+			</IfElseActivity>
+		</SequenceActivity>
+	</ParallelActivity>
+	<ns0:DefaultValidationServiceProvider x:Name="defaultValidationServiceProvider1" Request="{x:Null}" />
+	<ns0:AggregatorAdapter Request="{x:Null}" Response="{x:Null}" x:Name="aggregatorAdapter1" />
+</SequenceActivity>
