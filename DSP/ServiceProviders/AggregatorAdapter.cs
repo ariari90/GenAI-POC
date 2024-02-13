@@ -62,6 +62,23 @@ namespace DSP
             return base.Execute(executionContext);
         }
 
+        private string GetActivityNameFromConfig(string key)
+        {
+            if(AggregatorConstants.serviceProviderConfig == null 
+                || AggregatorConstants.serviceProviderConfig.ServiceProviders == null)
+            {
+                return null;
+            }
+
+            if (AggregatorConstants.serviceProviderConfig.ServiceProviders.Any(x => x.Key == key))
+            {
+                return AggregatorConstants.serviceProviderConfig.ServiceProviders
+                    .FirstOrDefault(x => x.Key == key).Name;
+            }
+
+            return null;
+        }
+
         public T Aggregate<T>(T aggregatorResponse, bool disableRequiredCheck = false, Type type = null)
         {
             if (type == null)
@@ -103,15 +120,15 @@ namespace DSP
                 }
                 else
                 {
-                    string activityName = String.Empty;
-
-                    if (AggregatorConstants.keyServiceProvers.TryGetValue(prop.Name, out activityName))
+                    string activityName = GetActivityNameFromConfig(prop.Name);
+                    if (activityName != null)
                     {
                         object value = GetDSFVariableByName(activityName, prop.Name);
-                        if (value != null)
-                        {
-                            prop.SetValue(obj, value, null);
-                        }
+                        prop.SetValue(obj, value, null);
+                    }
+                    else
+                    {
+                        prop.SetValue(obj, null, null);
                     }
 
                 }

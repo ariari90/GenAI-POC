@@ -14,11 +14,6 @@ namespace AgrregatorSvc
     public interface IAggregatorSvc
     {
         [OperationContract]
-        AggregatorResponse GetData(AggregatorRequest request);
-
-        [OperationContract]
-        string AuthenticationMethod();
-
-        
+        AggregatorResponse GetData(AggregatorRequest request);        
     }
 }

@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ServiceProviderConfig>
+  <ServiceProviders>
+    <ServiceProvider>
+      <Id>1</Id>
+      <Key>Mobile</Key>
+      <Name>mobileServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>2</Id>
+      <Key>Address1</Key>
+      <Name>addressServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>3</Id>
+      <Key>Address1</Key>
+      <Name>addressServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>4</Id>
+      <Key>Address2</Key>
+      <Name>addressServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>5</Id>
+      <Key>City</Key>
+      <Name>addressServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>6</Id>
+      <Key>PinCode</Key>
+      <Name>addressServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>7</Id>
+      <Key>FullName</Key>
+      <Name>basicUserInfoServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>8</Id>
+      <Key>FathersName</Key>
+      <Name>basicUserInfoServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>9</Id>
+      <Key>MothersName</Key>
+      <Name>basicUserInfoServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>10</Id>
+      <Key>Nationality</Key>
+      <Name>basicUserInfoServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>11</Id>
+      <Key>DateOfBirth</Key>
+      <Name>basicUserInfoServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>12</Id>
+      <Key>IsKycDone</Key>
+      <Name>kycServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>13</Id>
+      <Key>AccountNumber</Key>
+      <Name>accountNumberServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>14</Id>
+      <Key>BankBranch</Key>
+      <Name>bankBranchServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>15</Id>
+      <Key>BankName</Key>
+      <Name>bankNameServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>16</Id>
+      <Key>Address</Key>
+      <Name>bankAddressServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>17</Id>
+      <Key>IfscCode</Key>
+      <Name>ifscCodeServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>18</Id>
+      <Key>SchemeInfo</Key>
+      <Name>schemeNameServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>19</Id>
+      <Key>PreferredScheme</Key>
+      <Name>preferredSchemeServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>20</Id>
+      <Key>HoldingSummaryData</Key>
+      <Name>holdingSummaryDataServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>21</Id>
+      <Key>TotalAmount</Key>
+      <Name>holdingsTotalAmountServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>22</Id>
+      <Key>Transactions</Key>
+      <Name>holdingsTotalAmountServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>23</Id>
+      <Key>ExitDateRaised</Key>
+      <Name>exitDateRaisedServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>24</Id>
+      <Key>ExitDateStatus</Key>
+      <Name>exitDateStatusServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>25</Id>
+      <Key>UniqueId</Key>
+      <Name>uniqueIdServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>25</Id>
+      <Key>Schemes</Key>
+      <Name>schemesServiceProvider1</Name>
+    </ServiceProvider>
+  </ServiceProviders>
+
+</ServiceProviderConfig>

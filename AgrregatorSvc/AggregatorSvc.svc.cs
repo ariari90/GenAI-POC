@@ -13,76 +13,9 @@ namespace AgrregatorSvc
 {
     public class AggregatorSvc : IAggregatorSvc
     {
-        public SecuredService SoapHeader;
-
-        [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
-        public string AuthenticationMethod()
-        {
-            if(SoapHeader == null)
-            {
-                return String.Empty;
-            }
-
-            if (String.IsNullOrEmpty(SoapHeader.UserName) || String.IsNullOrEmpty(SoapHeader.Password))
-            {
-                return String.Empty;
-            }
-
-            if (!IsUserCredentialsValid(SoapHeader.UserName, SoapHeader.Password))
-            {
-                return String.Empty;
-            }
-
-            string token = Guid.NewGuid().ToString();
-            HttpRuntime.Cache.Add(
-                token,
-                SoapHeader.UserName,
-                null,
-                System.Web.Caching.Cache.NoAbsoluteExpiration,
-                TimeSpan.FromMinutes(30),
-                System.Web.Caching.CacheItemPriority.NotRemovable,
-                null);
-
-            return token;
-        }
-
-        public bool IsUserCredentialsValid(string userName, string password)
-        {
-            if (userName == "admin" && password == "admin")
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool IsUserCredentialsValid(SecuredService SoapHeader)
-        {
-            if (SoapHeader == null)
-            {
-                return false;
-            }
-
-            if (!String.IsNullOrEmpty(SoapHeader.AuthenticationToken))
-            {
-                return (System.Web.HttpRuntime.Cache[SoapHeader.AuthenticationToken] != null);
-
-            }
-            return false;
-        }
-
-        [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
+        
         public AggregatorResponse GetData(AggregatorRequest request)
         {
-            /*if (SoapHeader == null)
-            {
-                return null;
-            }
-
-            if(!IsUserCredentialsValid(SoapHeader))
-            {
-                return null;
-            }*/
-
             AggregatorResponse response = null;
 
 
