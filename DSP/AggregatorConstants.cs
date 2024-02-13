@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace DSP
 {
@@ -44,6 +48,7 @@ namespace DSP
         public static string Schemes = "Schemes";
 
         public static Dictionary<string, string> keyServiceProvers = new Dictionary<string, string>();
+        public static ServiceProviderConfig serviceProviderConfig = new ServiceProviderConfig();
 
         public static void Instantiate()
         {
@@ -56,31 +61,13 @@ namespace DSP
         
         public static void SetupKeyServiceProviders()
         {
-            keyServiceProvers.Add(Mobile, "mobileServiceProvider1");
-            keyServiceProvers.Add(Address1, "addressServiceProvider1");
-            keyServiceProvers.Add(Address2, "addressServiceProvider1");
-            keyServiceProvers.Add(City, "addressServiceProvider1");
-            keyServiceProvers.Add(PinCode, "addressServiceProvider1");
-            keyServiceProvers.Add(FullName, "basicUserInfoServiceProvider1");
-            keyServiceProvers.Add(FathersName, "basicUserInfoServiceProvider1");
-            keyServiceProvers.Add(MothersName, "basicUserInfoServiceProvider1");
-            keyServiceProvers.Add(Nationality, "basicUserInfoServiceProvider1");
-            keyServiceProvers.Add(DateOfBirth, "basicUserInfoServiceProvider1");
-            keyServiceProvers.Add(IsKycDone, "kycServiceProvider1");
-            keyServiceProvers.Add(AccountNumber, "accountNumberServiceProvider1");
-            keyServiceProvers.Add(BankBranch, "bankBranchServiceProvider1");
-            keyServiceProvers.Add(BankName, "bankNameServiceProvider1");
-            keyServiceProvers.Add(Address, "bankAddressServiceProvider1");
-            keyServiceProvers.Add(IfscCode, "ifscCodeServiceProvider1");
-            keyServiceProvers.Add(SchemeInfo, "schemeNameServiceProvider1");
-            keyServiceProvers.Add(PreferredScheme, "preferredSchemeServiceProvider1");
-            keyServiceProvers.Add(HoldingSummaryData, "holdingSummaryDataServiceProvider1");
-            keyServiceProvers.Add(TotalAmount, "holdingsTotalAmountServiceProvider1");
-            keyServiceProvers.Add(Transactions, "transactionsServiceProvider1");
-            keyServiceProvers.Add(ExitDateRaised, "exitDateRaisedServiceProvider1");
-            keyServiceProvers.Add(ExitDateStatus, "exitDateStatusServiceProvider1");
-            keyServiceProvers.Add(UniqueId, "uniqueIdServiceProvider1");
-            keyServiceProvers.Add(Schemes, "schemesServiceProvider1");
+            XmlSerializer deserializer = new XmlSerializer(typeof(ServiceProviderConfig));
+            string configLocation = ConfigurationManager.AppSettings["ServiceProviderLocation"];
+            string path = Path.Combine(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), configLocation);
+            
+            TextReader textReader = new StreamReader(path);
+            serviceProviderConfig = (ServiceProviderConfig)deserializer.Deserialize(textReader);
+            textReader.Close();
         }
     }
 }

@@ -67,6 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AggregatorSvc.svc" />
+    <Content Include="Config\ServiceProviderConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\DataSources\DataContractLibrary.HoldingSummaryResponse.datasource" />
     <Content Include="Properties\DataSources\DataContractLibrary.UserContributionData.datasource" />
     <Content Include="Properties\DataSources\DataContractLibrary.ValidationResponse.datasource" />
