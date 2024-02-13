@@ -12,6 +12,7 @@ namespace DSP
     public class AggregatorConstants
     {
         private static bool _isInitialized = false;
+        private static string ServiceProviderLocation = "ServiceProviderLocation";
 
         public static string InfoServiceResponse = "InfoServiceResponse";
         public static string HoldingsResponse = "HoldingsResponse";
@@ -61,7 +62,7 @@ namespace DSP
         public static void SetupKeyServiceProviders()
         {
             XmlSerializer deserializer = new XmlSerializer(typeof(ServiceProviderConfig));
-            string configLocation = ConfigurationManager.AppSettings["ServiceProviderLocation"];
+            string configLocation = ConfigurationManager.AppSettings[ServiceProviderLocation];
             string path = Path.Combine(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), configLocation);
             
             TextReader textReader = new StreamReader(path);

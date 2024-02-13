@@ -5,13 +5,21 @@ using System.Text;
 using System.Workflow.ComponentModel;
 using DataContractLibrary;
 using System.Collections;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Drawing;
+using System.Workflow.ComponentModel.Design;
+using System.Drawing.Drawing2D;
 
 namespace DSP
 {
+
     public class ServiceProviderBase : System.Workflow.ComponentModel.Activity
     {
         public void SetValidationResponse(ValidationResponse validationResponse)
         {
+
+            
             AggregatorResponse response = GetDSFVariable(this.Parent, AggregatorConstants.Response) as AggregatorResponse;
             response = new AggregatorResponse();
             response.ValidationResponse = validationResponse;
@@ -96,4 +104,5 @@ namespace DSP
             }
         }
     }
+
 }

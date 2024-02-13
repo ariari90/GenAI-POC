@@ -23,20 +23,34 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  MobileServiceProvider");
+            Console.WriteLine("Executing  AccountNumberServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
+            BankInfo bankInfo = null;
 
-            if (Request != null)
+            try
             {
-                Console.WriteLine("Request is null");
-                AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
-                var bankInfo = service.ViewBankInfo(Request.UniqueId);
-
-                SetDSFVariable(this, AggregatorConstants.AccountNumber, bankInfo.AccountNumber);
-                SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                if (Request != null)
+                {
+                    Console.WriteLine("Request is null");
+                    AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
+                    bankInfo = service.ViewBankInfo(Request.UniqueId);
+                }
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected error occured: " + e.ToString());
+                throw new Exception("Workflow error: " + e.ToString());
+            }
+            finally
+            {
+                if (bankInfo != null)
+                {
+                    SetDSFVariable(this, AggregatorConstants.AccountNumber, bankInfo.AccountNumber);
+                    SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                }
+                
+            }
             return base.Execute(executionContext);
         }
     }
