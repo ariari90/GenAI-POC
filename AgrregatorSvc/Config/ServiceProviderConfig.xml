@@ -135,13 +135,13 @@
 
     <ServiceProvider>
       <Id>23</Id>
-      <Key>ExitDateRaised</Key>
+      <Key>DateRaised</Key>
       <Name>exitDateRaisedServiceProvider1</Name>
     </ServiceProvider>
 
     <ServiceProvider>
       <Id>24</Id>
-      <Key>ExitDateStatus</Key>
+      <Key>Status</Key>
       <Name>exitDateStatusServiceProvider1</Name>
     </ServiceProvider>
 
