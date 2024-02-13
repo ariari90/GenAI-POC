@@ -47,7 +47,6 @@ namespace DSP
         public static string UniqueId = "UniqueId";
         public static string Schemes = "Schemes";
 
-        public static Dictionary<string, string> keyServiceProvers = new Dictionary<string, string>();
         public static ServiceProviderConfig serviceProviderConfig = new ServiceProviderConfig();
 
         public static void Instantiate()

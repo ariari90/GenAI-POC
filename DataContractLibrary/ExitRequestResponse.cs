@@ -14,7 +14,7 @@ namespace DataContractLibrary
         public int UniqueId { get; set; }
 
         [DataMember]
-        public DateTime DateRaised { get; set; }
+        public Nullable<DateTime> DateRaised { get; set; }
 
         [DataMember]
         public string Status { get; set; }

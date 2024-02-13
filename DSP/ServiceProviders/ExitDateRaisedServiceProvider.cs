@@ -19,7 +19,7 @@ namespace DSP
             get; set;
         }
 
-        public DateTime DateRaised { get; set; }
+        public Nullable<DateTime> DateRaised { get; set; }
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {

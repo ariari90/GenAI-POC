@@ -46,7 +46,7 @@ namespace Workflows
 
         private void ExitRequest_IfActivity(object sender, ConditionalEventArgs e)
         {
-            e.Result = Request.HoldingsInfoRequest != null && !String.IsNullOrEmpty(Request.HoldingsInfoRequest.ViewExitRequestForSchemeName);
+            e.Result = (Request.HoldingsInfoRequest != null && !String.IsNullOrEmpty(Request.HoldingsInfoRequest.ViewExitRequestForSchemeName));
         }
     }
 }
