@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Workflow.Activities;
@@ -29,23 +30,38 @@ namespace DSP
             Console.WriteLine("Executing  AddressServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
+            string address1 = null;
+            string address2 = null;
+            string city = null;
+            int pinCode = default(int);
 
-            if (Request != null)
+            try
             {
-                Console.WriteLine("Request is null");
-                AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
-                var personalInfo = service.ViewPersonalInfo(Request.UniqueId);
-                string address1 = personalInfo.Address1;
-                string address2 = personalInfo.Address2;
-                string city = personalInfo.City;
-                int pinCode = personalInfo.PinCode;
+                if (Request != null)
+                {
+                    Console.WriteLine("Request is null");
+                    AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
+                    var personalInfo = service.ViewPersonalInfo(Request.UniqueId);
+                    address1 = personalInfo.Address1;
+                    address2 = personalInfo.Address2;
+                    city = personalInfo.City;
+                    pinCode = personalInfo.PinCode;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected error occured: " + e.ToString());
+                throw new Exception("Workflow error: " + e.ToString());
+            }
+            finally
+            {
                 SetDSFVariable(this, AggregatorConstants.Address1, address1);
                 SetDSFVariable(this, AggregatorConstants.Address2, address2);
                 SetDSFVariable(this, AggregatorConstants.City, city);
                 SetDSFVariable(this, AggregatorConstants.PinCode, pinCode);
                 SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
             }
-
+            
             return base.Execute(executionContext);
         }
     }

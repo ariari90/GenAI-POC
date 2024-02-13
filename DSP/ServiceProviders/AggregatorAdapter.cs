@@ -51,14 +51,22 @@ namespace DSP
 
             Response = new AggregatorResponse();
 
-            ValidationResponse validationResponse = GetValidationResponse();
-            Response = Aggregate<AggregatorResponse>(Response);
-            Response.ValidationResponse = validationResponse;
-
-            SetDSFVariable(this.Parent, "Response", Response);
-
-            Console.WriteLine("Response built");
-
+            try
+            {
+                ValidationResponse validationResponse = GetValidationResponse();
+                Response = Aggregate<AggregatorResponse>(Response);
+                Response.ValidationResponse = validationResponse;
+                Console.WriteLine("Response built");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected error occured: " + e.ToString());
+                throw new Exception("Workflow error: " + e.ToString());
+            }
+            finally
+            {
+                SetDSFVariable(this.Parent, AggregatorConstants.Response, Response);
+            }
             return base.Execute(executionContext);
         }
 

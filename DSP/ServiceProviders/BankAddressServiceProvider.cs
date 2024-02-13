@@ -30,11 +30,23 @@ namespace DSP
             if (Request != null)
             {
                 Console.WriteLine("Request is null");
+                BankInfo bankInfo = null;
                 AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
-                var bankInfo = service.ViewBankInfo(Request.UniqueId);
 
-                SetDSFVariable(this, AggregatorConstants.Address, bankInfo.Address);
-                SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                try
+                {
+                    bankInfo = service.ViewBankInfo(Request.UniqueId);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Unexpected error occured: " + e.ToString());
+                    throw new Exception("Workflow error: " + e.ToString());
+                }
+                finally
+                {
+                    SetDSFVariable(this, AggregatorConstants.Address, bankInfo.Address);
+                    SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                }
             }
 
             return base.Execute(executionContext);
