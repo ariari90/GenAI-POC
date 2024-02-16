@@ -10,7 +10,7 @@ using System.Workflow.ComponentModel.Design;
 using System.Workflow.Runtime;
 using System.Workflow.Activities;
 using System.Workflow.Activities.Rules;
-using DataContractLibrary;
+using Common.Entities;
 using System.Collections.Generic;
 using DSP;
 
@@ -21,13 +21,13 @@ namespace Workflows
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorResponse Response
+        public Common.Entities.AggregatorResponse Response
         {
             get; set;
         }
 
 
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }

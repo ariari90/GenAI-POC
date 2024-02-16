@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }
@@ -27,7 +27,7 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  AddressServiceProvider");
+            DSPLogger.LogMessage("Executing  AddressServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
             string address1 = null;
@@ -39,7 +39,6 @@ namespace DSP
             {
                 if (Request != null)
                 {
-                    Console.WriteLine("Request is null");
                     AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
                     var personalInfo = service.ViewPersonalInfo(Request.UniqueId);
                     address1 = personalInfo.Address1;
@@ -50,7 +49,7 @@ namespace DSP
             }
             catch (Exception e)
             {
-                Console.WriteLine("Unexpected error occured: " + e.ToString());
+                DSPLogger.LogError("Unexpected error occured: " + e.ToString());
                 throw new Exception("Workflow error: " + e.ToString());
             }
             finally

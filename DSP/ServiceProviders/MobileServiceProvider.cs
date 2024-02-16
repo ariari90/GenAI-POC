@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }
@@ -29,12 +29,23 @@ namespace DSP
 
             if (Request != null)
             {
-                Console.WriteLine("Request is null");
-                AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
-                var personalInfo = service.ViewPersonalInfo(Request.UniqueId);
-                string mobile = personalInfo.Mobile;
-                SetDSFVariable(this, AggregatorConstants.Mobile, mobile);
-                SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                string mobile = String.Empty;
+                try
+                {
+                    AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
+                    var personalInfo = service.ViewPersonalInfo(Request.UniqueId);
+                    mobile = personalInfo.Mobile;
+                }
+                catch (Exception e)
+                {
+                    DSPLogger.LogError("Unexpected error occured: " + e.ToString());
+                    throw new Exception("Workflow error: " + e.ToString());
+                }
+                finally
+                {
+                    SetDSFVariable(this, AggregatorConstants.Mobile, mobile);
+                    SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                }
             }
 
             return base.Execute(executionContext);

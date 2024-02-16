@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,24 +14,37 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  UpdateFundManagerServiceProvider");
+            DSPLogger.LogMessage("Executing  UpdateFundManagerServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
 
             if (Request.UpdateRequest != null && !String.IsNullOrEmpty(Request.UpdateRequest.FundManagerName))
             {
-                ContributionService.ContributionServiceClient service = new ContributionService.ContributionServiceClient();
-                var validationResponse = service.ChangeFundManagerName(Request.UniqueId, Request.UpdateRequest.FundManagerName);
-                if (validationResponse.Status != "Success")
+                ValidationResponse validationResponse = null;
+
+                try
                 {
-                    SetValidationResponse(validationResponse);
+                    ContributionService.ContributionServiceClient service = new ContributionService.ContributionServiceClient();
+                    validationResponse = service.ChangeFundManagerName(Request.UniqueId, Request.UpdateRequest.FundManagerName);
+                }
+                catch (Exception e)
+                {
+                    DSPLogger.LogError("Unexpected error occured: " + e.ToString());
+                    throw new Exception("Workflow error: " + e.ToString());
+                }
+                finally
+                {
+                    if (validationResponse != null && validationResponse.Status != "Success")
+                    {
+                        SetValidationResponse(validationResponse);
+                    }
                 }
             }
 

@@ -16,16 +16,16 @@ namespace Workflows.AccountInfoServiceReference {
     public interface IAccountInfoService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/ViewPersonalInfo", ReplyAction="http://tempuri.org/IAccountInfoService/ViewPersonalInfoResponse")]
-        DataContractLibrary.PersonalInfo ViewPersonalInfo(int uniqueId);
+        Common.Entities.PersonalInfo ViewPersonalInfo(int uniqueId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/ViewBankInfo", ReplyAction="http://tempuri.org/IAccountInfoService/ViewBankInfoResponse")]
-        DataContractLibrary.BankInfo ViewBankInfo(int uniqueId);
+        Common.Entities.BankInfo ViewBankInfo(int uniqueId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/GetCurrentSchemeDetails", ReplyAction="http://tempuri.org/IAccountInfoService/GetCurrentSchemeDetailsResponse")]
-        DataContractLibrary.SchemeInfo[] GetCurrentSchemeDetails(int uniqueId);
+        Common.Entities.SchemeInfo[] GetCurrentSchemeDetails(int uniqueId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/GetSchemePreference", ReplyAction="http://tempuri.org/IAccountInfoService/GetSchemePreferenceResponse")]
-        DataContractLibrary.SchemeInfo GetSchemePreference(int uniqueId);
+        Common.Entities.SchemeInfo GetSchemePreference(int uniqueId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,19 +55,19 @@ namespace Workflows.AccountInfoServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public DataContractLibrary.PersonalInfo ViewPersonalInfo(int uniqueId) {
+        public Common.Entities.PersonalInfo ViewPersonalInfo(int uniqueId) {
             return base.Channel.ViewPersonalInfo(uniqueId);
         }
         
-        public DataContractLibrary.BankInfo ViewBankInfo(int uniqueId) {
+        public Common.Entities.BankInfo ViewBankInfo(int uniqueId) {
             return base.Channel.ViewBankInfo(uniqueId);
         }
         
-        public DataContractLibrary.SchemeInfo[] GetCurrentSchemeDetails(int uniqueId) {
+        public Common.Entities.SchemeInfo[] GetCurrentSchemeDetails(int uniqueId) {
             return base.Channel.GetCurrentSchemeDetails(uniqueId);
         }
         
-        public DataContractLibrary.SchemeInfo GetSchemePreference(int uniqueId) {
+        public Common.Entities.SchemeInfo GetSchemePreference(int uniqueId) {
             return base.Channel.GetSchemePreference(uniqueId);
         }
     }

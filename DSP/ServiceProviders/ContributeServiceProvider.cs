@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,24 +14,36 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  ContributeServiceProvider");
+            DSPLogger.LogMessage("Executing  ContributeServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
 
-            if (Request.ContributionRequest != null)
+            if (Request != null && Request.ContributionRequest != null)
             {
-                ContributionService.IContributionService service = new ContributionService.ContributionServiceClient();
-                var validationResponse = service.ContributeOnline(Request.UniqueId, Request.ContributionRequest.Product, Request.ContributionRequest.Units);
-                if (validationResponse.Status != "Success")
+                ValidationResponse validationResponse = new ValidationResponse();
+                try
                 {
-                    SetValidationResponse(validationResponse);
+                    ContributionService.IContributionService service = new ContributionService.ContributionServiceClient();
+                    validationResponse = service.ContributeOnline(Request.UniqueId, Request.ContributionRequest.Product, Request.ContributionRequest.Units);
+                }
+                catch (Exception e)
+                {
+                    DSPLogger.LogError("Unexpected error occured: " + e.ToString());
+                    throw new Exception("Workflow error: " + e.ToString());
+                }
+                finally
+                {
+                    if (validationResponse.Status != "Success")
+                    {
+                        SetValidationResponse(validationResponse);
+                    }
                 }
             }
 

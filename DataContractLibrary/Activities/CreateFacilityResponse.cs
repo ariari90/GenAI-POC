@@ -5,7 +5,7 @@ using System.Text;
 using System.Activities;
 using System.ComponentModel;
 
-namespace DataContractLibrary.Activities
+namespace Common.Entities.Activities
 {
     public class CreateFacilityResponse : CodeActivity
     {

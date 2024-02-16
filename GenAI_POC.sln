@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContractLibrary", "DataContractLibrary\DataContractLibrary.csproj", "{DD02B14C-0413-40FA-8FC7-D5387875E138}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "DataContractLibrary\Common.csproj", "{DD02B14C-0413-40FA-8FC7-D5387875E138}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgrregatorSvc", "AgrregatorSvc\AgrregatorSvc.csproj", "{0811F234-F4C3-467A-AD07-B47D2F2E501F}"
 EndProject

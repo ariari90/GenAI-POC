@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,24 +14,36 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  UpdateSchemeServiceProvider");
+            DSPLogger.LogMessage("Executing  UpdateSchemeServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
 
             if (Request.UpdateRequest != null && Request.UpdateRequest.ChangeSchemeRequest != null)
             {
-                ContributionService.ContributionServiceClient service = new ContributionService.ContributionServiceClient();
-                var validationResponse = service.ChangeSchemePreference(Request.UniqueId, Request.UpdateRequest.ChangeSchemeRequest.NewSchemeId);
-                if (validationResponse.Status != "Success")
+                ValidationResponse validationResponse = new ValidationResponse();
+                try
                 {
-                    SetValidationResponse(validationResponse);
+                    ContributionService.ContributionServiceClient service = new ContributionService.ContributionServiceClient();
+                    validationResponse = service.ChangeSchemePreference(Request.UniqueId, Request.UpdateRequest.ChangeSchemeRequest.NewSchemeId);
+                }
+                catch (Exception e)
+                {
+                    DSPLogger.LogError("Unexpected error occured: " + e.ToString());
+                    throw new Exception("Workflow error: " + e.ToString());
+                }
+                finally
+                {
+                    if (validationResponse != null && validationResponse.Status != "Success")
+                    {
+                        SetValidationResponse(validationResponse);
+                    }
                 }
             }
 

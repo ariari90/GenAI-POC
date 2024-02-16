@@ -9,20 +9,519 @@
 //------------------------------------------------------------------------------
 
 namespace AgrregatorSvc.AccountBankingService {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HoldingSummaryResponse", Namespace="http://schemas.datacontract.org/2004/07/DataContractLibrary")]
+    [System.SerializableAttribute()]
+    public partial class HoldingSummaryResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private AgrregatorSvc.AccountBankingService.HoldingSummaryData[] HoldingSummaryDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalAmountField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public AgrregatorSvc.AccountBankingService.HoldingSummaryData[] HoldingSummaryData {
+            get {
+                return this.HoldingSummaryDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HoldingSummaryDataField, value) != true)) {
+                    this.HoldingSummaryDataField = value;
+                    this.RaisePropertyChanged("HoldingSummaryData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal TotalAmount {
+            get {
+                return this.TotalAmountField;
+            }
+            set {
+                if ((this.TotalAmountField.Equals(value) != true)) {
+                    this.TotalAmountField = value;
+                    this.RaisePropertyChanged("TotalAmount");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HoldingSummaryData", Namespace="http://schemas.datacontract.org/2004/07/DataContractLibrary")]
+    [System.SerializableAttribute()]
+    public partial class HoldingSummaryData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreatedDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime ExitDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HoldingSchemeNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal NavField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalUnitsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UniqueidField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreatedDate {
+            get {
+                return this.CreatedDateField;
+            }
+            set {
+                if ((this.CreatedDateField.Equals(value) != true)) {
+                    this.CreatedDateField = value;
+                    this.RaisePropertyChanged("CreatedDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ExitDate {
+            get {
+                return this.ExitDateField;
+            }
+            set {
+                if ((this.ExitDateField.Equals(value) != true)) {
+                    this.ExitDateField = value;
+                    this.RaisePropertyChanged("ExitDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HoldingSchemeName {
+            get {
+                return this.HoldingSchemeNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HoldingSchemeNameField, value) != true)) {
+                    this.HoldingSchemeNameField = value;
+                    this.RaisePropertyChanged("HoldingSchemeName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Nav {
+            get {
+                return this.NavField;
+            }
+            set {
+                if ((this.NavField.Equals(value) != true)) {
+                    this.NavField = value;
+                    this.RaisePropertyChanged("Nav");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal TotalUnits {
+            get {
+                return this.TotalUnitsField;
+            }
+            set {
+                if ((this.TotalUnitsField.Equals(value) != true)) {
+                    this.TotalUnitsField = value;
+                    this.RaisePropertyChanged("TotalUnits");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Uniqueid {
+            get {
+                return this.UniqueidField;
+            }
+            set {
+                if ((this.UniqueidField.Equals(value) != true)) {
+                    this.UniqueidField = value;
+                    this.RaisePropertyChanged("Uniqueid");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserContributionData", Namespace="http://schemas.datacontract.org/2004/07/DataContractLibrary")]
+    [System.SerializableAttribute()]
+    public partial class UserContributionData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TransactionDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TransactionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UniqueidField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TransactionDate {
+            get {
+                return this.TransactionDateField;
+            }
+            set {
+                if ((this.TransactionDateField.Equals(value) != true)) {
+                    this.TransactionDateField = value;
+                    this.RaisePropertyChanged("TransactionDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TransactionType {
+            get {
+                return this.TransactionTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TransactionTypeField, value) != true)) {
+                    this.TransactionTypeField = value;
+                    this.RaisePropertyChanged("TransactionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Uniqueid {
+            get {
+                return this.UniqueidField;
+            }
+            set {
+                if ((this.UniqueidField.Equals(value) != true)) {
+                    this.UniqueidField = value;
+                    this.RaisePropertyChanged("Uniqueid");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonalDetails", Namespace="http://schemas.datacontract.org/2004/07/DataContractLibrary")]
+    [System.SerializableAttribute()]
+    public partial class PersonalDetails : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Address1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Address2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MobileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PinCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UniqueidField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address1 {
+            get {
+                return this.Address1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Address1Field, value) != true)) {
+                    this.Address1Field = value;
+                    this.RaisePropertyChanged("Address1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address2 {
+            get {
+                return this.Address2Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Address2Field, value) != true)) {
+                    this.Address2Field = value;
+                    this.RaisePropertyChanged("Address2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string City {
+            get {
+                return this.CityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CityField, value) != true)) {
+                    this.CityField = value;
+                    this.RaisePropertyChanged("City");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Mobile {
+            get {
+                return this.MobileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MobileField, value) != true)) {
+                    this.MobileField = value;
+                    this.RaisePropertyChanged("Mobile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PinCode {
+            get {
+                return this.PinCodeField;
+            }
+            set {
+                if ((this.PinCodeField.Equals(value) != true)) {
+                    this.PinCodeField = value;
+                    this.RaisePropertyChanged("PinCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Uniqueid {
+            get {
+                return this.UniqueidField;
+            }
+            set {
+                if ((this.UniqueidField.Equals(value) != true)) {
+                    this.UniqueidField = value;
+                    this.RaisePropertyChanged("Uniqueid");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ValidationResponse", Namespace="http://schemas.datacontract.org/2004/07/DataContractLibrary")]
+    [System.SerializableAttribute()]
+    public partial class ValidationResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ValidationMessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ValidationMessage {
+            get {
+                return this.ValidationMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValidationMessageField, value) != true)) {
+                    this.ValidationMessageField = value;
+                    this.RaisePropertyChanged("ValidationMessage");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountBankingService.IAccountBankingService")]
     public interface IAccountBankingService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/GetHoldingSummary", ReplyAction="http://tempuri.org/IAccountBankingService/GetHoldingSummaryResponse")]
-        DataContractLibrary.HoldingSummaryResponse GetHoldingSummary(int uid);
+        AgrregatorSvc.AccountBankingService.HoldingSummaryResponse GetHoldingSummary(int uid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/GetUserContribution", ReplyAction="http://tempuri.org/IAccountBankingService/GetUserContributionResponse")]
-        DataContractLibrary.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate);
+        AgrregatorSvc.AccountBankingService.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/UpdatePersonalDetails", ReplyAction="http://tempuri.org/IAccountBankingService/UpdatePersonalDetailsResponse")]
-        DataContractLibrary.ValidationResponse UpdatePersonalDetails(DataContractLibrary.PersonalDetails personDetails);
+        AgrregatorSvc.AccountBankingService.ValidationResponse UpdatePersonalDetails(AgrregatorSvc.AccountBankingService.PersonalDetails personDetails);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -52,15 +551,15 @@ namespace AgrregatorSvc.AccountBankingService {
                 base(binding, remoteAddress) {
         }
         
-        public DataContractLibrary.HoldingSummaryResponse GetHoldingSummary(int uid) {
+        public AgrregatorSvc.AccountBankingService.HoldingSummaryResponse GetHoldingSummary(int uid) {
             return base.Channel.GetHoldingSummary(uid);
         }
         
-        public DataContractLibrary.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate) {
+        public AgrregatorSvc.AccountBankingService.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate) {
             return base.Channel.GetUserContribution(uid, startdate, enddate);
         }
         
-        public DataContractLibrary.ValidationResponse UpdatePersonalDetails(DataContractLibrary.PersonalDetails personDetails) {
+        public AgrregatorSvc.AccountBankingService.ValidationResponse UpdatePersonalDetails(AgrregatorSvc.AccountBankingService.PersonalDetails personDetails) {
             return base.Channel.UpdatePersonalDetails(personDetails);
         }
     }

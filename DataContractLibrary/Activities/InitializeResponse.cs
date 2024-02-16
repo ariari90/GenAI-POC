@@ -5,7 +5,7 @@ using System.Text;
 using System.Activities;
 using System.ComponentModel;
 
-namespace DataContractLibrary
+namespace Common.Entities
 {
     public class InitializeResponse : CodeActivity
     {

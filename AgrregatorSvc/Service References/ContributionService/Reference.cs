@@ -9,20 +9,83 @@
 //------------------------------------------------------------------------------
 
 namespace AgrregatorSvc.ContributionService {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ValidationResponse", Namespace="http://schemas.datacontract.org/2004/07/DataContractLibrary")]
+    [System.SerializableAttribute()]
+    public partial class ValidationResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ValidationMessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ValidationMessage {
+            get {
+                return this.ValidationMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValidationMessageField, value) != true)) {
+                    this.ValidationMessageField = value;
+                    this.RaisePropertyChanged("ValidationMessage");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ContributionService.IContributionService")]
     public interface IContributionService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContributionService/ContributeOnline", ReplyAction="http://tempuri.org/IContributionService/ContributeOnlineResponse")]
-        DataContractLibrary.ValidationResponse ContributeOnline(int uniqueId, string product, int units);
+        AgrregatorSvc.ContributionService.ValidationResponse ContributeOnline(int uniqueId, string product, int units);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContributionService/ChangeSchemePreference", ReplyAction="http://tempuri.org/IContributionService/ChangeSchemePreferenceResponse")]
-        DataContractLibrary.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId);
+        AgrregatorSvc.ContributionService.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContributionService/ChangeFundManagerName", ReplyAction="http://tempuri.org/IContributionService/ChangeFundManagerNameResponse")]
-        DataContractLibrary.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName);
+        AgrregatorSvc.ContributionService.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -52,15 +115,15 @@ namespace AgrregatorSvc.ContributionService {
                 base(binding, remoteAddress) {
         }
         
-        public DataContractLibrary.ValidationResponse ContributeOnline(int uniqueId, string product, int units) {
+        public AgrregatorSvc.ContributionService.ValidationResponse ContributeOnline(int uniqueId, string product, int units) {
             return base.Channel.ContributeOnline(uniqueId, product, units);
         }
         
-        public DataContractLibrary.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId) {
+        public AgrregatorSvc.ContributionService.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId) {
             return base.Channel.ChangeSchemePreference(uniqueId, newSchemePreferenceId);
         }
         
-        public DataContractLibrary.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName) {
+        public AgrregatorSvc.ContributionService.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName) {
             return base.Channel.ChangeFundManagerName(uniqueId, fundManagerName);
         }
     }

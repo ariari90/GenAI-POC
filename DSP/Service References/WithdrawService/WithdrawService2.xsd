@@ -9,7 +9,7 @@
   <xs:element name="ValidationResponse" nillable="true" type="tns:ValidationResponse" />
   <xs:complexType name="ExitRequestResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="DateRaised" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateRaised" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UniqueId" type="xs:int" />
     </xs:sequence>

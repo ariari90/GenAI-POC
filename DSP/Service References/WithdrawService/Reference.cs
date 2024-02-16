@@ -16,13 +16,13 @@ namespace DSP.WithdrawService {
     public interface IWithdrawService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWithdrawService/WithdrawT1Amount", ReplyAction="http://tempuri.org/IWithdrawService/WithdrawT1AmountResponse")]
-        DataContractLibrary.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent);
+        Common.Entities.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWithdrawService/ExitRequest", ReplyAction="http://tempuri.org/IWithdrawService/ExitRequestResponse")]
-        DataContractLibrary.ValidationResponse ExitRequest(int uniqueId, string schemeName);
+        Common.Entities.ValidationResponse ExitRequest(int uniqueId, string schemeName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWithdrawService/GetExitStatus", ReplyAction="http://tempuri.org/IWithdrawService/GetExitStatusResponse")]
-        DataContractLibrary.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName);
+        Common.Entities.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -52,15 +52,15 @@ namespace DSP.WithdrawService {
                 base(binding, remoteAddress) {
         }
         
-        public DataContractLibrary.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent) {
+        public Common.Entities.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent) {
             return base.Channel.WithdrawT1Amount(uniqueId, product, withdrawPercent);
         }
         
-        public DataContractLibrary.ValidationResponse ExitRequest(int uniqueId, string schemeName) {
+        public Common.Entities.ValidationResponse ExitRequest(int uniqueId, string schemeName) {
             return base.Channel.ExitRequest(uniqueId, schemeName);
         }
         
-        public DataContractLibrary.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName) {
+        public Common.Entities.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName) {
             return base.Channel.GetExitStatus(uniqueId, schemeName);
         }
     }

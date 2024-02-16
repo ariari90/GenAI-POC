@@ -9,20 +9,160 @@
 //------------------------------------------------------------------------------
 
 namespace AgrregatorSvc.WithdrawService {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ValidationResponse", Namespace="http://schemas.datacontract.org/2004/07/DataContractLibrary")]
+    [System.SerializableAttribute()]
+    public partial class ValidationResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ValidationMessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ValidationMessage {
+            get {
+                return this.ValidationMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValidationMessageField, value) != true)) {
+                    this.ValidationMessageField = value;
+                    this.RaisePropertyChanged("ValidationMessage");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ExitRequestResponse", Namespace="http://schemas.datacontract.org/2004/07/DataContractLibrary")]
+    [System.SerializableAttribute()]
+    public partial class ExitRequestResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateRaisedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UniqueIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateRaised {
+            get {
+                return this.DateRaisedField;
+            }
+            set {
+                if ((this.DateRaisedField.Equals(value) != true)) {
+                    this.DateRaisedField = value;
+                    this.RaisePropertyChanged("DateRaised");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UniqueId {
+            get {
+                return this.UniqueIdField;
+            }
+            set {
+                if ((this.UniqueIdField.Equals(value) != true)) {
+                    this.UniqueIdField = value;
+                    this.RaisePropertyChanged("UniqueId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WithdrawService.IWithdrawService")]
     public interface IWithdrawService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWithdrawService/WithdrawT1Amount", ReplyAction="http://tempuri.org/IWithdrawService/WithdrawT1AmountResponse")]
-        DataContractLibrary.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent);
+        AgrregatorSvc.WithdrawService.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWithdrawService/ExitRequest", ReplyAction="http://tempuri.org/IWithdrawService/ExitRequestResponse")]
-        DataContractLibrary.ValidationResponse ExitRequest(int uniqueId, string schemeName);
+        AgrregatorSvc.WithdrawService.ValidationResponse ExitRequest(int uniqueId, string schemeName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWithdrawService/GetExitStatus", ReplyAction="http://tempuri.org/IWithdrawService/GetExitStatusResponse")]
-        DataContractLibrary.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName);
+        AgrregatorSvc.WithdrawService.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -52,15 +192,15 @@ namespace AgrregatorSvc.WithdrawService {
                 base(binding, remoteAddress) {
         }
         
-        public DataContractLibrary.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent) {
+        public AgrregatorSvc.WithdrawService.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent) {
             return base.Channel.WithdrawT1Amount(uniqueId, product, withdrawPercent);
         }
         
-        public DataContractLibrary.ValidationResponse ExitRequest(int uniqueId, string schemeName) {
+        public AgrregatorSvc.WithdrawService.ValidationResponse ExitRequest(int uniqueId, string schemeName) {
             return base.Channel.ExitRequest(uniqueId, schemeName);
         }
         
-        public DataContractLibrary.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName) {
+        public AgrregatorSvc.WithdrawService.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName) {
             return base.Channel.GetExitStatus(uniqueId, schemeName);
         }
     }

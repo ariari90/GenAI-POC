@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using InfoService;
 using System;
 using System.Collections.Generic;

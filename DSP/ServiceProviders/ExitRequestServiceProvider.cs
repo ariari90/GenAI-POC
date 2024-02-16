@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,24 +14,36 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  WithdrawServiceProvider");
+            DSPLogger.LogMessage("Executing  ExitRequestProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
 
             if (Request.WithdrawRequest != null && Request.WithdrawRequest.IsExitRequest)
             {
-                WithdrawService.WithdrawServiceClient service = new WithdrawService.WithdrawServiceClient();
-                var validationResponse = service.ExitRequest(Request.UniqueId, Request.WithdrawRequest.Product);
-                if (validationResponse.Status != "Success")
+                ValidationResponse validationResponse = null;
+                try
                 {
-                    SetValidationResponse(validationResponse);
+                    WithdrawService.WithdrawServiceClient service = new WithdrawService.WithdrawServiceClient();
+                    validationResponse = service.ExitRequest(Request.UniqueId, Request.WithdrawRequest.Product);
+                }
+                catch (Exception e)
+                {
+                    DSPLogger.LogError("Unexpected error occured: " + e.ToString());
+                    throw new Exception("Workflow error: " + e.ToString());
+                }
+                finally
+                {
+                    if (validationResponse != null && validationResponse.Status != "Success")
+                    {
+                        SetValidationResponse(validationResponse);
+                    }
                 }
             }
 

@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }
@@ -27,21 +27,32 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing AddressServiceProvider");
+            DSPLogger.LogMessage("Executing AddressServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
 
             if (Request != null)
             {
-                AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
-                var personalInfo = service.ViewPersonalInfo(Request.UniqueId);
-                
-                SetDSFVariable(this, AggregatorConstants.FullName, personalInfo.FullName);
-                SetDSFVariable(this, AggregatorConstants.FathersName, personalInfo.FathersName);
-                SetDSFVariable(this, AggregatorConstants.MothersName, personalInfo.MothersName);
-                SetDSFVariable(this, AggregatorConstants.Nationality, personalInfo.Nationality);
-                SetDSFVariable(this, AggregatorConstants.DateOfBirth, personalInfo.DateOfBirth);
-                SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                PersonalInfo personalInfo = new PersonalInfo();
+                try
+                {
+                    AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
+                    personalInfo = service.ViewPersonalInfo(Request.UniqueId);
+                }
+                catch (Exception e)
+                {
+                    DSPLogger.LogError("Unexpected error occured: " + e.ToString());
+                    throw new Exception("Workflow error: " + e.ToString());
+                }
+                finally
+                {
+                    SetDSFVariable(this, AggregatorConstants.FullName, personalInfo.FullName);
+                    SetDSFVariable(this, AggregatorConstants.FathersName, personalInfo.FathersName);
+                    SetDSFVariable(this, AggregatorConstants.MothersName, personalInfo.MothersName);
+                    SetDSFVariable(this, AggregatorConstants.Nationality, personalInfo.Nationality);
+                    SetDSFVariable(this, AggregatorConstants.DateOfBirth, personalInfo.DateOfBirth);
+                    SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                }
             }
 
             return base.Execute(executionContext);

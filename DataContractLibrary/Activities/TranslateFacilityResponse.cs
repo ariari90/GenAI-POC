@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Activities;
 
-namespace DataContractLibrary.Activities
+namespace Common.Entities.Activities
 {
     public sealed class TranslateFacilityResponse : CodeActivity
     {

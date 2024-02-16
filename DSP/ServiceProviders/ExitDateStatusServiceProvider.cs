@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }
@@ -31,10 +31,26 @@ namespace DSP
             {
                 if (!String.IsNullOrEmpty(Request.HoldingsInfoRequest.ViewExitRequestForSchemeName))
                 {
-                    WithdrawService.IWithdrawService service = new WithdrawService.WithdrawServiceClient();
-                    var exitRequest = service.GetExitStatus(Request.UniqueId, Request.HoldingsInfoRequest.ViewExitRequestForSchemeName);
-                    SetDSFVariable(this, AggregatorConstants.ExitDateStatus, exitRequest.Status);
-                    SetDSFRequiredResponse(AggregatorConstants.HoldingsResponse);
+                    WithdrawService.IWithdrawService service = null;
+                    ExitRequestResponse exitRequest = null;
+                    try
+                    {
+                        service = new WithdrawService.WithdrawServiceClient();
+                        exitRequest = service.GetExitStatus(Request.UniqueId, Request.HoldingsInfoRequest.ViewExitRequestForSchemeName);
+                    }
+                    catch (Exception e)
+                    {
+                        DSPLogger.LogError("Unexpected error occured: " + e.ToString());
+                        throw new Exception("Workflow error: " + e.ToString());
+                    }
+                    finally
+                    {
+                        if (exitRequest != null)
+                        {
+                            SetDSFVariable(this, AggregatorConstants.ExitDateStatus, exitRequest.Status);
+                            SetDSFRequiredResponse(AggregatorConstants.HoldingsResponse);
+                        }
+                    }
                 }
 
             }

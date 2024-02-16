@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet />
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet />
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -162,13 +164,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataContractLibrary\DataContractLibrary.csproj">
+    <ProjectReference Include="..\DataContractLibrary\Common.csproj">
       <Project>{dd02b14c-0413-40fa-8fc7-d5387875e138}</Project>
-      <Name>DataContractLibrary</Name>
+      <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InfoService\InfoService.csproj">
-      <Project>{60874D70-D2AF-46A4-8305-EFE7237654A9}</Project>
-      <Name>InfoService</Name>
+    <ProjectReference Include="..\RequestService\RequestService.csproj">
+      <Project>{55175C42-0ACC-4D7F-8DD4-23B71DDE159E}</Project>
+      <Name>RequestService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
