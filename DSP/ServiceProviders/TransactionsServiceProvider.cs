@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }
@@ -23,21 +23,33 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  MobileServiceProvider");
+            DSPLogger.LogMessage("Executing  TransactionServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
             
             
             if (Request != null && Request.HoldingsInfoRequest.ViewTransactionDateRange != null && Request.HoldingsInfoRequest.ViewTransactionDateRange.StartDate != null && Request.HoldingsInfoRequest.ViewTransactionDateRange.EndDate != null)
             {
-                Console.WriteLine("Request is null");
-                AccountBankingService.AccountBankingServiceClient service = new AccountBankingService.AccountBankingServiceClient();
-                var transactions = service.GetUserContribution(Request.UniqueId,
-                        Request.HoldingsInfoRequest.ViewTransactionDateRange.StartDate.Value, Request.HoldingsInfoRequest.ViewTransactionDateRange.EndDate.Value);
-
-
-                SetDSFVariable(this, AggregatorConstants.Transactions, transactions.ToList());
-                SetDSFRequiredResponse(AggregatorConstants.HoldingsResponse);
+                UserContributionData[] transactions = null;
+                try
+                {
+                    AccountBankingService.AccountBankingServiceClient service = new AccountBankingService.AccountBankingServiceClient();
+                    transactions = service.GetUserContribution(Request.UniqueId,
+                            Request.HoldingsInfoRequest.ViewTransactionDateRange.StartDate.Value, Request.HoldingsInfoRequest.ViewTransactionDateRange.EndDate.Value);
+                }
+                catch (Exception e)
+                {
+                    DSPLogger.LogError("Unexpected error occured: " + e.ToString());
+                    throw new Exception("Workflow error: " + e.ToString());
+                }
+                finally
+                {
+                    if (transactions != null)
+                    {
+                        SetDSFVariable(this, AggregatorConstants.Transactions, transactions.ToList());
+                        SetDSFRequiredResponse(AggregatorConstants.HoldingsResponse);
+                    }
+                }
             }
 
             return base.Execute(executionContext);

@@ -16,13 +16,13 @@ namespace DSP.AccountBankingService {
     public interface IAccountBankingService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/GetHoldingSummary", ReplyAction="http://tempuri.org/IAccountBankingService/GetHoldingSummaryResponse")]
-        DataContractLibrary.HoldingSummaryResponse GetHoldingSummary(int uid);
+        Common.Entities.HoldingSummaryResponse GetHoldingSummary(int uid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/GetUserContribution", ReplyAction="http://tempuri.org/IAccountBankingService/GetUserContributionResponse")]
-        DataContractLibrary.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate);
+        Common.Entities.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/UpdatePersonalDetails", ReplyAction="http://tempuri.org/IAccountBankingService/UpdatePersonalDetailsResponse")]
-        DataContractLibrary.ValidationResponse UpdatePersonalDetails(DataContractLibrary.PersonalDetails personDetails);
+        Common.Entities.ValidationResponse UpdatePersonalDetails(Common.Entities.PersonalDetails personDetails);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -52,15 +52,15 @@ namespace DSP.AccountBankingService {
                 base(binding, remoteAddress) {
         }
         
-        public DataContractLibrary.HoldingSummaryResponse GetHoldingSummary(int uid) {
+        public Common.Entities.HoldingSummaryResponse GetHoldingSummary(int uid) {
             return base.Channel.GetHoldingSummary(uid);
         }
         
-        public DataContractLibrary.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate) {
+        public Common.Entities.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate) {
             return base.Channel.GetUserContribution(uid, startdate, enddate);
         }
         
-        public DataContractLibrary.ValidationResponse UpdatePersonalDetails(DataContractLibrary.PersonalDetails personDetails) {
+        public Common.Entities.ValidationResponse UpdatePersonalDetails(Common.Entities.PersonalDetails personDetails) {
             return base.Channel.UpdatePersonalDetails(personDetails);
         }
     }

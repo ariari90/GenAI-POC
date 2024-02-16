@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }
@@ -23,16 +23,23 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  MobileServiceProvider");
+            Console.WriteLine("Executing BankNameServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
+            BankInfo bankInfo = null;
 
             if (Request != null)
             {
-                Console.WriteLine("Request is null");
-                AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
-                var bankInfo = service.ViewBankInfo(Request.UniqueId);
-
+                try
+                {
+                    AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
+                    bankInfo = service.ViewBankInfo(Request.UniqueId);
+                }
+                catch (Exception e)
+                {
+                    DSPLogger.LogError("Unexpected error occured: " + e.ToString());
+                    throw new Exception("Workflow error: " + e.ToString());
+                }
                 SetDSFVariable(this, AggregatorConstants.BankName, bankInfo.BankName);
                 SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
             }

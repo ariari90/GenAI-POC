@@ -17,13 +17,13 @@ namespace Workflows
     {
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorResponse Response
+        public Common.Entities.AggregatorResponse Response
         {
             get; set;
         }
 
 
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get; set;
         }

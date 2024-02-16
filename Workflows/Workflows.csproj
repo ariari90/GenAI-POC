@@ -164,12 +164,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Holdings.xoml" />
-    <Content Include="InfoRequest.xoml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="PersonalInfo.xoml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="InfoRequest.xoml" />
+    <Content Include="PersonalInfo.xoml" />
     <Content Include="Transaction.xoml" />
     <Content Include="UpdateRequest.xoml" />
     <None Include="Service References\AccountBankingService\Reference.svcmap">
@@ -195,9 +191,9 @@
     <WCFMetadataStorage Include="Service References\AccountInfoServiceReference\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataContractLibrary\DataContractLibrary.csproj">
+    <ProjectReference Include="..\DataContractLibrary\Common.csproj">
       <Project>{dd02b14c-0413-40fa-8fc7-d5387875e138}</Project>
-      <Name>DataContractLibrary</Name>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DSP\DSP.csproj">
       <Project>{174f0d2d-0678-454e-957e-9098aca559ce}</Project>

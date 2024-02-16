@@ -1,4 +1,4 @@
-﻿using DataContractLibrary;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorRequest Request
+        public Common.Entities.AggregatorRequest Request
         {
             get
             {
@@ -32,7 +32,7 @@ namespace DSP
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public DataContractLibrary.AggregatorResponse Response
+        public Common.Entities.AggregatorResponse Response
         {
             get
             {
@@ -47,7 +47,7 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  Aggregator DSF Adapter");
+            DSPLogger.LogMessage("Executing  Aggregator DSF Adapter");
 
             Response = new AggregatorResponse();
 
@@ -56,11 +56,11 @@ namespace DSP
                 ValidationResponse validationResponse = GetValidationResponse();
                 Response = Aggregate<AggregatorResponse>(Response);
                 Response.ValidationResponse = validationResponse;
-                Console.WriteLine("Response built");
+                DSPLogger.LogMessage("Response built");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Unexpected error occured: " + e.ToString());
+                DSPLogger.LogError("Unexpected error occured: " + e.ToString());
                 throw new Exception("Workflow error: " + e.ToString());
             }
             finally

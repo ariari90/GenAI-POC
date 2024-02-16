@@ -34,6 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet />
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,6 +44,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet />
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -95,9 +97,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataContractLibrary\DataContractLibrary.csproj">
+    <ProjectReference Include="..\DataContractLibrary\Common.csproj">
       <Project>{DD02B14C-0413-40FA-8FC7-D5387875E138}</Project>
-      <Name>DataContractLibrary</Name>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\InfoService\InfoService.csproj">
       <Project>{60874d70-d2af-46a4-8305-efe7237654a9}</Project>

@@ -3,23 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Workflow.ComponentModel;
-using DataContractLibrary;
+using Common.Entities;
 using System.Collections;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing;
 using System.Workflow.ComponentModel.Design;
 using System.Drawing.Drawing2D;
+using Common;
 
 namespace DSP
 {
 
     public class ServiceProviderBase : System.Workflow.ComponentModel.Activity
     {
+        public IAggregatorLog DSPLogger { get; set; }
+
+        public ServiceProviderBase()
+        {
+            InstantiateLog();
+        }
+
+        private void InstantiateLog()
+        {
+            Type superType = this.GetType();
+            DSPLogger = (IAggregatorLog)Activator.CreateInstance(superType);
+        }
+
         public void SetValidationResponse(ValidationResponse validationResponse)
         {
-
-            
             AggregatorResponse response = GetDSFVariable(this.Parent, AggregatorConstants.Response) as AggregatorResponse;
             response = new AggregatorResponse();
             response.ValidationResponse = validationResponse;

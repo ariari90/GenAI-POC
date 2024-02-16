@@ -16,13 +16,13 @@ namespace DSP.ContributionService {
     public interface IContributionService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContributionService/ContributeOnline", ReplyAction="http://tempuri.org/IContributionService/ContributeOnlineResponse")]
-        DataContractLibrary.ValidationResponse ContributeOnline(int uniqueId, string product, int units);
+        Common.Entities.ValidationResponse ContributeOnline(int uniqueId, string product, int units);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContributionService/ChangeSchemePreference", ReplyAction="http://tempuri.org/IContributionService/ChangeSchemePreferenceResponse")]
-        DataContractLibrary.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId);
+        Common.Entities.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContributionService/ChangeFundManagerName", ReplyAction="http://tempuri.org/IContributionService/ChangeFundManagerNameResponse")]
-        DataContractLibrary.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName);
+        Common.Entities.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -52,15 +52,15 @@ namespace DSP.ContributionService {
                 base(binding, remoteAddress) {
         }
         
-        public DataContractLibrary.ValidationResponse ContributeOnline(int uniqueId, string product, int units) {
+        public Common.Entities.ValidationResponse ContributeOnline(int uniqueId, string product, int units) {
             return base.Channel.ContributeOnline(uniqueId, product, units);
         }
         
-        public DataContractLibrary.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId) {
+        public Common.Entities.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId) {
             return base.Channel.ChangeSchemePreference(uniqueId, newSchemePreferenceId);
         }
         
-        public DataContractLibrary.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName) {
+        public Common.Entities.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName) {
             return base.Channel.ChangeFundManagerName(uniqueId, fundManagerName);
         }
     }
