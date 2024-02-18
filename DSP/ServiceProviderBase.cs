@@ -21,13 +21,19 @@ namespace DSP
 
         public ServiceProviderBase()
         {
+            
+        }
+
+        protected override void Initialize(IServiceProvider provider)
+        {
             InstantiateLog();
         }
 
         private void InstantiateLog()
         {
             Type superType = this.GetType();
-            DSPLogger = (IAggregatorLog)Activator.CreateInstance(superType);
+            Type genericLoggerType = typeof(AggregatorLog<>).MakeGenericType(superType);
+            DSPLogger = (IAggregatorLog)Activator.CreateInstance(genericLoggerType);
         }
 
         public void SetValidationResponse(ValidationResponse validationResponse)
