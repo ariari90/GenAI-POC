@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Activities\CreateFacilityResponse.cs" />
     <Compile Include="Activities\TranslateFacilityResponse.cs" />
+    <Compile Include="AuthInfo.cs" />
     <Compile Include="Entities\AggregatorRequest.cs" />
     <Compile Include="Entities\AggregatorResponse.cs" />
     <Compile Include="Entities\BankInfo.cs" />
@@ -95,6 +96,14 @@
   <ItemGroup>
     <None Include="Entities\ClassDiagram1.cd" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\Log4NetConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\ServiceProviderConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,27 +8,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAuthWebsite.AggregatorSvcRef {
+namespace AggregatorSvcAuth.AggregatorSvc {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AggregatorSvcRef.IAggregatorSvc")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AggregatorSvc.IAggregatorSvc")]
     public interface IAggregatorSvc {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAggregatorSvc/GetData", ReplyAction="http://tempuri.org/IAggregatorSvc/GetDataResponse")]
-        DataContractLibrary.AggregatorResponse GetData(DataContractLibrary.AggregatorRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAggregatorSvc/AuthenticationMethod", ReplyAction="http://tempuri.org/IAggregatorSvc/AuthenticationMethodResponse")]
-        string AuthenticationMethod();
+        Common.Entities.AggregatorResponse GetData(Common.Entities.AggregatorRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAggregatorSvcChannel : TestAuthWebsite.AggregatorSvcRef.IAggregatorSvc, System.ServiceModel.IClientChannel {
+    public interface IAggregatorSvcChannel : AggregatorSvcAuth.AggregatorSvc.IAggregatorSvc, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AggregatorSvcClient : System.ServiceModel.ClientBase<TestAuthWebsite.AggregatorSvcRef.IAggregatorSvc>, TestAuthWebsite.AggregatorSvcRef.IAggregatorSvc {
+    public partial class AggregatorSvcClient : System.ServiceModel.ClientBase<AggregatorSvcAuth.AggregatorSvc.IAggregatorSvc>, AggregatorSvcAuth.AggregatorSvc.IAggregatorSvc {
         
         public AggregatorSvcClient() {
         }
@@ -49,12 +46,8 @@ namespace TestAuthWebsite.AggregatorSvcRef {
                 base(binding, remoteAddress) {
         }
         
-        public DataContractLibrary.AggregatorResponse GetData(DataContractLibrary.AggregatorRequest request) {
+        public Common.Entities.AggregatorResponse GetData(Common.Entities.AggregatorRequest request) {
             return base.Channel.GetData(request);
-        }
-        
-        public string AuthenticationMethod() {
-            return base.Channel.AuthenticationMethod();
         }
     }
 }

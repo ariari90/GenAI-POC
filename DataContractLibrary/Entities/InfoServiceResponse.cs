@@ -5,10 +5,12 @@ using System.Runtime.Serialization;
 using System.Text;
 using Common.Entities;
 using System.Workflow.ComponentModel;
+using System.Xml.Serialization;
 
 namespace Common.Entities
 {
     [DataContract]
+    [XmlType("Common.Entities.InfoServiceResponse")]
     public class InfoServiceResponse
     {
         

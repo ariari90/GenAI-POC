@@ -19,11 +19,6 @@ namespace DSP
     {
         public IAggregatorLog DSPLogger { get; set; }
 
-        public ServiceProviderBase()
-        {
-            
-        }
-
         protected override void Initialize(IServiceProvider provider)
         {
             InstantiateLog();
