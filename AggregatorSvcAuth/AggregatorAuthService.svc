@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="AggregatorSvcAuth.AggregatorAuthService" CodeBehind="AggregatorAuthService.svc.cs" %>
