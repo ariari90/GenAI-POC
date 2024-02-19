@@ -6,6 +6,7 @@ using System.Text;
 using Common.Entities;
 using System.Workflow.ComponentModel;
 using System.Xml.Serialization;
+using System.Web.UI;
 
 namespace Common.Entities
 {

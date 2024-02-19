@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAuthWebsite.AggregatorSvcAuth {
+namespace TestAuthConsoleApp.AggregatorSvcAuth {
     using System.Runtime.Serialization;
     using System;
     
@@ -85,16 +85,16 @@ namespace TestAuthWebsite.AggregatorSvcAuth {
         string GetData(int value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
-        TestAuthWebsite.AggregatorSvcAuth.CompositeType GetDataUsingDataContract(TestAuthWebsite.AggregatorSvcAuth.CompositeType composite);
+        TestAuthConsoleApp.AggregatorSvcAuth.CompositeType GetDataUsingDataContract(TestAuthConsoleApp.AggregatorSvcAuth.CompositeType composite);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : TestAuthWebsite.AggregatorSvcAuth.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : TestAuthConsoleApp.AggregatorSvcAuth.IService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<TestAuthWebsite.AggregatorSvcAuth.IService1>, TestAuthWebsite.AggregatorSvcAuth.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<TestAuthConsoleApp.AggregatorSvcAuth.IService1>, TestAuthConsoleApp.AggregatorSvcAuth.IService1 {
         
         public Service1Client() {
         }
@@ -123,7 +123,7 @@ namespace TestAuthWebsite.AggregatorSvcAuth {
             return base.Channel.GetData(value);
         }
         
-        public TestAuthWebsite.AggregatorSvcAuth.CompositeType GetDataUsingDataContract(TestAuthWebsite.AggregatorSvcAuth.CompositeType composite) {
+        public TestAuthConsoleApp.AggregatorSvcAuth.CompositeType GetDataUsingDataContract(TestAuthConsoleApp.AggregatorSvcAuth.CompositeType composite) {
             return base.Channel.GetDataUsingDataContract(composite);
         }
     }

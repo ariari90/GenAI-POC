@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
+using System.Security.Authentication;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
@@ -43,7 +44,7 @@ namespace AggregatorSvcAuth
             if(!loginService.Authenticate(authInfo))
             {
                 _log.LogError("GetToken failed: Invalid username or password.");
-                throw new UnauthorizedAccessException();
+                throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
             }
 
             _log.LogMessage("Generating token");
@@ -60,7 +61,7 @@ namespace AggregatorSvcAuth
             if (!AuthenticateJWT(WebOperationContext.Current.IncomingRequest))
             {
                 _log.LogError("GetData: Unauthorised access: JWT token rejected");
-                throw new UnauthorizedAccessException();
+                throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
             }
 
             _log.LogMessage("Initiating orchestration process");
@@ -85,9 +86,15 @@ namespace AggregatorSvcAuth
 
         private string GenerateToken(string userName)
         {
+            IDateTimeProvider provider = new UtcDateTimeProvider();
+            var now = provider.GetNow().AddMinutes(5); // token has expired 5 minutes ago
+
+            double secondsSinceEpoch = UnixEpoch.GetSecondsSince(now);
+
             var payload = new Dictionary<string, object>
             {
-                { "Claim", userName }
+                { "Claim", userName },
+                { "exp", secondsSinceEpoch }
             };
 
             var keyBytes = System.Text.Encoding.UTF8.GetBytes(_secret);
@@ -137,6 +144,11 @@ namespace AggregatorSvcAuth
             catch (SignatureVerificationException)
             {
                 _log.LogError("Token has invalid signature");
+                isValid = false;
+            }
+            catch (InvalidTokenPartsException)
+            {
+                _log.LogError("Token has an invalid part");
                 isValid = false;
             }
             _log.LogMessage("JWT token accepted.");
