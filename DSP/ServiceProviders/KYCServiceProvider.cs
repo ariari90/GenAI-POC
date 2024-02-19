@@ -42,8 +42,11 @@ namespace DSP
                 }
                 finally
                 {
-                    SetDSFVariable(this, AggregatorConstants.Mobile, personalInfo.IsKycDone);
-                    SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                    if (personalInfo != null)
+                    {
+                        SetDSFVariable(this, AggregatorConstants.Mobile, personalInfo.IsKycDone);
+                        SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                    }
                 }
             }
 

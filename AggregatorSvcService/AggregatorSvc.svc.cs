@@ -10,7 +10,7 @@ using System.ServiceModel.Web;
 using System.Text;
 using System.Web;
 
-namespace AgrregatorSvc
+namespace AggregatorSvcService
 {
     public class AggregatorSvc : IAggregatorSvc
     {

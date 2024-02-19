@@ -95,7 +95,6 @@
   <xs:complexType name="AggregatorResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="AccountInfoResponse" nillable="true" type="tns:InfoServiceResponse" />
-      <xs:element minOccurs="0" name="FacilityResponse" nillable="true" type="tns:FacilityResponse" />
       <xs:element minOccurs="0" name="HoldingsResponse" nillable="true" type="tns:HoldingsResponse" />
       <xs:element minOccurs="0" name="ValidationResponse" nillable="true" type="tns:ValidationResponse" />
     </xs:sequence>
@@ -157,17 +156,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfSchemeInfo" nillable="true" type="tns:ArrayOfSchemeInfo" />
-  <xs:complexType name="FacilityResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ClientSalaryAmount" type="xs:decimal" />
-      <xs:element minOccurs="0" name="CurrentClient" nillable="true" type="tns:Client" />
-      <xs:element minOccurs="0" name="IncomeTaxStatus" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="LoanAmountApproved" type="xs:decimal" />
-      <xs:element minOccurs="0" name="LoanStatus" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VerifiedAmontBenchMark" type="xs:decimal" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="FacilityResponse" nillable="true" type="tns:FacilityResponse" />
   <xs:complexType name="HoldingsResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="ExitRequestResponse" nillable="true" type="tns:ExitRequestResponse" />

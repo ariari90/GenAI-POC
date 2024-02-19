@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AgrregatorSvc.AccountBankingService {
+namespace AggregatorSvcService.AccountBankingService {
     using System.Runtime.Serialization;
     using System;
     
@@ -23,7 +23,7 @@ namespace AgrregatorSvc.AccountBankingService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AgrregatorSvc.AccountBankingService.HoldingSummaryData[] HoldingSummaryDataField;
+        private AggregatorSvcService.AccountBankingService.HoldingSummaryData[] HoldingSummaryDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal TotalAmountField;
@@ -39,7 +39,7 @@ namespace AgrregatorSvc.AccountBankingService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public AgrregatorSvc.AccountBankingService.HoldingSummaryData[] HoldingSummaryData {
+        public AggregatorSvcService.AccountBankingService.HoldingSummaryData[] HoldingSummaryData {
             get {
                 return this.HoldingSummaryDataField;
             }
@@ -515,22 +515,22 @@ namespace AgrregatorSvc.AccountBankingService {
     public interface IAccountBankingService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/GetHoldingSummary", ReplyAction="http://tempuri.org/IAccountBankingService/GetHoldingSummaryResponse")]
-        AgrregatorSvc.AccountBankingService.HoldingSummaryResponse GetHoldingSummary(int uid);
+        AggregatorSvcService.AccountBankingService.HoldingSummaryResponse GetHoldingSummary(int uid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/GetUserContribution", ReplyAction="http://tempuri.org/IAccountBankingService/GetUserContributionResponse")]
-        AgrregatorSvc.AccountBankingService.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate);
+        AggregatorSvcService.AccountBankingService.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/UpdatePersonalDetails", ReplyAction="http://tempuri.org/IAccountBankingService/UpdatePersonalDetailsResponse")]
-        AgrregatorSvc.AccountBankingService.ValidationResponse UpdatePersonalDetails(AgrregatorSvc.AccountBankingService.PersonalDetails personDetails);
+        AggregatorSvcService.AccountBankingService.ValidationResponse UpdatePersonalDetails(AggregatorSvcService.AccountBankingService.PersonalDetails personDetails);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAccountBankingServiceChannel : AgrregatorSvc.AccountBankingService.IAccountBankingService, System.ServiceModel.IClientChannel {
+    public interface IAccountBankingServiceChannel : AggregatorSvcService.AccountBankingService.IAccountBankingService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AccountBankingServiceClient : System.ServiceModel.ClientBase<AgrregatorSvc.AccountBankingService.IAccountBankingService>, AgrregatorSvc.AccountBankingService.IAccountBankingService {
+    public partial class AccountBankingServiceClient : System.ServiceModel.ClientBase<AggregatorSvcService.AccountBankingService.IAccountBankingService>, AggregatorSvcService.AccountBankingService.IAccountBankingService {
         
         public AccountBankingServiceClient() {
         }
@@ -551,15 +551,15 @@ namespace AgrregatorSvc.AccountBankingService {
                 base(binding, remoteAddress) {
         }
         
-        public AgrregatorSvc.AccountBankingService.HoldingSummaryResponse GetHoldingSummary(int uid) {
+        public AggregatorSvcService.AccountBankingService.HoldingSummaryResponse GetHoldingSummary(int uid) {
             return base.Channel.GetHoldingSummary(uid);
         }
         
-        public AgrregatorSvc.AccountBankingService.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate) {
+        public AggregatorSvcService.AccountBankingService.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate) {
             return base.Channel.GetUserContribution(uid, startdate, enddate);
         }
         
-        public AgrregatorSvc.AccountBankingService.ValidationResponse UpdatePersonalDetails(AgrregatorSvc.AccountBankingService.PersonalDetails personDetails) {
+        public AggregatorSvcService.AccountBankingService.ValidationResponse UpdatePersonalDetails(AggregatorSvcService.AccountBankingService.PersonalDetails personDetails) {
             return base.Channel.UpdatePersonalDetails(personDetails);
         }
     }
