@@ -73,7 +73,7 @@
         <hr />
         <div>
 
-        <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" Height="50px" Width="125px" DataSourceID="ObjectDataSource1">
+        <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" Height="50px" Width="125px" DataSourceID="ObjectDataSource1" Visible="False">
             <EditRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
             <Fields>
                 <asp:TemplateField HeaderText="AccountInfoResponse">
@@ -132,7 +132,7 @@
         
         <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetResponse" TypeName="TestAuthSite.AggregatorResponseDataAccess"></asp:ObjectDataSource>
         
-        <asp:Label ID="AcccessInfoLabel" runat="server" ForeColor="#993300"></asp:Label>
+        <asp:Label ID="ErrorMessageLabel" runat="server" ForeColor="#993300"></asp:Label>
         
     </form>
 </body>

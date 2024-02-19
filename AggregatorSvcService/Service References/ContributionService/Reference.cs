@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AgrregatorSvc.ContributionService {
+namespace AggregatorSvcService.ContributionService {
     using System.Runtime.Serialization;
     using System;
     
@@ -79,22 +79,22 @@ namespace AgrregatorSvc.ContributionService {
     public interface IContributionService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContributionService/ContributeOnline", ReplyAction="http://tempuri.org/IContributionService/ContributeOnlineResponse")]
-        AgrregatorSvc.ContributionService.ValidationResponse ContributeOnline(int uniqueId, string product, int units);
+        AggregatorSvcService.ContributionService.ValidationResponse ContributeOnline(int uniqueId, string product, int units);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContributionService/ChangeSchemePreference", ReplyAction="http://tempuri.org/IContributionService/ChangeSchemePreferenceResponse")]
-        AgrregatorSvc.ContributionService.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId);
+        AggregatorSvcService.ContributionService.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContributionService/ChangeFundManagerName", ReplyAction="http://tempuri.org/IContributionService/ChangeFundManagerNameResponse")]
-        AgrregatorSvc.ContributionService.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName);
+        AggregatorSvcService.ContributionService.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IContributionServiceChannel : AgrregatorSvc.ContributionService.IContributionService, System.ServiceModel.IClientChannel {
+    public interface IContributionServiceChannel : AggregatorSvcService.ContributionService.IContributionService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ContributionServiceClient : System.ServiceModel.ClientBase<AgrregatorSvc.ContributionService.IContributionService>, AgrregatorSvc.ContributionService.IContributionService {
+    public partial class ContributionServiceClient : System.ServiceModel.ClientBase<AggregatorSvcService.ContributionService.IContributionService>, AggregatorSvcService.ContributionService.IContributionService {
         
         public ContributionServiceClient() {
         }
@@ -115,15 +115,15 @@ namespace AgrregatorSvc.ContributionService {
                 base(binding, remoteAddress) {
         }
         
-        public AgrregatorSvc.ContributionService.ValidationResponse ContributeOnline(int uniqueId, string product, int units) {
+        public AggregatorSvcService.ContributionService.ValidationResponse ContributeOnline(int uniqueId, string product, int units) {
             return base.Channel.ContributeOnline(uniqueId, product, units);
         }
         
-        public AgrregatorSvc.ContributionService.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId) {
+        public AggregatorSvcService.ContributionService.ValidationResponse ChangeSchemePreference(int uniqueId, int newSchemePreferenceId) {
             return base.Channel.ChangeSchemePreference(uniqueId, newSchemePreferenceId);
         }
         
-        public AgrregatorSvc.ContributionService.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName) {
+        public AggregatorSvcService.ContributionService.ValidationResponse ChangeFundManagerName(int uniqueId, string fundManagerName) {
             return base.Channel.ChangeFundManagerName(uniqueId, fundManagerName);
         }
     }

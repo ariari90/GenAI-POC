@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AgrregatorSvc.AccountInfoService {
+namespace AggregatorSvcService.AccountInfoService {
     using System.Runtime.Serialization;
     using System;
     
@@ -521,25 +521,25 @@ namespace AgrregatorSvc.AccountInfoService {
     public interface IAccountInfoService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/ViewPersonalInfo", ReplyAction="http://tempuri.org/IAccountInfoService/ViewPersonalInfoResponse")]
-        AgrregatorSvc.AccountInfoService.PersonalInfo ViewPersonalInfo(int uniqueId);
+        AggregatorSvcService.AccountInfoService.PersonalInfo ViewPersonalInfo(int uniqueId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/ViewBankInfo", ReplyAction="http://tempuri.org/IAccountInfoService/ViewBankInfoResponse")]
-        AgrregatorSvc.AccountInfoService.BankInfo ViewBankInfo(int uniqueId);
+        AggregatorSvcService.AccountInfoService.BankInfo ViewBankInfo(int uniqueId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/GetCurrentSchemeDetails", ReplyAction="http://tempuri.org/IAccountInfoService/GetCurrentSchemeDetailsResponse")]
-        AgrregatorSvc.AccountInfoService.SchemeInfo[] GetCurrentSchemeDetails(int uniqueId);
+        AggregatorSvcService.AccountInfoService.SchemeInfo[] GetCurrentSchemeDetails(int uniqueId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountInfoService/GetSchemePreference", ReplyAction="http://tempuri.org/IAccountInfoService/GetSchemePreferenceResponse")]
-        AgrregatorSvc.AccountInfoService.SchemeInfo GetSchemePreference(int uniqueId);
+        AggregatorSvcService.AccountInfoService.SchemeInfo GetSchemePreference(int uniqueId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAccountInfoServiceChannel : AgrregatorSvc.AccountInfoService.IAccountInfoService, System.ServiceModel.IClientChannel {
+    public interface IAccountInfoServiceChannel : AggregatorSvcService.AccountInfoService.IAccountInfoService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AccountInfoServiceClient : System.ServiceModel.ClientBase<AgrregatorSvc.AccountInfoService.IAccountInfoService>, AgrregatorSvc.AccountInfoService.IAccountInfoService {
+    public partial class AccountInfoServiceClient : System.ServiceModel.ClientBase<AggregatorSvcService.AccountInfoService.IAccountInfoService>, AggregatorSvcService.AccountInfoService.IAccountInfoService {
         
         public AccountInfoServiceClient() {
         }
@@ -560,19 +560,19 @@ namespace AgrregatorSvc.AccountInfoService {
                 base(binding, remoteAddress) {
         }
         
-        public AgrregatorSvc.AccountInfoService.PersonalInfo ViewPersonalInfo(int uniqueId) {
+        public AggregatorSvcService.AccountInfoService.PersonalInfo ViewPersonalInfo(int uniqueId) {
             return base.Channel.ViewPersonalInfo(uniqueId);
         }
         
-        public AgrregatorSvc.AccountInfoService.BankInfo ViewBankInfo(int uniqueId) {
+        public AggregatorSvcService.AccountInfoService.BankInfo ViewBankInfo(int uniqueId) {
             return base.Channel.ViewBankInfo(uniqueId);
         }
         
-        public AgrregatorSvc.AccountInfoService.SchemeInfo[] GetCurrentSchemeDetails(int uniqueId) {
+        public AggregatorSvcService.AccountInfoService.SchemeInfo[] GetCurrentSchemeDetails(int uniqueId) {
             return base.Channel.GetCurrentSchemeDetails(uniqueId);
         }
         
-        public AgrregatorSvc.AccountInfoService.SchemeInfo GetSchemePreference(int uniqueId) {
+        public AggregatorSvcService.AccountInfoService.SchemeInfo GetSchemePreference(int uniqueId) {
             return base.Channel.GetSchemePreference(uniqueId);
         }
     }

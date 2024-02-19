@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AgrregatorSvc.WithdrawService {
+namespace AggregatorSvcService.WithdrawService {
     using System.Runtime.Serialization;
     using System;
     
@@ -156,22 +156,22 @@ namespace AgrregatorSvc.WithdrawService {
     public interface IWithdrawService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWithdrawService/WithdrawT1Amount", ReplyAction="http://tempuri.org/IWithdrawService/WithdrawT1AmountResponse")]
-        AgrregatorSvc.WithdrawService.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent);
+        AggregatorSvcService.WithdrawService.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWithdrawService/ExitRequest", ReplyAction="http://tempuri.org/IWithdrawService/ExitRequestResponse")]
-        AgrregatorSvc.WithdrawService.ValidationResponse ExitRequest(int uniqueId, string schemeName);
+        AggregatorSvcService.WithdrawService.ValidationResponse ExitRequest(int uniqueId, string schemeName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWithdrawService/GetExitStatus", ReplyAction="http://tempuri.org/IWithdrawService/GetExitStatusResponse")]
-        AgrregatorSvc.WithdrawService.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName);
+        AggregatorSvcService.WithdrawService.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IWithdrawServiceChannel : AgrregatorSvc.WithdrawService.IWithdrawService, System.ServiceModel.IClientChannel {
+    public interface IWithdrawServiceChannel : AggregatorSvcService.WithdrawService.IWithdrawService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class WithdrawServiceClient : System.ServiceModel.ClientBase<AgrregatorSvc.WithdrawService.IWithdrawService>, AgrregatorSvc.WithdrawService.IWithdrawService {
+    public partial class WithdrawServiceClient : System.ServiceModel.ClientBase<AggregatorSvcService.WithdrawService.IWithdrawService>, AggregatorSvcService.WithdrawService.IWithdrawService {
         
         public WithdrawServiceClient() {
         }
@@ -192,15 +192,15 @@ namespace AgrregatorSvc.WithdrawService {
                 base(binding, remoteAddress) {
         }
         
-        public AgrregatorSvc.WithdrawService.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent) {
+        public AggregatorSvcService.WithdrawService.ValidationResponse WithdrawT1Amount(int uniqueId, string product, decimal withdrawPercent) {
             return base.Channel.WithdrawT1Amount(uniqueId, product, withdrawPercent);
         }
         
-        public AgrregatorSvc.WithdrawService.ValidationResponse ExitRequest(int uniqueId, string schemeName) {
+        public AggregatorSvcService.WithdrawService.ValidationResponse ExitRequest(int uniqueId, string schemeName) {
             return base.Channel.ExitRequest(uniqueId, schemeName);
         }
         
-        public AgrregatorSvc.WithdrawService.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName) {
+        public AggregatorSvcService.WithdrawService.ExitRequestResponse GetExitStatus(int uniqueId, string schemeName) {
             return base.Channel.GetExitStatus(uniqueId, schemeName);
         }
     }

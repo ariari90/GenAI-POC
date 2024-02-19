@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgrregatorSvc</RootNamespace>
-    <AssemblyName>AgrregatorSvc</AssemblyName>
+    <RootNamespace>AggregatorSvcService</RootNamespace>
+    <AssemblyName>AggregatorSvcService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -92,13 +92,13 @@
     <None Include="Service References\AccountBankingService\AccountBankingService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\AccountBankingService\AgrregatorSvc.AccountBankingService.HoldingSummaryResponse.datasource">
+    <Content Include="Service References\AccountBankingService\AggregatorSvcService.AccountBankingService.HoldingSummaryResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\AccountBankingService\AgrregatorSvc.AccountBankingService.UserContributionData.datasource">
+    <Content Include="Service References\AccountBankingService\AggregatorSvcService.AccountBankingService.UserContributionData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\AccountBankingService\AgrregatorSvc.AccountBankingService.ValidationResponse.datasource">
+    <Content Include="Service References\AccountBankingService\AggregatorSvcService.AccountBankingService.ValidationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\AccountInfoService\AccountInfoService.wsdl" />
@@ -111,16 +111,16 @@
     <None Include="Service References\AccountInfoService\AccountInfoService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\AccountInfoService\AgrregatorSvc.AccountInfoService.BankInfo.datasource">
+    <Content Include="Service References\AccountInfoService\AggregatorSvcService.AccountInfoService.BankInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\AccountInfoService\AgrregatorSvc.AccountInfoService.PersonalInfo.datasource">
+    <Content Include="Service References\AccountInfoService\AggregatorSvcService.AccountInfoService.PersonalInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\AccountInfoService\AgrregatorSvc.AccountInfoService.SchemeInfo.datasource">
+    <Content Include="Service References\AccountInfoService\AggregatorSvcService.AccountInfoService.SchemeInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\ContributionService\AgrregatorSvc.ContributionService.ValidationResponse.datasource">
+    <Content Include="Service References\ContributionService\AggregatorSvcService.ContributionService.ValidationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\ContributionService\ContributionService.wsdl" />
@@ -133,10 +133,10 @@
     <None Include="Service References\ContributionService\ContributionService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\WithdrawService\AgrregatorSvc.WithdrawService.ExitRequestResponse.datasource">
+    <Content Include="Service References\WithdrawService\AggregatorSvcService.WithdrawService.ExitRequestResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\WithdrawService\AgrregatorSvc.WithdrawService.ValidationResponse.datasource">
+    <Content Include="Service References\WithdrawService\AggregatorSvcService.WithdrawService.ValidationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\WithdrawService\WithdrawService.disco" />

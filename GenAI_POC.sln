@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "DataContractLibrary\Common.csproj", "{DD02B14C-0413-40FA-8FC7-D5387875E138}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgrregatorSvc", "AgrregatorSvc\AgrregatorSvc.csproj", "{0811F234-F4C3-467A-AD07-B47D2F2E501F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregatorSvcService", "AggregatorSvcService\AggregatorSvcService.csproj", "{0811F234-F4C3-467A-AD07-B47D2F2E501F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoService", "InfoService\InfoService.csproj", "{60874D70-D2AF-46A4-8305-EFE7237654A9}"
 EndProject
@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregatorSvcAuth", "Aggreg
 		{F88D427F-BF6B-4783-89C7-43EDE1DD4DDE} = {F88D427F-BF6B-4783-89C7-43EDE1DD4DDE}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAuthConsoleApp", "TestAuthWebsite\TestAuthConsoleApp.csproj", "{D038AF04-6D22-4B1C-8D22-FA0F7C5439D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAuthConsoleApp", "TestAuthConsoleApp\TestAuthConsoleApp.csproj", "{D038AF04-6D22-4B1C-8D22-FA0F7C5439D9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F7F920ED-A488-403F-838A-154A5B24E86C} = {F7F920ED-A488-403F-838A-154A5B24E86C}
 	EndProjectSection

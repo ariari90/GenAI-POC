@@ -1,49 +1,46 @@
-﻿using Common.Entities;
+﻿using Common;
+using Common.Entities;
+using InfoService;
+using RequestService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Threading;
 using System.Web;
 using System.Workflow.Runtime;
 
-namespace AgrregatorSvc
+namespace AggregatorSvcService
 {
-    public class AccountAndHoldingsRequestHandler: RequestHandler
+    public class UpdateRequestHandler : RequestHandler
     {
         AggregatorRequest _request;
         AggregatorResponse _response;
         AutoResetEvent _waitHandle;
+        private readonly IAggregatorLog _log;
 
-        public AccountAndHoldingsRequestHandler (AggregatorRequest request)
+        public UpdateRequestHandler(AggregatorRequest request)
         {
-            _response = new AggregatorResponse();
             _request = request;
+            _response = new AggregatorResponse();
             _waitHandle = new AutoResetEvent(false);
+            _log = new AggregatorLog<TransactionRequestHandler>();
         }
 
-        public object FacilityService { get; private set; }
-
         public override AggregatorResponse ProcessData()
-        {
-            _response.HoldingsResponse = new HoldingsResponse();
-
+        {            
             using (WorkflowRuntime workflowRuntime = new WorkflowRuntime())
             {
                 workflowRuntime.WorkflowCompleted += OnComplete;
-                workflowRuntime.WorkflowTerminated += delegate (object sender, WorkflowTerminatedEventArgs e)
-                {
-                    Console.WriteLine(e.Exception.Message);
-                    _waitHandle.Set();
-                };
+                workflowRuntime.WorkflowTerminated += OnTerminated;
 
                 Dictionary<string, object> inputs = new Dictionary<string, object>();
                 inputs["Request"] = _request;
-                WorkflowInstance instance = workflowRuntime.CreateWorkflow(typeof(Workflows.InfoRequest), inputs);
+                WorkflowInstance instance = workflowRuntime.CreateWorkflow(typeof(Workflows.UpdateRequest), inputs);
                 instance.Start();
 
                 _waitHandle.WaitOne();
 
-                Console.WriteLine("Workflow complete");
             }
 
             return _response;
@@ -51,11 +48,20 @@ namespace AgrregatorSvc
 
         private void OnComplete(object sender, WorkflowCompletedEventArgs e)
         {
-            Console.WriteLine("OnComplete Fired....");
+            _log.LogMessage("OnComplete Fired....");
 
             _response = e.OutputParameters["Response"] as AggregatorResponse;
-            Console.WriteLine("Response Received");
+            _log.LogMessage("Response Received");
             _waitHandle.Set();
         }
+
+        private void OnTerminated(object sender, WorkflowTerminatedEventArgs e)
+        {
+            _log.LogError(e.Exception.Message);
+            _waitHandle.Set();
+            throw new FaultException("Unexpected Error in workflow orchestration");
+        }
     }
+
+
 }

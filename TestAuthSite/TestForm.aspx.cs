@@ -18,7 +18,6 @@ namespace TestAuthSite
 {
     public partial class TestForm : System.Web.UI.Page
     {
-        string webToken = String.Empty;
         public static AggregatorResponse response { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -66,7 +65,6 @@ namespace TestAuthSite
 
                 string token = XElement.Parse(tokenResponse).Value;
                 this.token.Text = token;
-                this.webToken = token;
             }
             catch(Exception)
             {
@@ -77,6 +75,7 @@ namespace TestAuthSite
 
         protected void GetDataBtn_Click(object sender, EventArgs e)
         {
+            DetailsView1.Visible = false;
             AggregatorRequest request = new AggregatorRequest();
             RequestType requestType = new RequestType();
             switch(RequestTypeCombo.SelectedValue)
@@ -98,7 +97,15 @@ namespace TestAuthSite
                     break;
             }
             request.RequestType = requestType;
-            request.UniqueId = Convert.ToInt32(this.UniqueId.Text);
+            try
+            {
+                request.UniqueId = Convert.ToInt32(this.UniqueId.Text);
+            }
+            catch (Exception)
+            {
+                ErrorMessageLabel.Text = "UniqueID must be an interger.";
+                return;
+            }
 
             ASCIIEncoding encoding = new ASCIIEncoding();
             var uri = new Uri("http://localhost:54413/AggregatorAuthService.svc/GetData");
@@ -119,7 +126,7 @@ namespace TestAuthSite
 
             webRequest.Headers.Add("Authorization", "Bearer " + this.token.Text);
 
-            AcccessInfoLabel.Text = String.Empty;
+            ErrorMessageLabel.Text = String.Empty;
 
             try
             {
@@ -132,21 +139,24 @@ namespace TestAuthSite
                 AggregatorResponse response = GetDataFromStream<AggregatorResponse>(webResponse.GetResponseStream());
                 AggregatorResponseDataAccess.response = response;
             }
-            catch (WebFaultException ex)
+            catch (WebFaultException)
             {
-                AcccessInfoLabel.Text = "Error: Unauthorized Access.";
+                ErrorMessageLabel.Text = "Error: Unauthorized Access.";
             }
             catch (WebException ex)
             {
-                AcccessInfoLabel.Text = ex.Message;
+                ErrorMessageLabel.Text = ex.Message;
             }
             catch (Exception)
             {
-                AcccessInfoLabel.Text = "Error: Could not make service call to AggregatorSvcAuth (are you running the WCF?)";
+                ErrorMessageLabel.Text = "Error: Could not make service call to AggregatorSvcAuth (are you running the WCF?)";
             }
 
-            DetailsView1.DataBind();
-            Console.WriteLine("Complete");
+            if (AggregatorResponseDataAccess.response != null && AggregatorResponseDataAccess.response.AccountInfoResponse != null)
+            {
+                DetailsView1.Visible = true;
+                DetailsView1.DataBind();
+            }
         }
 
         private static T GetDataFromStream<T>(Stream data)
