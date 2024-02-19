@@ -15,7 +15,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace TestAuthWebsite
+namespace TestAuthConsoleApp
 {
     class Program
     {

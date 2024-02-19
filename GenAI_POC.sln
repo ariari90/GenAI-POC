@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregatorSvcAuth", "Aggreg
 		{F88D427F-BF6B-4783-89C7-43EDE1DD4DDE} = {F88D427F-BF6B-4783-89C7-43EDE1DD4DDE}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAuthWebsite", "TestAuthWebsite\TestAuthWebsite.csproj", "{D038AF04-6D22-4B1C-8D22-FA0F7C5439D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAuthConsoleApp", "TestAuthWebsite\TestAuthConsoleApp.csproj", "{D038AF04-6D22-4B1C-8D22-FA0F7C5439D9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F7F920ED-A488-403F-838A-154A5B24E86C} = {F7F920ED-A488-403F-838A-154A5B24E86C}
 	EndProjectSection

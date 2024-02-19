@@ -84,7 +84,7 @@
     </ProjectReference>
     <ProjectReference Include="..\DataContractLibrary\Common.csproj">
       <Project>{dd02b14c-0413-40fa-8fc7-d5387875e138}</Project>
-      <Name>DataContractLibrary</Name>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
