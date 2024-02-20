@@ -26,9 +26,6 @@ namespace Common.Entities
         public UpdateRequest UpdateRequest { get; set; }
 
         [DataMember]
-        public FacilityRequest FacilityRequest { get; set; }
-
-        [DataMember]
         public HoldingsInfoRequest HoldingsInfoRequest { get; set; }
     }
 }

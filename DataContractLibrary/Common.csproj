@@ -60,8 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\CreateFacilityResponse.cs" />
-    <Compile Include="Activities\TranslateFacilityResponse.cs" />
     <Compile Include="AuthInfo.cs" />
     <Compile Include="Entities\AggregatorRequest.cs" />
     <Compile Include="Entities\AggregatorResponse.cs" />
@@ -78,15 +76,10 @@
     <Compile Include="Entities\PersonalDetails.cs" />
     <Compile Include="Entities\PersonalInfo.cs" />
     <Compile Include="Entities\RequestType.cs" />
-    <Compile Include="Entities\Client.cs" />
-    <Compile Include="Activities\InitializeResponse.cs" />
-    <Compile Include="Entities\FacilityRequest.cs" />
-    <Compile Include="Entities\FacilityResponse.cs" />
     <Compile Include="IAggregatorLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\SchemeInfo.cs" />
     <Compile Include="Entities\SecuredService.cs" />
-    <Compile Include="Entities\TestClass.cs" />
     <Compile Include="Entities\UpdateRequest.cs" />
     <Compile Include="Entities\UserContributionData.cs" />
     <Compile Include="Entities\ValidationResponse.cs" />
@@ -94,7 +87,6 @@
     <Compile Include="AggregatorLog.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Entities\ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

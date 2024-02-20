@@ -182,12 +182,27 @@ namespace TestAuthSite
             return response;
         }
 
+        public object BindList<T>(object list)
+        {
+            if (list == null)
+            {
+                return new List<T>();
+            }
+
+            return list;
+        }
+
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridView2_SelectedIndexChanged1(object sender, EventArgs e)
         {
 
         }

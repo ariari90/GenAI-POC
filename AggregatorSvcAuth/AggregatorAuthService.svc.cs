@@ -27,11 +27,13 @@ namespace AggregatorSvcAuth
     public class AggregatorAuthService : IAggregatorAuthService
     {
         private readonly string _secret;
+        private readonly int _expireDuration;
         private readonly IAggregatorLog _log;
 
         public AggregatorAuthService()
         {
             _secret = ConfigurationManager.AppSettings["Secret"];
+            _expireDuration = Convert.ToInt32(ConfigurationManager.AppSettings["ExpireDuration"]);
             _log = new AggregatorLog<AggregatorAuthService>();
         }
 
@@ -66,8 +68,19 @@ namespace AggregatorSvcAuth
 
             _log.LogMessage("Initiating orchestration process");
             AggregatorSvc.AggregatorSvcClient client = new AggregatorSvc.AggregatorSvcClient();
-            response = client.GetData(request);
-            _log.LogMessage("Response received.");
+            try
+            {
+                response = client.GetData(request);
+                _log.LogMessage("Response received.");
+            }
+            catch (FaultException e)
+            {
+                throw new WebFaultException<string>(e.Message, HttpStatusCode.InternalServerError);
+            }
+            catch (Exception e)
+            {
+                throw new WebFaultException(HttpStatusCode.InternalServerError);
+            }
             return response;
         }
 
@@ -87,13 +100,13 @@ namespace AggregatorSvcAuth
         private string GenerateToken(string userName)
         {
             IDateTimeProvider provider = new UtcDateTimeProvider();
-            var now = provider.GetNow().AddMinutes(5); // token has expired 5 minutes ago
+            var now = provider.GetNow().AddMinutes(_expireDuration); // token to expire after _expireDuration minutes
 
             double secondsSinceEpoch = UnixEpoch.GetSecondsSince(now);
 
             var payload = new Dictionary<string, object>
             {
-                { "Claim", userName },
+                { "claim", userName },
                 { "exp", secondsSinceEpoch }
             };
 
