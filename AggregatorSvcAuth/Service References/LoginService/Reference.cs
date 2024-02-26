@@ -16,7 +16,7 @@ namespace AggregatorSvcAuth.LoginService {
     public interface ILoginService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/Authenticate", ReplyAction="http://tempuri.org/ILoginService/AuthenticateResponse")]
-        bool Authenticate(Common.AuthInfo authInfo);
+        bool Authenticate(Common.Entities.AuthInfo authInfo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -46,7 +46,7 @@ namespace AggregatorSvcAuth.LoginService {
                 base(binding, remoteAddress) {
         }
         
-        public bool Authenticate(Common.AuthInfo authInfo) {
+        public bool Authenticate(Common.Entities.AuthInfo authInfo) {
             return base.Channel.Authenticate(authInfo);
         }
     }

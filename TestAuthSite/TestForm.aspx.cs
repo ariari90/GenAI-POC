@@ -18,18 +18,12 @@ namespace TestAuthSite
 {
     public partial class TestForm : System.Web.UI.Page
     {
-        public static AggregatorResponse response { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
-        public static AggregatorResponse GetResponse()
-        {
-            return response;
-        }
-
+        
         protected void Authenticate_Btn_Click(object sender, EventArgs e)
         {
             string username = this.username.Text;
@@ -138,6 +132,12 @@ namespace TestAuthSite
 
                 AggregatorResponse response = GetDataFromStream<AggregatorResponse>(webResponse.GetResponseStream());
                 AggregatorResponseDataAccess.response = response;
+
+                if (AggregatorResponseDataAccess.response != null && AggregatorResponseDataAccess.response.AccountInfoResponse != null)
+                {
+                    DetailsView1.Visible = true;
+                    DetailsView1.DataBind();
+                }
             }
             catch (WebFaultException)
             {
@@ -150,12 +150,6 @@ namespace TestAuthSite
             catch (Exception)
             {
                 ErrorMessageLabel.Text = "Error: Could not make service call to AggregatorSvcAuth (are you running the WCF?)";
-            }
-
-            if (AggregatorResponseDataAccess.response != null && AggregatorResponseDataAccess.response.AccountInfoResponse != null)
-            {
-                DetailsView1.Visible = true;
-                DetailsView1.DataBind();
             }
         }
 

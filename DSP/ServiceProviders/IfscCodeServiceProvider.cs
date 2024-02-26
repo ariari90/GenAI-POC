@@ -23,7 +23,7 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  IfscCodeServiceProvider");
+            DSPLogger.LogMessage("Executing  IfscCodeServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
 

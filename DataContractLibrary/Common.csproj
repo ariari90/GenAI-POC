@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthInfo.cs" />
+    <Compile Include="Entities\AuthInfo.cs" />
     <Compile Include="Entities\AggregatorRequest.cs" />
     <Compile Include="Entities\AggregatorResponse.cs" />
     <Compile Include="Entities\BankInfo.cs" />

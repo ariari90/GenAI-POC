@@ -13,8 +13,8 @@ namespace RequestService
 {
     public class ContributionService : IContributionService
     {
-        string _connectionString = @"Data Source=DESKTOP-2PDJ9M3; Database=gen_ai_poc; Initial Catalog=gen_ai_poc; Integrated Security=True";
-        int _amountPerUnits = 10;
+        private readonly string _connectionString;
+        private int _amountPerUnits = 10;
 
         public ContributionService()
         {

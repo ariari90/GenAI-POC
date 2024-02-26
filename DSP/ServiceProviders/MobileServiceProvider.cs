@@ -23,7 +23,7 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            Console.WriteLine("Executing  MobileServiceProvider");
+            DSPLogger.LogMessage("Executing  MobileServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
 
@@ -34,7 +34,7 @@ namespace DSP
                 {
                     AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
                     var personalInfo = service.ViewPersonalInfo(Request.UniqueId);
-                    mobile = personalInfo.Mobile;
+                    mobile = personalInfo?.Mobile;
                 }
                 catch (Exception e)
                 {
@@ -43,8 +43,11 @@ namespace DSP
                 }
                 finally
                 {
-                    SetDSFVariable(this, AggregatorConstants.Mobile, mobile);
-                    SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                    if (!String.IsNullOrEmpty(mobile))
+                    {
+                        SetDSFVariable(this, AggregatorConstants.Mobile, mobile);
+                        SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                    }
                 }
             }
 
