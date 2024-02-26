@@ -64,7 +64,7 @@ namespace AggregatorSvcService
                 result = new AccountAndHoldingsRequestHandler(request);
             }
 
-            _log.LogMessage("Orchestration Process is completed");
+            _log.LogMessage("Orchestration Process is complete.");
             return result;
         }
 

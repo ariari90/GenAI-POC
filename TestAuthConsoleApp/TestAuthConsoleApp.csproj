@@ -86,6 +86,14 @@
       <Project>{dd02b14c-0413-40fa-8fc7-d5387875e138}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InfoService\InfoService.csproj">
+      <Project>{60874d70-d2af-46a4-8305-efe7237654a9}</Project>
+      <Name>InfoService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestService\RequestService.csproj">
+      <Project>{55175c42-0acc-4d7f-8dd4-23b71dde159e}</Project>
+      <Name>RequestService</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AggregatorSvcAuth\" />

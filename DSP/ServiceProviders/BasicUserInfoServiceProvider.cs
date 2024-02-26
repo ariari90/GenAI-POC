@@ -46,12 +46,15 @@ namespace DSP
                 }
                 finally
                 {
-                    SetDSFVariable(this, AggregatorConstants.FullName, personalInfo.FullName);
-                    SetDSFVariable(this, AggregatorConstants.FathersName, personalInfo.FathersName);
-                    SetDSFVariable(this, AggregatorConstants.MothersName, personalInfo.MothersName);
-                    SetDSFVariable(this, AggregatorConstants.Nationality, personalInfo.Nationality);
-                    SetDSFVariable(this, AggregatorConstants.DateOfBirth, personalInfo.DateOfBirth);
-                    SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                    if (personalInfo != null)
+                    {
+                        SetDSFVariable(this, AggregatorConstants.FullName, personalInfo.FullName);
+                        SetDSFVariable(this, AggregatorConstants.FathersName, personalInfo.FathersName);
+                        SetDSFVariable(this, AggregatorConstants.MothersName, personalInfo.MothersName);
+                        SetDSFVariable(this, AggregatorConstants.Nationality, personalInfo.Nationality);
+                        SetDSFVariable(this, AggregatorConstants.DateOfBirth, personalInfo.DateOfBirth);
+                        SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
+                    }
                 }
             }
 

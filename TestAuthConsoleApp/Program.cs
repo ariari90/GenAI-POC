@@ -19,7 +19,8 @@ namespace TestAuthConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+
+        static void TestAggregator()
         {
             Console.WriteLine("Executing GetToken()");
             AuthInfo authInfo = new AuthInfo()
@@ -80,6 +81,7 @@ namespace TestAuthConsoleApp
 
             WebResponse webResponse = webRequest.GetResponse();
 
+
             AggregatorResponse response = GetDataFromStream<AggregatorResponse>(webResponse.GetResponseStream());
             Console.ReadKey();
         }
@@ -105,6 +107,55 @@ namespace TestAuthConsoleApp
                 response = (T)xmlSerializer.Deserialize(stringReader);
             }
             return response;
+        }
+
+        static void TestInfoService()
+        {
+            InfoService.AccountInfoService service = new InfoService.AccountInfoService();
+            int uniqueId = 1;
+            var personalInfo = service.ViewPersonalInfo(uniqueId);
+            var bankInfo = service.ViewBankInfo(uniqueId);
+            var schemePref = service.GetSchemePreference(uniqueId);
+            var schemeDetails = service.GetCurrentSchemeDetails(uniqueId);
+        }
+
+        static void TestHoldings()
+        {
+            InfoService.IAccountBankingService service = new InfoService.AccountBankingService();
+            int uniqueId = 1;
+            PersonalDetails personalDetails = new PersonalDetails()
+            {
+                Address1 = "abc",
+                Address2 = "xyz",
+                City = "Kolkata",
+                Mobile = "986129836",
+                PinCode = 700034,
+                Uniqueid = 1
+            };
+
+            var holdingSummary = service.GetHoldingSummary(uniqueId);
+            var userContribution = service.GetUserContribution(uniqueId, DateTime.Now.AddDays(-1000), DateTime.Now);
+
+            var validationResponse = service.UpdatePersonalDetails(personalDetails);
+        }
+
+        static void TestContribution()
+        {
+            RequestService.IContributionService service = new RequestService.ContributionService();
+            int uniqueId = 1;
+            string manager = "XYZ";
+            service.ChangeFundManagerName(uniqueId, manager);
+            service.ChangeSchemePreference(uniqueId, 1);
+            service.ContributeOnline(uniqueId, "scheme1", 20);
+        }
+
+
+        static void Main(string[] args)
+        {
+            TestAggregator();
+            TestInfoService();
+            TestHoldings();
+            TestContribution();
         }
     }
 }
