@@ -55,7 +55,7 @@ namespace RequestService
                 // Update Holding Summary
                 command.CommandText = @"UPDATE HoldingSummary set TotalUnits=@TotalUnits, Amount=@Amount
                                     WHERE uniqueId = " + uniqueId +
-                            " AND schemeName='" + product + "'";
+                            " AND holdingSchemeName='" + product + "'";
 
                 command.Parameters.AddWithValue("@TotalUnits", newTotalUnits);
                 command.Parameters.AddWithValue("@Amount", newAmount);

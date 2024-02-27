@@ -1,6 +1,4 @@
-﻿//using Microsoft.Extensions.Logging;
-//using Serilog;
-using log4net;
+﻿using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +9,11 @@ namespace Common
 {
     public class AggregatorLog<T>: IAggregatorLog
     {
-        private ILog log;
+        private ILog _log;
 
         public AggregatorLog()
         {
-            log = GetLogger();
+            _log = GetLogger();
         }
 
         private ILog GetLogger()
@@ -26,12 +24,12 @@ namespace Common
 
         public void LogMessage(string message)
         {
-            log.Debug(message);
+            _log.Debug(message);
         }
 
         public void LogError(string message)
         {
-            log.Error(message);
+            _log.Error(message);
         }
         
     }
