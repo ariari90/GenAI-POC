@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="POCDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="BankInfo">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="accountNumber" Type="int" Nullable="false" />
+          <Property Name="bankBranch" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="bankName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="address" Type="nchar" MaxLength="200" Nullable="false" />
+          <Property Name="ifscCode" Type="int" Nullable="false" />
+          <Property Name="uniqueId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HoldingSummary">
+          <Key>
+            <PropertyRef Name="HoldingSummaryId" />
+          </Key>
+          <Property Name="HoldingSummaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="int" Nullable="false" />
+          <Property Name="HoldingSchemeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalUnits" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="Nav" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="Amount" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="TransactionDate" Type="date" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ExitDate" Type="date" />
+        </EntityType>
+        <EntityType Name="SchemeInfo">
+          <Key>
+            <PropertyRef Name="schemeId" />
+          </Key>
+          <Property Name="schemeId" Type="int" Nullable="false" />
+          <Property Name="schemeName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="fundManagerName" Type="nchar" MaxLength="50" />
+          <Property Name="percantageContribution" Type="int" Nullable="false" />
+          <Property Name="uniqueId" Type="int" Nullable="false" />
+          <Property Name="status" Type="nchar" MaxLength="10" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ExitDate" Type="date" />
+          <Property Name="IsPreferred" Type="bit" />
+        </EntityType>
+        <EntityType Name="TransactionSummary">
+          <Key>
+            <PropertyRef Name="TransactionSummaryId" />
+          </Key>
+          <Property Name="TransactionSummaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="int" Nullable="false" />
+          <Property Name="TransactionDate" Type="date" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Amount" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="TransactionType" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="uniqueId" />
+          </Key>
+          <Property Name="uniqueId" Type="int" Nullable="false" />
+          <Property Name="fullName" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="fathersName" Type="nchar" MaxLength="100" />
+          <Property Name="mothersName" Type="nchar" MaxLength="100" />
+          <Property Name="dateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="gender" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="nationality" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="isKycDone" Type="bit" Nullable="false" />
+          <Property Name="address1" Type="nchar" MaxLength="200" />
+          <Property Name="address2" Type="nchar" MaxLength="200" />
+          <Property Name="city" Type="nchar" MaxLength="10" />
+          <Property Name="pinCode" Type="int" />
+          <Property Name="mobile" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'gen_ai_poc.dbo.UserAuth' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="UserAuth">
+          <Property Name="UserName" Type="nchar" MaxLength="10" />
+          <Property Name="Password" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+        <Association Name="FK_BankInfo_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
+          <End Role="BankInfo" Type="Self.BankInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="BankInfo">
+              <PropertyRef Name="uniqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoldingSummary_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
+          <End Role="HoldingSummary" Type="Self.HoldingSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="HoldingSummary">
+              <PropertyRef Name="UniqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchemaInfo_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
+          <End Role="SchemeInfo" Type="Self.SchemeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="SchemeInfo">
+              <PropertyRef Name="uniqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionSummary_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
+          <End Role="TransactionSummary" Type="Self.TransactionSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="TransactionSummary">
+              <PropertyRef Name="UniqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="POCDBModelStoreContainer">
+          <EntitySet Name="BankInfo" EntityType="Self.BankInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoldingSummary" EntityType="Self.HoldingSummary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchemeInfo" EntityType="Self.SchemeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionSummary" EntityType="Self.TransactionSummary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BankInfo_UserAccount" Association="Self.FK_BankInfo_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="BankInfo" EntitySet="BankInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoldingSummary_UserAccount" Association="Self.FK_HoldingSummary_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="HoldingSummary" EntitySet="HoldingSummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchemaInfo_UserAccount" Association="Self.FK_SchemaInfo_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="SchemeInfo" EntitySet="SchemeInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionSummary_UserAccount" Association="Self.FK_TransactionSummary_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="TransactionSummary" EntitySet="TransactionSummary" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="POCDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="BankInfo">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="accountNumber" Type="Int32" Nullable="false" />
+          <Property Name="bankBranch" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="bankName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ifscCode" Type="Int32" Nullable="false" />
+          <Property Name="uniqueId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserAccount" Relationship="Self.FK_BankInfo_UserAccount" FromRole="BankInfo" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="HoldingSummary">
+          <Key>
+            <PropertyRef Name="HoldingSummaryId" />
+          </Key>
+          <Property Name="HoldingSummaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Int32" Nullable="false" />
+          <Property Name="HoldingSchemeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalUnits" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="Nav" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="Amount" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ExitDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="UserAccount" Relationship="Self.FK_HoldingSummary_UserAccount" FromRole="HoldingSummary" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="SchemeInfo">
+          <Key>
+            <PropertyRef Name="schemeId" />
+          </Key>
+          <Property Name="schemeId" Type="Int32" Nullable="false" />
+          <Property Name="schemeName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fundManagerName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="percantageContribution" Type="Int32" Nullable="false" />
+          <Property Name="uniqueId" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ExitDate" Type="DateTime" Precision="0" />
+          <Property Name="IsPreferred" Type="Boolean" />
+          <NavigationProperty Name="UserAccount" Relationship="Self.FK_SchemaInfo_UserAccount" FromRole="SchemeInfo" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="TransactionSummary">
+          <Key>
+            <PropertyRef Name="TransactionSummaryId" />
+          </Key>
+          <Property Name="TransactionSummaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Int32" Nullable="false" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="TransactionType" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="UserAccount" Relationship="Self.FK_TransactionSummary_UserAccount" FromRole="TransactionSummary" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="uniqueId" />
+          </Key>
+          <Property Name="uniqueId" Type="Int32" Nullable="false" />
+          <Property Name="fullName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fathersName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="mothersName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="dateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nationality" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="isKycDone" Type="Boolean" Nullable="false" />
+          <Property Name="address1" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="address2" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="pinCode" Type="Int32" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="BankInfoes" Relationship="Self.FK_BankInfo_UserAccount" FromRole="UserAccount" ToRole="BankInfo" />
+          <NavigationProperty Name="HoldingSummaries" Relationship="Self.FK_HoldingSummary_UserAccount" FromRole="UserAccount" ToRole="HoldingSummary" />
+          <NavigationProperty Name="SchemeInfoes" Relationship="Self.FK_SchemaInfo_UserAccount" FromRole="UserAccount" ToRole="SchemeInfo" />
+          <NavigationProperty Name="TransactionSummaries" Relationship="Self.FK_TransactionSummary_UserAccount" FromRole="UserAccount" ToRole="TransactionSummary" />
+        </EntityType>
+        <Association Name="FK_BankInfo_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
+          <End Role="BankInfo" Type="Self.BankInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="BankInfo">
+              <PropertyRef Name="uniqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoldingSummary_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
+          <End Role="HoldingSummary" Type="Self.HoldingSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="HoldingSummary">
+              <PropertyRef Name="UniqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchemaInfo_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
+          <End Role="SchemeInfo" Type="Self.SchemeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="SchemeInfo">
+              <PropertyRef Name="uniqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionSummary_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
+          <End Role="TransactionSummary" Type="Self.TransactionSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="TransactionSummary">
+              <PropertyRef Name="UniqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BankInfoes" EntityType="Self.BankInfo" />
+          <EntitySet Name="HoldingSummaries" EntityType="Self.HoldingSummary" />
+          <EntitySet Name="SchemeInfoes" EntityType="Self.SchemeInfo" />
+          <EntitySet Name="TransactionSummaries" EntityType="Self.TransactionSummary" />
+          <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
+          <AssociationSet Name="FK_BankInfo_UserAccount" Association="Self.FK_BankInfo_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+            <End Role="BankInfo" EntitySet="BankInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoldingSummary_UserAccount" Association="Self.FK_HoldingSummary_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+            <End Role="HoldingSummary" EntitySet="HoldingSummaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchemaInfo_UserAccount" Association="Self.FK_SchemaInfo_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+            <End Role="SchemeInfo" EntitySet="SchemeInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionSummary_UserAccount" Association="Self.FK_TransactionSummary_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+            <End Role="TransactionSummary" EntitySet="TransactionSummaries" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="POCDBModelStoreContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="BankInfoes">
+            <EntityTypeMapping TypeName="POCDBModel.BankInfo">
+              <MappingFragment StoreEntitySet="BankInfo">
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="bankBranch" ColumnName="bankBranch" />
+                <ScalarProperty Name="bankName" ColumnName="bankName" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="ifscCode" ColumnName="ifscCode" />
+                <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoldingSummaries">
+            <EntityTypeMapping TypeName="POCDBModel.HoldingSummary">
+              <MappingFragment StoreEntitySet="HoldingSummary">
+                <ScalarProperty Name="HoldingSummaryId" ColumnName="HoldingSummaryId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="HoldingSchemeName" ColumnName="HoldingSchemeName" />
+                <ScalarProperty Name="TotalUnits" ColumnName="TotalUnits" />
+                <ScalarProperty Name="Nav" ColumnName="Nav" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ExitDate" ColumnName="ExitDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchemeInfoes">
+            <EntityTypeMapping TypeName="POCDBModel.SchemeInfo">
+              <MappingFragment StoreEntitySet="SchemeInfo">
+                <ScalarProperty Name="schemeId" ColumnName="schemeId" />
+                <ScalarProperty Name="schemeName" ColumnName="schemeName" />
+                <ScalarProperty Name="fundManagerName" ColumnName="fundManagerName" />
+                <ScalarProperty Name="percantageContribution" ColumnName="percantageContribution" />
+                <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ExitDate" ColumnName="ExitDate" />
+                <ScalarProperty Name="IsPreferred" ColumnName="IsPreferred" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionSummaries">
+            <EntityTypeMapping TypeName="POCDBModel.TransactionSummary">
+              <MappingFragment StoreEntitySet="TransactionSummary">
+                <ScalarProperty Name="TransactionSummaryId" ColumnName="TransactionSummaryId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccounts">
+            <EntityTypeMapping TypeName="POCDBModel.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="fathersName" ColumnName="fathersName" />
+                <ScalarProperty Name="mothersName" ColumnName="mothersName" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="isKycDone" ColumnName="isKycDone" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="pinCode" ColumnName="pinCode" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
