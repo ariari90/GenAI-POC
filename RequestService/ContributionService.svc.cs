@@ -47,32 +47,26 @@ namespace RequestService
             decimal newAmount = newTotalUnits * _amountPerUnits;
             decimal contributedAmount = units * _amountPerUnits;
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            using (SqlCommand command = connection.CreateCommand())
+            using (var context = new DBEntities())
             {
-                connection.Open();
+                var holdingSummary = context.HoldingSummaries.FirstOrDefault(x => x.UniqueId == uniqueId && x.HoldingSchemeName == product);
+                holdingSummary.TotalUnits = newTotalUnits;
+                holdingSummary.Amount = newAmount;
 
-                // Update Holding Summary
-                command.CommandText = @"UPDATE HoldingSummary set TotalUnits=@TotalUnits, Amount=@Amount
-                                    WHERE uniqueId = " + uniqueId +
-                            " AND holdingSchemeName='" + product + "'";
+                TransactionSummary transactionSummary = new TransactionSummary()
+                {
+                    UniqueId = uniqueId,
+                    TransactionDate = DateTime.Now,
+                    Description = "Contrubuted units: " + units,
+                    Amount = contributedAmount,
+                    TransactionType = "C"
+                };
 
-                command.Parameters.AddWithValue("@TotalUnits", newTotalUnits);
-                command.Parameters.AddWithValue("@Amount", newAmount);
+                context.TransactionSummaries.Add(transactionSummary);
+                context.SaveChanges();
 
-                command.ExecuteNonQuery();
-
-                // Update Transaction
-                command.CommandText = @"insert into TransactionSummary values (@UniqueId, @TransactionDate, @Description, @Amount_Contributed, @TransactionType)";
-
-                command.Parameters.AddWithValue("@UniqueId", uniqueId);
-                command.Parameters.AddWithValue("@TransactionDate", DateTime.Now);
-                command.Parameters.AddWithValue("@Description", "Contrubuted units: " + units);
-                command.Parameters.AddWithValue("@Amount_Contributed", contributedAmount);
-                command.Parameters.AddWithValue("@TransactionType", "C");
-                command.ExecuteNonQuery();
-                connection.Close();
             }
+
             response.Status = "Success";
             return response;
         }
@@ -92,19 +86,20 @@ namespace RequestService
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                using (SqlCommand command = connection.CreateCommand())
+                using (var context = new DBEntities())
                 {
-                    connection.Open();
-                    command.CommandText = @"UPDATE SchemeInfo set IsPreferred=0
-                                    WHERE IsPreferred=1 and uniqueId = " + uniqueId;
-                    command.ExecuteNonQuery();
+                    if(context.SchemeInfoes.Any(x => x.IsPreferred == true && x.uniqueId == uniqueId))
+                    {
+                        var preferedSchemes = context.SchemeInfoes.Where(x => x.IsPreferred == true && x.uniqueId == uniqueId);
+                        foreach (var scheme in preferedSchemes)
+                        {
+                            scheme.IsPreferred = false;
+                        }
+                    }
 
-                    command.CommandText = @"UPDATE SchemeInfo set IsPreferred=1
-                                    WHERE uniqueId = " + uniqueId +
-                                " AND schemeId=" + newSchemePreferenceId;
-                    command.ExecuteNonQuery();
-                    connection.Close();
+                    var currentPreferredScheme = context.SchemeInfoes.FirstOrDefault(x => x.uniqueId == uniqueId && x.schemeId == newSchemePreferenceId);
+                    currentPreferredScheme.IsPreferred = true;
+                    context.SaveChanges();
                 }
             }
             catch (Exception e)
@@ -130,16 +125,14 @@ namespace RequestService
             }
             try
             {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                using (SqlCommand command = connection.CreateCommand())
+                using (var context = new DBEntities())
                 {
-                    connection.Open();
-                    command.CommandText = @"UPDATE SchemeInfo set fundManagerName=@FundManagerName
-                                    WHERE uniqueId = " + uniqueId;
-
-                    command.Parameters.AddWithValue("@fundManagerName", fundManagerName);
-                    command.ExecuteNonQuery();
-                    connection.Close();
+                    var schemes = context.SchemeInfoes.Where(x => x.uniqueId == uniqueId);
+                    foreach (var scheme in schemes)
+                    {
+                        scheme.fundManagerName = fundManagerName;
+                    }
+                    context.SaveChanges();
                 }
             }
             catch (Exception e)

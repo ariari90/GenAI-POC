@@ -130,7 +130,7 @@
     <ServiceProvider>
       <Id>22</Id>
       <Key>Transactions</Key>
-      <Name>holdingsTotalAmountServiceProvider1</Name>
+      <Name>transactionsServiceProvider1</Name>
     </ServiceProvider>
 
     <ServiceProvider>
