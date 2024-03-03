@@ -7,12 +7,19 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace DSP
+namespace Common
 {
     public class AggregatorConstants
     {
         private static bool _isInitialized = false;
-        private static string ServiceProviderLocation = "ServiceProviderLocation";
+        private static string ServiceProviderConfigLocation = "ServiceProviderConfigLocation";
+        private static string OrchrestratorConfigLocation = "OrchestratorConfigLocation";
+
+        public static string DPO_InfoRequest = "InfoRequest";
+        public static string DPO_PersonalInfo = "PersonalInfo";
+        public static string DPO_Holdings = "Holdings";
+        public static string DPO_Transaction = "Transaction";
+        public static string DPO_UpdateRequest = "UpdateRequest";
 
         public static string InfoServiceResponse = "InfoServiceResponse";
         public static string HoldingsResponse = "HoldingsResponse";
@@ -49,24 +56,37 @@ namespace DSP
         public static string Schemes = "Schemes";
 
         public static ServiceProviderConfig serviceProviderConfig = new ServiceProviderConfig();
+        public static OrchestratorConfig orchestratorConfig = new OrchestratorConfig();
 
         public static void Instantiate()
         {
             if (!_isInitialized)
             {
                 SetupKeyServiceProviders();
+                SetupOrchestratorPaths();
                 _isInitialized = true;
             }
         }
         
-        public static void SetupKeyServiceProviders()
+        private static void SetupKeyServiceProviders()
         {
             XmlSerializer deserializer = new XmlSerializer(typeof(ServiceProviderConfig));
-            string configLocation = ConfigurationManager.AppSettings[ServiceProviderLocation];
+            string configLocation = ConfigurationManager.AppSettings[ServiceProviderConfigLocation];
             string path = Path.Combine(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), configLocation);
             
             TextReader textReader = new StreamReader(path);
             serviceProviderConfig = (ServiceProviderConfig)deserializer.Deserialize(textReader);
+            textReader.Close();
+        }
+
+        private static void SetupOrchestratorPaths()
+        {
+            XmlSerializer deserializer = new XmlSerializer(typeof(OrchestratorConfig));
+            string configLocation = ConfigurationManager.AppSettings[OrchrestratorConfigLocation];
+            string path = Path.Combine(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), configLocation);
+
+            TextReader textReader = new StreamReader(path);
+            orchestratorConfig = (OrchestratorConfig)deserializer.Deserialize(textReader);
             textReader.Close();
         }
     }
