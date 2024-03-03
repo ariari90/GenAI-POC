@@ -142,7 +142,6 @@
     <Compile Include="ServiceProviders\AggregatorAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AggregatorConstants.cs" />
     <Compile Include="ServiceProviders\AddressServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
