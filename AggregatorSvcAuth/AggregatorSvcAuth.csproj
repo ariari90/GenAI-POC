@@ -136,9 +136,18 @@
     <None Include="Service References\AggregatorSvc\AggregatorSvc2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LoginService\LoginService.disco" />
     <None Include="Service References\LoginService\configuration91.svcinfo" />
     <None Include="Service References\LoginService\configuration.svcinfo" />
+    <None Include="Service References\LoginService\LoginService1.wsdl" />
+    <None Include="Service References\LoginService\LoginService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginService\LoginService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginService\LoginService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\LoginService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -150,6 +159,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\LoginService\LoginService1.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -174,16 +184,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Service References\LoginService\LoginService.wsdl" />
-    <None Include="Service References\LoginService\LoginService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LoginService\LoginService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LoginService\LoginService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
