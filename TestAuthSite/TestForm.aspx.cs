@@ -30,7 +30,8 @@ namespace TestAuthSite
             string password = this.password.Text;
             AuthInfo authInfo = new AuthInfo()
             { UserName = username, Password = password };
-            var authUrl = new Uri("http://localhost:54413/AggregatorAuthService.svc/GetToken");
+            //var authUrl = new Uri("http://localhost:54413/AggregatorAuthService.svc/GetToken");
+            var authUrl = new Uri("https://localhost:44348/AggregatorAuthService.svc/GetToken");
             WebRequest authWebRequest = WebRequest.Create(authUrl);
             string stringData = String.Empty;
             using (var stringwriter = new System.IO.StringWriter())
@@ -60,9 +61,9 @@ namespace TestAuthSite
                 string token = XElement.Parse(tokenResponse).Value;
                 this.token.Text = token;
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                this.token.Text = "{Authentication Failed}";
+                this.token.Text = "{Authentication Failed}" + ex.ToString();
             }
             
         }
@@ -102,7 +103,7 @@ namespace TestAuthSite
             }
 
             ASCIIEncoding encoding = new ASCIIEncoding();
-            var uri = new Uri("http://localhost:54413/AggregatorAuthService.svc/GetData");
+            var uri = new Uri("https://localhost:44348/AggregatorAuthService.svc/GetData");
 
             WebRequest webRequest = WebRequest.Create(uri);
             string stringData = String.Empty;
