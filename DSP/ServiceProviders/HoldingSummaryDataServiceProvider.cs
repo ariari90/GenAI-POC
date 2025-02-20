@@ -1,12 +1,13 @@
 ﻿using Common.Entities;
+using DataContractLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Workflow.Activities;
 using System.Workflow.ComponentModel;
-using Common;
 
 namespace DSP
 {
@@ -34,6 +35,10 @@ namespace DSP
                 try
                 {
                     AccountBankingService.AccountBankingServiceClient service = new AccountBankingService.AccountBankingServiceClient();
+                    BasicHttpBinding httpBinding = new BasicHttpBinding();
+                    httpBinding.MaxReceivedMessageSize = Int32.MaxValue;
+                    httpBinding.MaxBufferSize = Int32.MaxValue;
+                    
                     holdings = service.GetHoldingSummary(Request.UniqueId);
                 }
                 catch (Exception e)

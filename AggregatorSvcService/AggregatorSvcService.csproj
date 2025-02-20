@@ -48,7 +48,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -76,9 +75,6 @@
     <Content Include="Config\ServiceProviderConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Config\OrchestratorConfig.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Properties\DataSources\DataContractLibrary.HoldingSummaryResponse.datasource" />
     <Content Include="Properties\DataSources\DataContractLibrary.UserContributionData.datasource" />
     <Content Include="Properties\DataSources\DataContractLibrary.ValidationResponse.datasource" />
@@ -86,6 +82,7 @@
     <Content Include="Properties\DataSources\DataContractLibrary.BankInfo.datasource" />
     <Content Include="Properties\DataSources\DataContractLibrary.PersonalInfo.datasource" />
     <Content Include="Properties\DataSources\DataContractLibrary.SchemeInfo.datasource" />
+    <Content Include="Properties\DataSources\Common.Entities.AccountTransferSvcResponse.datasource" />
     <None Include="Service References\AccountBankingService\AccountBankingService.wsdl" />
     <None Include="Service References\AccountBankingService\AccountBankingService.xsd">
       <SubType>Designer</SubType>
@@ -124,9 +121,32 @@
     <Content Include="Service References\AccountInfoService\AggregatorSvcService.AccountInfoService.SchemeInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\AccountTransferService\AccountTransferService.disco" />
+    <None Include="Service References\AccountTransferService\configuration91.svcinfo" />
+    <None Include="Service References\AccountTransferService\configuration.svcinfo" />
+    <None Include="Service References\AccountTransferService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service References\ContributionService\AggregatorSvcService.ContributionService.ValidationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\AccountTransferService\AccountTransferService.wsdl" />
+    <None Include="Service References\AccountTransferService\AccountTransferService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountTransferService\AccountTransferService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountTransferService\AccountTransferService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountTransferService\AccountTransferService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountTransferService\AccountTransferService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ContributionService\ContributionService.wsdl" />
     <None Include="Service References\ContributionService\ContributionService.xsd">
       <SubType>Designer</SubType>
@@ -174,6 +194,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RequestHanders\ExtraRequestHandler.cs" />
     <Compile Include="RequestHanders\HoldingsRequestHandler.cs" />
     <Compile Include="RequestHanders\AccountAndHoldingsRequestHandler.cs" />
     <Compile Include="Service References\AccountBankingService\Reference.cs">
@@ -182,6 +203,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\AccountInfoService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\AccountTransferService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -256,6 +282,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AccountBankingService\" />
     <WCFMetadataStorage Include="Service References\AccountInfoService\" />
+    <WCFMetadataStorage Include="Service References\AccountTransferService\" />
     <WCFMetadataStorage Include="Service References\ContributionService\" />
     <WCFMetadataStorage Include="Service References\WithdrawService\" />
   </ItemGroup>
@@ -274,7 +301,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52743</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44312/</IISUrl>
+          <IISUrl>http://localhost:52749/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

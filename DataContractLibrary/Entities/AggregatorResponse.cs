@@ -30,5 +30,9 @@ namespace Common.Entities
         //[XmlElement(ElementName = "ValidationResponse")]
         //[XmlChoiceIdentifierAttribute]
         public ValidationResponse ValidationResponse { get; set; }
+
+        [DataMember]
+        [XmlElement(IsNullable = true)]
+        public ExtraSvcResponse ExtraSvcResponse { get; set; }
     }
 }

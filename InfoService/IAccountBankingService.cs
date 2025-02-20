@@ -21,4 +21,3 @@ namespace InfoService
         ValidationResponse UpdatePersonalDetails(PersonalDetails personDetails);
     }
 }
-

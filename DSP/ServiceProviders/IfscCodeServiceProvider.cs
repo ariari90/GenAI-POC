@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Workflow.Activities;
 using System.Workflow.ComponentModel;
-using Common;
 
 namespace DSP
 {
@@ -24,7 +23,7 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            DSPLogger.LogMessage("Executing  IfscCodeServiceProvider");
+            Console.WriteLine("Executing  IfscCodeServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
 

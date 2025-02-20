@@ -12,5 +12,6 @@ namespace Common.Entities
         UpdateDetails,
         Transaction,
         AccountAndHoldings,
+        Extra
     }
 }

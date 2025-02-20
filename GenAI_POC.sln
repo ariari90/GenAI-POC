@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "DataContractLibrary\Common.csproj", "{DD02B14C-0413-40FA-8FC7-D5387875E138}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregatorSvcService", "AggregatorSvcService\AggregatorSvcService.csproj", "{0811F234-F4C3-467A-AD07-B47D2F2E501F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2A024805-3B0E-4232-987B-2978ED88E56E} = {2A024805-3B0E-4232-987B-2978ED88E56E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoService", "InfoService\InfoService.csproj", "{60874D70-D2AF-46A4-8305-EFE7237654A9}"
 EndProject
@@ -34,6 +37,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationService", "AuthenticationService\AuthenticationService.csproj", "{F88D427F-BF6B-4783-89C7-43EDE1DD4DDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAuthSite", "TestAuthSite\TestAuthSite.csproj", "{C32DBB72-D2F3-4324-B37C-FB6389358502}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraService", "ExtraService\ExtraService.csproj", "{2A024805-3B0E-4232-987B-2978ED88E56E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -163,6 +168,18 @@ Global
 		{C32DBB72-D2F3-4324-B37C-FB6389358502}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C32DBB72-D2F3-4324-B37C-FB6389358502}.Release|x86.ActiveCfg = Release|Any CPU
 		{C32DBB72-D2F3-4324-B37C-FB6389358502}.Release|x86.Build.0 = Release|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Debug|x86.Build.0 = Debug|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Release|x86.ActiveCfg = Release|Any CPU
+		{2A024805-3B0E-4232-987B-2978ED88E56E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

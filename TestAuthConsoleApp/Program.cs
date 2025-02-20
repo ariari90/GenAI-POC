@@ -1,6 +1,8 @@
 ﻿using AggregatorSvcAuth;
 using Common;
 using Common.Entities;
+using ExtraService;
+using InfoService;
 using JWT;
 using JWT.Algorithms;
 using JWT.Serializers;
@@ -19,8 +21,37 @@ namespace TestAuthConsoleApp
 {
     class Program
     {
+        static void Main(string[] args)
+        {
+            //TestAccountHoldingsWorkflow();      
+            //TestAccountTransfersWorkflow();
+            TestAggregateSvcAuth();
+        }
 
-        static void TestAggregator()
+        static void TestAccountTransfersWorkflow()
+        {
+            int accountNumber = new Random().Next();
+            int businessAccountNumber = new Random().Next();
+            AccountTransferService workflow = new AccountTransferService();
+            //workflow.Execute(accountNumber, businessAccountNumber);
+            
+        }
+
+        static void TestAccountHoldingsWorkflow()
+        {
+            int uniqueId = new Random().Next();
+            AccountHoldingService workflow = new AccountHoldingService();
+            workflow.Execute(uniqueId);
+        }
+
+        static void PopulateTables()
+        {
+            AccountHoldingService svc = new AccountHoldingService();
+            svc.AddHoldings();
+            //svc.AddTransactions();        // Available in the class inside AccountHoldingService
+
+        }
+        static void TestAggregateSvcAuth()
         {
             Console.WriteLine("Executing GetToken()");
             AuthInfo authInfo = new AuthInfo()
@@ -58,8 +89,14 @@ namespace TestAuthConsoleApp
             
             WebRequest webRequest = WebRequest.Create(uri);
             AggregatorRequest request = new AggregatorRequest();
-            request.RequestType = RequestType.AccountInfo;
+            request.RequestType = RequestType.Extra;
             request.UniqueId = 1;
+            request.AccountFundWorkflowRequest = new AccountTransferSvcRequest();
+            request.AccountFundWorkflowRequest.AccountNumberUniqueId = 1; ;
+            request.AccountFundWorkflowRequest.BusinessAccountUniqueId = 2; ;
+            request.AccountFundWorkflowRequest.NewAccountNumber = new Random().Next();
+            request.AccountFundWorkflowRequest.NewBusinessAccountNumber = new Random().Next();
+            request.AccountFundWorkflowRequest.ExecuteWorkflow = true;
 
             using (var stringwriter = new System.IO.StringWriter())
             {
@@ -81,9 +118,8 @@ namespace TestAuthConsoleApp
 
             WebResponse webResponse = webRequest.GetResponse();
 
-
             AggregatorResponse response = GetDataFromStream<AggregatorResponse>(webResponse.GetResponseStream());
-            Console.ReadKey();
+             Console.ReadKey();
         }
 
         private static T GetDataFromStream<T>(Stream data)
@@ -107,55 +143,6 @@ namespace TestAuthConsoleApp
                 response = (T)xmlSerializer.Deserialize(stringReader);
             }
             return response;
-        }
-
-        static void TestInfoService()
-        {
-            InfoService.AccountInfoService service = new InfoService.AccountInfoService();
-            int uniqueId = 1;
-            var personalInfo = service.ViewPersonalInfo(uniqueId);
-            var bankInfo = service.ViewBankInfo(uniqueId);
-            var schemePref = service.GetSchemePreference(uniqueId);
-            var schemeDetails = service.GetCurrentSchemeDetails(uniqueId);
-        }
-
-        static void TestHoldings()
-        {
-            InfoService.IAccountBankingService service = new InfoService.AccountBankingService();
-            int uniqueId = 1;
-            PersonalDetails personalDetails = new PersonalDetails()
-            {
-                Address1 = "abc",
-                Address2 = "xyz",
-                City = "Kolkata",
-                Mobile = "986129836",
-                PinCode = 700034,
-                Uniqueid = 1
-            };
-
-            var holdingSummary = service.GetHoldingSummary(uniqueId);
-            var userContribution = service.GetUserContribution(uniqueId, DateTime.Now.AddDays(-1000), DateTime.Now);
-
-            var validationResponse = service.UpdatePersonalDetails(personalDetails);
-        }
-
-        static void TestContribution()
-        {
-            RequestService.IContributionService service = new RequestService.ContributionService();
-            int uniqueId = 1;
-            string manager = "XYZ";
-            service.ChangeFundManagerName(uniqueId, manager);
-            service.ChangeSchemePreference(uniqueId, 1);
-            service.ContributeOnline(uniqueId, "scheme1", 20);
-        }
-
-
-        static void Main(string[] args)
-        {
-            TestAggregator();
-            TestInfoService();
-            TestHoldings();
-            TestContribution();
         }
     }
 }

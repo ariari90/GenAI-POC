@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="779b4e7f-1b46-427d-8376-49f784a6a78b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:62803/AccountTransferService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AccountTransferService.xsd" MetadataType="Schema" ID="cfc560b4-5991-4625-b0be-d5618ad4945d" SourceId="1" SourceUrl="http://localhost:62803/AccountTransferService.svc?xsd=xsd4" />
+    <MetadataFile FileName="AccountTransferService1.xsd" MetadataType="Schema" ID="25662f4e-859c-422e-ab20-d9bfb7b5c8f5" SourceId="1" SourceUrl="http://localhost:62803/AccountTransferService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AccountTransferService2.xsd" MetadataType="Schema" ID="6610005a-3308-417c-afa6-fc910d24596f" SourceId="1" SourceUrl="http://localhost:62803/AccountTransferService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AccountTransferService3.xsd" MetadataType="Schema" ID="a6f55c2d-9467-44ce-9ee4-c1f95e5ffb2f" SourceId="1" SourceUrl="http://localhost:62803/AccountTransferService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AccountTransferService4.xsd" MetadataType="Schema" ID="a31106ed-12a6-4b40-9467-666a0536a141" SourceId="1" SourceUrl="http://localhost:62803/AccountTransferService.svc?xsd=xsd3" />
+    <MetadataFile FileName="AccountTransferService.disco" MetadataType="Disco" ID="6d1552b2-1c1d-469b-9c32-805354ce9535" SourceId="1" SourceUrl="http://localhost:62803/AccountTransferService.svc?disco" />
+    <MetadataFile FileName="AccountTransferService.wsdl" MetadataType="Wsdl" ID="8c6ee246-58b6-44a1-a243-8f2420f0f829" SourceId="1" SourceUrl="http://localhost:62803/AccountTransferService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

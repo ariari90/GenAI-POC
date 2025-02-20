@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataContractLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -20,5 +21,6 @@ namespace Common.Entities
 
         [DataMember]
         public ExitRequestResponse ExitRequestResponse { get; set; }
+        
     }
 }

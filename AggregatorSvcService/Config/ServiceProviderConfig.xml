@@ -130,7 +130,7 @@
     <ServiceProvider>
       <Id>22</Id>
       <Key>Transactions</Key>
-      <Name>transactionsServiceProvider1</Name>
+      <Name>holdingsTotalAmountServiceProvider1</Name>
     </ServiceProvider>
 
     <ServiceProvider>
@@ -152,10 +152,23 @@
     </ServiceProvider>
 
     <ServiceProvider>
-      <Id>25</Id>
+      <Id>26</Id>
       <Key>Schemes</Key>
       <Name>schemesServiceProvider1</Name>
     </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>27</Id>
+      <Key>AccountHoldingSvcResponse</Key>
+      <Name>accountHoldingSvcServiceProvider1</Name>
+    </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>28</Id>
+      <Key>AccountTransferSvcResponse</Key>
+      <Name>accountTransferSvcServiceProvider1</Name>
+    </ServiceProvider>
+
   </ServiceProviders>
 
 </ServiceProviderConfig>

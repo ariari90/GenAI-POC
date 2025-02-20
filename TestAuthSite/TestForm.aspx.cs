@@ -18,20 +18,25 @@ namespace TestAuthSite
 {
     public partial class TestForm : System.Web.UI.Page
     {
+        public static AggregatorResponse response { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-        
+
+        public static AggregatorResponse GetResponse()
+        {
+            return response;
+        }
+
         protected void Authenticate_Btn_Click(object sender, EventArgs e)
         {
             string username = this.username.Text;
             string password = this.password.Text;
             AuthInfo authInfo = new AuthInfo()
             { UserName = username, Password = password };
-            //var authUrl = new Uri("http://localhost:54413/AggregatorAuthService.svc/GetToken");
-            var authUrl = new Uri("https://localhost:44348/AggregatorAuthService.svc/GetToken");
+            var authUrl = new Uri("http://localhost:54413/AggregatorAuthService.svc/GetToken");
             WebRequest authWebRequest = WebRequest.Create(authUrl);
             string stringData = String.Empty;
             using (var stringwriter = new System.IO.StringWriter())
@@ -61,9 +66,9 @@ namespace TestAuthSite
                 string token = XElement.Parse(tokenResponse).Value;
                 this.token.Text = token;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                this.token.Text = "{Authentication Failed}" + ex.ToString();
+                this.token.Text = "{Authentication Failed}";
             }
             
         }
@@ -90,6 +95,9 @@ namespace TestAuthSite
                 case "AccountAndHoldings":
                     requestType = RequestType.AccountAndHoldings;
                     break;
+                case "Extra":
+                    requestType = RequestType.Extra;
+                    break;
             }
             request.RequestType = requestType;
             try
@@ -103,7 +111,7 @@ namespace TestAuthSite
             }
 
             ASCIIEncoding encoding = new ASCIIEncoding();
-            var uri = new Uri("https://localhost:44348/AggregatorAuthService.svc/GetData");
+            var uri = new Uri("http://localhost:54413/AggregatorAuthService.svc/GetData");
 
             WebRequest webRequest = WebRequest.Create(uri);
             string stringData = String.Empty;
@@ -133,12 +141,6 @@ namespace TestAuthSite
 
                 AggregatorResponse response = GetDataFromStream<AggregatorResponse>(webResponse.GetResponseStream());
                 AggregatorResponseDataAccess.response = response;
-
-                if (AggregatorResponseDataAccess.response != null && AggregatorResponseDataAccess.response.AccountInfoResponse != null)
-                {
-                    DetailsView1.Visible = true;
-                    DetailsView1.DataBind();
-                }
             }
             catch (WebFaultException)
             {
@@ -151,6 +153,12 @@ namespace TestAuthSite
             catch (Exception)
             {
                 ErrorMessageLabel.Text = "Error: Could not make service call to AggregatorSvcAuth (are you running the WCF?)";
+            }
+            
+            if (AggregatorResponseDataAccess.response != null && AggregatorResponseDataAccess.response.AccountInfoResponse != null)
+            {
+                DetailsView1.Visible = true;
+                DetailsView1.DataBind();
             }
         }
 

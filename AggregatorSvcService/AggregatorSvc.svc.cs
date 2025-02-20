@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using AggregatorSvcService.RequestHanders;
+using Common;
 using Common.Entities;
 using DSP;
 using System;
@@ -63,8 +64,13 @@ namespace AggregatorSvcService
                 _log.LogMessage("Initiating AccountAndHoldingsRequestHandler Handler");
                 result = new AccountAndHoldingsRequestHandler(request);
             }
+            else if (request.RequestType == RequestType.Extra)
+            {
+                _log.LogMessage("Initiating ExtraRequestHandler Handler");
+                result = new ExtraRequestHandler(request);
+            }
 
-            _log.LogMessage("Orchestration Process is complete.");
+            _log.LogMessage("Orchestration Process is completed");
             return result;
         }
 

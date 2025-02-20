@@ -5,7 +5,6 @@ using RequestService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.ServiceModel;
 using System.Threading;
 using System.Web;
@@ -37,26 +36,7 @@ namespace AggregatorSvcService
 
                 Dictionary<string, object> inputs = new Dictionary<string, object>();
                 inputs["Request"] = _request;
-                var orchestrator = AggregatorConstants.orchestratorConfig.Orchestrators.FirstOrDefault(x => x.Type == AggregatorConstants.DPO_UpdateRequest);
-                if (orchestrator == null)
-                {
-                    _log.LogError("OrchestratorConfig does not contain the required key: " + AggregatorConstants.DPO_UpdateRequest);
-                    throw new FaultException("Internal Server Error");
-                }
-
-                Assembly workflowAssembly = null;
-                try
-                {
-                    workflowAssembly = Assembly.LoadFrom(orchestrator.Path);
-                }
-                catch (Exception e)
-                {
-                    _log.LogError("Could not load workflow assembly: " + e.ToString());
-                    throw new FaultException("Internal Server Error");
-                }
-
-                var workflow = workflowAssembly.GetTypes().FirstOrDefault(x => x.Name == orchestrator.Type);
-                WorkflowInstance instance = workflowRuntime.CreateWorkflow(workflow, inputs);
+                WorkflowInstance instance = workflowRuntime.CreateWorkflow(typeof(Workflows.UpdateRequest), inputs);
                 instance.Start();
 
                 _waitHandle.WaitOne();

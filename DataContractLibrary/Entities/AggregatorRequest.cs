@@ -27,5 +27,8 @@ namespace Common.Entities
 
         [DataMember]
         public HoldingsInfoRequest HoldingsInfoRequest { get; set; }
+
+        [DataMember]
+        public AccountTransferSvcRequest AccountFundWorkflowRequest { get; set; }
     }
 }

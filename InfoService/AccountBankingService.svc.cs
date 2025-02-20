@@ -1,4 +1,5 @@
 ﻿using Common.Entities;
+using DataContractLibrary;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,7 +11,7 @@ using System.Text;
 
 namespace InfoService
 {
-    public class AccountBankingService :  IAccountBankingService
+    public class AccountBankingService : IAccountBankingService
     {
         string _connectionString;
         int _amountPerUnits = 10;
@@ -27,7 +28,7 @@ namespace InfoService
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("select Uniqueid,HoldingSchemeName,TotalUnits,Nav,Amount, CreatedDate, ExitDate from HoldingSummary", cn);
+                SqlCommand cmd = new SqlCommand("select * from HoldingSummary", cn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 hslists = GetList<HoldingSummaryData>(dataReader);
             }
@@ -52,7 +53,7 @@ namespace InfoService
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("select UniqueId,TransactionDate,Description,Amount,TransactionType from TransactionSummary where uniqueId=" + uid, cn);
+                SqlCommand cmd = new SqlCommand("select * from TransactionSummary where uniqueId=" + uid, cn);
                 var dataReader = cmd.ExecuteReader();
                 userContributionLists = GetList<UserContributionData>(dataReader);
             }
@@ -61,7 +62,7 @@ namespace InfoService
 
             return userContributionLists.ToList();
         }
-        
+
 
         public ValidationResponse UpdatePersonalDetails(PersonalDetails personDetails)
         {
@@ -92,7 +93,7 @@ namespace InfoService
                     reader.Close();
                     response.Status = "Reject";
                 }
-                
+
                 con.Close();
 
             }

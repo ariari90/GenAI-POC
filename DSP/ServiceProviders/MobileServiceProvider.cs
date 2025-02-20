@@ -1,5 +1,4 @@
-﻿using Common;
-using Common.Entities;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +23,7 @@ namespace DSP
 
         protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)
         {
-            DSPLogger.LogMessage("Executing  MobileServiceProvider");
+            Console.WriteLine("Executing  MobileServiceProvider");
 
             Request = GetDSFVariable(this.Parent, "Request") as AggregatorRequest;
 
@@ -35,7 +34,7 @@ namespace DSP
                 {
                     AccountInfoService.AccountInfoServiceClient service = new AccountInfoService.AccountInfoServiceClient();
                     var personalInfo = service.ViewPersonalInfo(Request.UniqueId);
-                    mobile = personalInfo?.Mobile;
+                    mobile = personalInfo.Mobile;
                 }
                 catch (Exception e)
                 {
@@ -44,11 +43,8 @@ namespace DSP
                 }
                 finally
                 {
-                    if (!String.IsNullOrEmpty(mobile))
-                    {
-                        SetDSFVariable(this, AggregatorConstants.Mobile, mobile);
-                        SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
-                    }
+                    SetDSFVariable(this, AggregatorConstants.Mobile, mobile);
+                    SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
                 }
             }
 

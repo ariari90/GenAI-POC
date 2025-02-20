@@ -152,10 +152,17 @@
     </ServiceProvider>
 
     <ServiceProvider>
-      <Id>25</Id>
+      <Id>26</Id>
       <Key>Schemes</Key>
       <Name>schemesServiceProvider1</Name>
     </ServiceProvider>
+
+    <ServiceProvider>
+      <Id>27</Id>
+      <Key>AccountHoldingSvcResponse</Key>
+      <Name>accountHoldingSvcServiceProvider1</Name>
+    </ServiceProvider>
+
   </ServiceProviders>
 
 </ServiceProviderConfig>

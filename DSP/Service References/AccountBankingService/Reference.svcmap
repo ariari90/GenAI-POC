@@ -21,11 +21,12 @@
     <MetadataSource Address="http://localhost:50586/AccountBankingService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AccountBankingService.wsdl" MetadataType="Wsdl" ID="938180e3-b86c-4b37-8cb4-81dba32f3c89" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?wsdl" />
-    <MetadataFile FileName="AccountBankingService.xsd" MetadataType="Schema" ID="ef2a37a5-c73c-44a3-b712-c52c9f8572f5" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AccountBankingService3.xsd" MetadataType="Schema" ID="430d332f-f23b-4dd6-95e9-689032dd3a1a" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?xsd=xsd3" />
     <MetadataFile FileName="AccountBankingService1.xsd" MetadataType="Schema" ID="196cc646-0584-4e59-a522-fe43cdf04162" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?xsd=xsd2" />
-    <MetadataFile FileName="AccountBankingService.disco" MetadataType="Disco" ID="68ff2545-2a86-4c2f-95a3-ccb204f8c0a1" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?disco" />
     <MetadataFile FileName="AccountBankingService2.xsd" MetadataType="Schema" ID="adcff97b-110d-4926-9bec-04b26832a88a" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AccountBankingService.xsd" MetadataType="Schema" ID="ef2a37a5-c73c-44a3-b712-c52c9f8572f5" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AccountBankingService.disco" MetadataType="Disco" ID="68ff2545-2a86-4c2f-95a3-ccb204f8c0a1" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?disco" />
+    <MetadataFile FileName="AccountBankingService.wsdl" MetadataType="Wsdl" ID="938180e3-b86c-4b37-8cb4-81dba32f3c89" SourceId="1" SourceUrl="http://localhost:50586/AccountBankingService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

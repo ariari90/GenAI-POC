@@ -6,11 +6,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Workflow.ComponentModel;
-using Common;
 
 namespace DSP
 {
-    public class AggregatorAdapter : ServiceProviderBase
+    public class  AggregatorAdapter : ServiceProviderBase
     {
         public static DependencyProperty RequestProperty = System.Workflow.ComponentModel.DependencyProperty.Register("Request", typeof(AggregatorRequest), typeof(AggregatorAdapter));
 
@@ -56,6 +55,7 @@ namespace DSP
             {
                 ValidationResponse validationResponse = GetValidationResponse();
                 Response = Aggregate<AggregatorResponse>(Response);
+                
                 Response.ValidationResponse = validationResponse;
                 DSPLogger.LogMessage("Response built");
             }
@@ -115,17 +115,28 @@ namespace DSP
                 bool isList = propType.Name.Contains("List");
                 if (propType.IsClass && !isString && !isDateTime && !isList)
                 {
-                    string activityName = String.Empty;
-                    
-                    var instantiatePropObj = Activator.CreateInstance(propType);
-                    var instantiateProp = Convert.ChangeType(instantiatePropObj, propType);
-
-                    instantiatePropObj = Aggregate(instantiateProp, true, propType);
-                    instantiateProp = Convert.ChangeType(instantiatePropObj, propType);
-                    if (instantiateProp != null)
+                    //string activityName = String.Empty;
+                    //
+                    string activityName = GetActivityNameFromConfig(prop.Name);
+                    if (activityName != null)
                     {
-                        prop.SetValue(obj, instantiateProp, null);
+                        object value = GetDSFVariableByName(activityName, prop.Name);
+                        prop.SetValue(obj, value, null);
                     }
+                    else
+                    {
+
+                        var instantiatePropObj = Activator.CreateInstance(propType);
+                        var instantiateProp = Convert.ChangeType(instantiatePropObj, propType);
+
+                        instantiatePropObj = Aggregate(instantiateProp, true, propType);
+                        instantiateProp = Convert.ChangeType(instantiatePropObj, propType);
+                        if (instantiateProp != null)
+                        {
+                            prop.SetValue(obj, instantiateProp, null);
+                        }
+                    }
+                    //------------------                    
                 }
                 else
                 {
