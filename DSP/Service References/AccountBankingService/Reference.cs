@@ -18,6 +18,18 @@ namespace DSP.AccountBankingService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/GetHoldingSummary", ReplyAction="http://tempuri.org/IAccountBankingService/GetHoldingSummaryResponse")]
         Common.Entities.HoldingSummaryResponse GetHoldingSummary(int uid);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/AddTransactions", ReplyAction="http://tempuri.org/IAccountBankingService/AddTransactionsResponse")]
+        bool AddTransactions();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/AddHoldings", ReplyAction="http://tempuri.org/IAccountBankingService/AddHoldingsResponse")]
+        bool AddHoldings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/UpdateHolding", ReplyAction="http://tempuri.org/IAccountBankingService/UpdateHoldingResponse")]
+        bool UpdateHolding(int uid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/UpdateTransaction", ReplyAction="http://tempuri.org/IAccountBankingService/UpdateTransactionResponse")]
+        bool UpdateTransaction(int uid);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountBankingService/GetUserContribution", ReplyAction="http://tempuri.org/IAccountBankingService/GetUserContributionResponse")]
         Common.Entities.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate);
         
@@ -54,6 +66,22 @@ namespace DSP.AccountBankingService {
         
         public Common.Entities.HoldingSummaryResponse GetHoldingSummary(int uid) {
             return base.Channel.GetHoldingSummary(uid);
+        }
+        
+        public bool AddTransactions() {
+            return base.Channel.AddTransactions();
+        }
+        
+        public bool AddHoldings() {
+            return base.Channel.AddHoldings();
+        }
+        
+        public bool UpdateHolding(int uid) {
+            return base.Channel.UpdateHolding(uid);
+        }
+        
+        public bool UpdateTransaction(int uid) {
+            return base.Channel.UpdateTransaction(uid);
         }
         
         public Common.Entities.UserContributionData[] GetUserContribution(int uid, System.DateTime startdate, System.DateTime enddate) {

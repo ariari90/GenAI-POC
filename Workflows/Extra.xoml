@@ -1,0 +1,18 @@
+﻿<SequentialWorkflowActivity x:Class="Workflows.Extra" x:Name="Extra" xmlns:ns0="clr-namespace:DSP;Assembly=DSP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:ns1="clr-namespace:DSP.ServiceProviders;Assembly=DSP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<ParallelActivity x:Name="parallelActivity1">
+		<SequenceActivity x:Name="AccountHoldingActivity">
+			<ns0:AccountHoldingSvcServiceProvider Request="{x:Null}" DSPLogger="{x:Null}" AccountHoldingSvcResponse="{x:Null}" x:Name="accountHoldingSvcServiceProvider1" />
+		</SequenceActivity>
+		<SequenceActivity x:Name="AccountTransferActivity">
+			<IfElseActivity x:Name="IfAccountTransfer">
+				<IfElseBranchActivity x:Name="ifAccountTransferActivity">
+					<IfElseBranchActivity.Condition>
+						<CodeCondition Condition="ifAccountTransferActivityEvent" />
+					</IfElseBranchActivity.Condition>
+					<ns1:AccountTransferSvcServiceProvider Request="{x:Null}" DSPLogger="{x:Null}" AccountTransferSvcResponse="{x:Null}" x:Name="accountTransferSvcServiceProvider1" />
+				</IfElseBranchActivity>
+			</IfElseActivity>
+		</SequenceActivity>
+	</ParallelActivity>
+	<ns0:AggregatorAdapter Request="{x:Null}" DSPLogger="{x:Null}" Response="{x:Null}" x:Name="aggregatorAdapter1" />
+</SequentialWorkflowActivity>

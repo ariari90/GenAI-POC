@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Workflow.Activities;
 using System.Workflow.ComponentModel;
-using Common;
 
 namespace DSP
 {
@@ -47,15 +46,12 @@ namespace DSP
                 }
                 finally
                 {
-                    if (personalInfo != null)
-                    {
-                        SetDSFVariable(this, AggregatorConstants.FullName, personalInfo.FullName);
-                        SetDSFVariable(this, AggregatorConstants.FathersName, personalInfo.FathersName);
-                        SetDSFVariable(this, AggregatorConstants.MothersName, personalInfo.MothersName);
-                        SetDSFVariable(this, AggregatorConstants.Nationality, personalInfo.Nationality);
-                        SetDSFVariable(this, AggregatorConstants.DateOfBirth, personalInfo.DateOfBirth);
-                        SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
-                    }
+                    SetDSFVariable(this, AggregatorConstants.FullName, personalInfo.FullName);
+                    SetDSFVariable(this, AggregatorConstants.FathersName, personalInfo.FathersName);
+                    SetDSFVariable(this, AggregatorConstants.MothersName, personalInfo.MothersName);
+                    SetDSFVariable(this, AggregatorConstants.Nationality, personalInfo.Nationality);
+                    SetDSFVariable(this, AggregatorConstants.DateOfBirth, personalInfo.DateOfBirth);
+                    SetDSFRequiredResponse(AggregatorConstants.InfoServiceResponse);
                 }
             }
 

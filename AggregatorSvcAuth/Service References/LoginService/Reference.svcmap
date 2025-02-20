@@ -18,14 +18,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="https://localhost:44341/LoginService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:62177/LoginService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="LoginService3.xsd" MetadataType="Schema" ID="39b85037-fd85-49d3-a0e1-dc9c4c294577" SourceId="1" SourceUrl="https://localhost:44341/LoginService.svc?xsd=xsd1" />
-    <MetadataFile FileName="LoginService1.disco" MetadataType="Disco" ID="47eae473-561c-40d9-b205-504336f2da3a" SourceId="1" SourceUrl="https://localhost:44341/LoginService.svc?disco" />
-    <MetadataFile FileName="LoginService31.xsd" MetadataType="Schema" ID="912612ce-6b3d-442a-b9ad-a065410a7b3a" SourceId="1" SourceUrl="https://localhost:44341/LoginService.svc?xsd=xsd0" />
-    <MetadataFile FileName="LoginService32.xsd" MetadataType="Schema" ID="8554ab51-26a7-4fba-83f9-38470c4edac6" SourceId="1" SourceUrl="https://localhost:44341/LoginService.svc?xsd=xsd2" />
-    <MetadataFile FileName="LoginService1.wsdl" MetadataType="Wsdl" ID="b431f50f-706d-4323-b68b-dcb192f37e48" SourceId="1" SourceUrl="https://localhost:44341/LoginService.svc?wsdl" />
+    <MetadataFile FileName="LoginService.xsd" MetadataType="Schema" ID="dd81aa41-d8a2-4828-9a4c-cd71800d14aa" SourceId="1" SourceUrl="http://localhost:62177/LoginService.svc?xsd=xsd0" />
+    <MetadataFile FileName="LoginService1.xsd" MetadataType="Schema" ID="dbfb84ee-6e7f-4411-97a4-16648d23235f" SourceId="1" SourceUrl="http://localhost:62177/LoginService.svc?xsd=xsd2" />
+    <MetadataFile FileName="LoginService.disco" MetadataType="Disco" ID="a0c8755f-3e2a-489a-b0fa-baf32490bbb9" SourceId="1" SourceUrl="http://localhost:62177/LoginService.svc?disco" />
+    <MetadataFile FileName="LoginService2.xsd" MetadataType="Schema" ID="291fa2d6-3b96-4601-9469-e8b2c8f03db0" SourceId="1" SourceUrl="http://localhost:62177/LoginService.svc?xsd=xsd1" />
+    <MetadataFile FileName="LoginService.wsdl" MetadataType="Wsdl" ID="e27a6154-ec36-4f97-8e31-48dec126a662" SourceId="1" SourceUrl="http://localhost:62177/LoginService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

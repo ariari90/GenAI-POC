@@ -18,7 +18,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44362</IISExpressSSLPort>
+    <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -82,6 +82,8 @@
     <Compile Include="AccountBankingService.svc.cs">
       <DependentUpon>AccountBankingService.svc</DependentUpon>
     </Compile>
+    <Compile Include="SqlDataReaderExtensions.cs" />
+    <Compile Include="UniqueIdGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -115,7 +117,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50585</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44362/</IISUrl>
+          <IISUrl>http://localhost:50586/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

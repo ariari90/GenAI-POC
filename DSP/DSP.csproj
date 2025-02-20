@@ -57,6 +57,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\AccountTransferService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ContributionService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -68,6 +73,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ServiceProviderConfig.cs" />
+    <Compile Include="ServiceProviders\AccountHoldingSvcServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceProviders\AccountTransferSvcServiceProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ServiceProviders\SchemesServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -142,6 +153,7 @@
     <Compile Include="ServiceProviders\AggregatorAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AggregatorConstants.cs" />
     <Compile Include="ServiceProviders\AddressServiceProvider.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -167,6 +179,10 @@
       <Project>{dd02b14c-0413-40fa-8fc7-d5387875e138}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExtraService\ExtraService.csproj">
+      <Project>{2A024805-3B0E-4232-987B-2978ED88E56E}</Project>
+      <Name>ExtraService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RequestService\RequestService.csproj">
       <Project>{55175C42-0ACC-4D7F-8DD4-23B71DDE159E}</Project>
       <Name>RequestService</Name>
@@ -177,6 +193,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\Common.Entities.AccountTransferSvcResponse.datasource" />
+    <None Include="Properties\DataSources\Common.Entities.HoldingSummaryResponse.datasource" />
+    <None Include="Properties\DataSources\Common.Entities.UserContributionData.datasource" />
+    <None Include="Properties\DataSources\Common.Entities.ValidationResponse.datasource" />
     <None Include="Properties\DataSources\DataContractLibrary.BankInfo.datasource" />
     <None Include="Properties\DataSources\DataContractLibrary.ExitRequestResponse.datasource" />
     <None Include="Properties\DataSources\DataContractLibrary.HoldingSummaryResponse.datasource" />
@@ -184,6 +204,9 @@
     <None Include="Properties\DataSources\DataContractLibrary.SchemeInfo.datasource" />
     <None Include="Properties\DataSources\DataContractLibrary.UserContributionData.datasource" />
     <None Include="Properties\DataSources\DataContractLibrary.ValidationResponse.datasource" />
+    <None Include="Service References\AccountBankingService\AccountBankingService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\AccountInfoService\AccountInfoService.wsdl" />
     <None Include="Service References\AccountInfoService\AccountInfoService.xsd">
       <SubType>Designer</SubType>
@@ -192,6 +215,22 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AccountInfoService\AccountInfoService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountTransferService\AccountTransferService.wsdl" />
+    <None Include="Service References\AccountTransferService\AccountTransferService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountTransferService\AccountTransferService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountTransferService\AccountTransferService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountTransferService\AccountTransferService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountTransferService\AccountTransferService31.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ContributionService\ContributionService.wsdl" />
@@ -227,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AccountInfoService\" />
+    <WCFMetadataStorage Include="Service References\AccountTransferService\" />
     <WCFMetadataStorage Include="Service References\ContributionService\" />
     <WCFMetadataStorage Include="Service References\AccountBankingService\" />
     <WCFMetadataStorage Include="Service References\WithdrawService\" />
@@ -287,6 +327,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AccountInfoService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountTransferService\AccountTransferService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountTransferService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountTransferService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountTransferService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

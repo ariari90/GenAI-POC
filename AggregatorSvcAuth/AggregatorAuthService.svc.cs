@@ -1,4 +1,4 @@
-﻿using Common;
+using Common;
 using Common.Entities;
 using JWT;
 using JWT.Algorithms;
@@ -73,7 +73,6 @@ namespace AggregatorSvcAuth
             }
             catch (FaultException e)
             {
-                _log.LogError("Error in AggregatorSvcService: " + e.ToString());
                 throw new WebFaultException<string>(e.Message, HttpStatusCode.InternalServerError);
             }
             catch (Exception e)

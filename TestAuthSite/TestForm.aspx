@@ -2,9 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
 <head runat="server">
     <title></title>
+
 </head>
 <body style="font-family: Calibri">
     <form id="form1" runat="server">
@@ -61,6 +62,7 @@
                             <asp:ListItem>UpdateDetails</asp:ListItem>
                             <asp:ListItem>Transaction</asp:ListItem>
                             <asp:ListItem>AccountAndHoldings</asp:ListItem>
+                            <asp:ListItem>Extra</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -130,7 +132,7 @@
         
         </div>
         
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetResponse" TypeName="TestAuthSite.AggregatorResponseDataAccess"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetResponse" TypeName="TestAuthSite.AggregatorResponseDataAccess" ></asp:ObjectDataSource>
         
         <asp:Label ID="ErrorMessageLabel" runat="server" ForeColor="#993300"></asp:Label>
         

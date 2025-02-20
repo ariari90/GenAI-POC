@@ -1,8 +1,7 @@
-﻿using System;
+﻿using DataContractLibrary;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace Common.Entities
 {
@@ -11,9 +10,7 @@ namespace Common.Entities
     {
         [DataMember]
         public List<HoldingSummaryData> HoldingSummaryData { get; set; }
-
         [DataMember]
         public decimal TotalAmount { get; set; }
-
     }
 }

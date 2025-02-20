@@ -1,5 +1,4 @@
-﻿using Common;
-using Common.Entities;
+﻿using Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

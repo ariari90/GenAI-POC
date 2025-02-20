@@ -63,7 +63,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DataContractLibrary.AggregatorResponse.datasource" />
     <None Include="Service References\AggregatorSvcAuth\Service1.wsdl" />
@@ -86,13 +88,13 @@
       <Project>{dd02b14c-0413-40fa-8fc7-d5387875e138}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InfoService\InfoService.csproj">
-      <Project>{60874d70-d2af-46a4-8305-efe7237654a9}</Project>
-      <Name>InfoService</Name>
+    <ProjectReference Include="..\ExtraService\ExtraService.csproj">
+      <Project>{2A024805-3B0E-4232-987B-2978ED88E56E}</Project>
+      <Name>ExtraService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RequestService\RequestService.csproj">
-      <Project>{55175c42-0acc-4d7f-8dd4-23b71dde159e}</Project>
-      <Name>RequestService</Name>
+    <ProjectReference Include="..\InfoService\InfoService.csproj">
+      <Project>{60874D70-D2AF-46A4-8305-EFE7237654A9}</Project>
+      <Name>InfoService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
